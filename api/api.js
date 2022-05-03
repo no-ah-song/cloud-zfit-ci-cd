@@ -1,29 +1,7 @@
 import _ from 'lodash'
 
-function getAbsoluteURL(req) {
-  // 로컬은 http, 프로덕션은 https 라는 가정
-  const protocol = req ? 'https:' : 'http:'
-  let host = req
-    ? req.headers['x-forwarded-host'] || req.headers['host']
-    : window.location.host
-
-  // 주소에 local이라는 문자열이 들어가 있다면,
-  // 또는 별도의 환경변수를 주입하고 있다면 그것을 사용해도된다.
-  // process.env.RECT_APP_PROFILES === 'local'
-  if ((host || '').toString().indexOf('local') > -1) {
-    // 개발자 머신에서 실행했을 때 로컬
-    host = 'localhost:3000'
-  }
-
-  return {
-    protocol: protocol,
-    host: host,
-    origin: protocol + '//' + host,
-  }
-}
-
 const getBrandList = async () => {
-  const res = await fetch("http://localhost:3001/data/brands.json");
+  const res = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json");
   const data = await res.json();
   const objectData = Object.keys(data.brands);
   let brands = [];
@@ -33,19 +11,19 @@ const getBrandList = async () => {
   return brands;
 };
 
-const getProductList = async () => {
-  const res = await fetch("http://localhost:3001/data/products.json");
-  const data = await res.json();
-  const products = data.products;
-  return products;
-};
+// const getProductList = async () => {
+//   const res = await fetch("./data/products.json");
+//   const data = await res.json();
+//   const products = data.products;
+//   return products;
+// };
 
-const getProductItem = async (productId) => {
-  const res = await fetch("http://localhost:3001/data/products.json");
-  const data = await res.json();
-  const product = data.products[productId];
-  return product;
-};
+// const getProductItem = async (productId) => {
+//   const res = await fetch("./data/products.json");
+//   const data = await res.json();
+//   const product = data.products[productId];
+//   return product;
+// };
 
 const getFittingImages = async ({
   brandId,
@@ -63,7 +41,7 @@ const getFittingImages = async ({
   belt,
   acrossShoulder,
 }) => {
-  const res = await fetch("http://localhost:3001/data/fitting.json");
+  const res = await fetch("./data/fitting.json");
   const data = await res.json();
   async function filter() {
     try{
@@ -161,4 +139,4 @@ async function processBodyInfoData(data, key, value) {
   let nearestKey = await findNearestInteger(keyArr, value);
   return nearestKey
 }
-export { getBrandList, getProductList, getProductItem, getFittingImages };
+export { getBrandList, getFittingImages };

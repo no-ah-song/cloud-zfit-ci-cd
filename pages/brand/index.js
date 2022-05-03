@@ -76,7 +76,7 @@ Index.propTypes = {};
 
 export async function getServerSideProps(context) {
   const { brand } = context.query;
-  const resProduct = await fetch("http://localhost:3001/data/products.json");
+  const resProduct = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json");
   const dataProduct = await resProduct.json();
   const objectProduct = Object.keys(dataProduct.products);
   let products = [];
@@ -85,7 +85,7 @@ export async function getServerSideProps(context) {
       products.push(dataProduct.products[productId]);
     }
   })
-  const resBrand = await fetch("http://localhost:3001/data/brands.json");
+  const resBrand = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json");
   const brandData = await resBrand.json();
   const objectBrand = Object.keys(brandData.brands);
   let brands = [];

@@ -44,7 +44,7 @@ Index.propTypes = {};
 
 export async function getServerSideProps(context) {
   const { gender, type, brand } = context.query;
-  const resCategory = await fetch("http://localhost:3001/data/category.json");
+  const resCategory = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/category.json");
   const dataCategory = await resCategory.json();
   let categoryProducts;
   if (gender === "men") {
@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
   } else if (gender === "women") {
     categoryProducts = dataCategory.products.women; // productId Array
   }
-  const resAllProducts = await fetch("http://localhost:3001/data/products.json");
+  const resAllProducts = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json");
   const dataAllProducts = await resAllProducts.json();
   const objectAllProducts = Object.keys(dataAllProducts.products);
   let genderProductObject = [];

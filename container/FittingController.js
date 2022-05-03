@@ -31,7 +31,6 @@ const StyleController = ({ isOpen }) => {
     async function fetchData() {
       try{
         const response = await getFittingImages(fitting);
-        console.log(response);
         setFittingImages({...response, fitmap:fitting.fitmap});
       }catch{
         resetFittingImages();

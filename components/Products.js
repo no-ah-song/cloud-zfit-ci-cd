@@ -2,9 +2,8 @@ import React, { useEffect, useCallback } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { colorAndSizeState, selectedProductState, fittingIsOpenState } from "../recoil/state";
+import { colorAndSizeState, selectedProductState, fittingIsOpenState, fittingImagesState } from "../recoil/state";
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
-import {getProductItem} from '../api/api';
 
 const ProductList = styled.div`
   display: grid;
@@ -46,11 +45,11 @@ const Products = ({ productList = [] }) => {
   const setSelectedProduct = useSetRecoilState(selectedProductState);
   const setFittingIsOpen = useSetRecoilState(fittingIsOpenState);
   const resetColorAndSize = useResetRecoilState(colorAndSizeState);
-
+  const resetFittingImage = useResetRecoilState(fittingImagesState);
   const handleClick = useCallback((product) => {
     async function fetchData() {
-      //const response = await getProductItem(product.productId);
       resetColorAndSize();
+      resetFittingImage();
       setSelectedProduct({...product, color: product.color, sizes: product.sizes});
     }
     fetchData();
