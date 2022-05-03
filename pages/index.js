@@ -32,7 +32,6 @@ export async function getServerSideProps(context) {
   objectBrand.map((brandId)=>{
     banners.push(brandData.brands[brandId])
   });
-
   return { props: { products, banners } };
 }
 

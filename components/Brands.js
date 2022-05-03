@@ -71,7 +71,7 @@ const Brands = ({ brandList }) => {
               <BrandItem>
                 <BrandImageBox>
                   <Image
-                    src="/images/Rectangle Brand.jpg"
+                    src={brand.src||"/noimage.png"}
                     width={72}
                     height={72}
                   />

@@ -159,7 +159,7 @@ const BrandCarousel = ({ bannerList }) => {
                 </div>
               </div>
               <div className="carousel-bottom">
-                {banner.src&&<Image src={banner.src} layout="fill" />}
+                <Image src={banner.src||"/noimage.png"} layout="fill" />
               </div>
             </div>
           );

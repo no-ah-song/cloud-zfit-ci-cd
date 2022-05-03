@@ -235,7 +235,7 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                           <BrandItem>
                             <BrandImageBox>
                               <Image
-                                src="/images/Rectangle Brand.jpg"
+                                src={brand.logo||"/noimage.png"}
                                 width={72}
                                 height={72}
                               />

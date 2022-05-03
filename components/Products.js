@@ -71,7 +71,7 @@ const Products = ({ productList = [] }) => {
               <div className="text-end" onClick={()=>handleClick(product)}>View Fitting↗</div>
             </ProductInfo>
             <ProductItem>
-              <Image src="/images/Rectangle 248.jpg" layout="fill" />
+              <Image src={"/images/Rectangle 248.jpg"||"/noimage.png"} layout="fill" />
             </ProductItem>
           </div>
         );

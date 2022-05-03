@@ -45,7 +45,7 @@ const ProductsHorizontal = ({ productList=[], itemWidth }) => {
               <div>View Fitting↗</div>
             </ProductInfo>
             <ProductItem width={itemWidth}>
-              <Image src="/images/Rectangle 248.jpg" layout="fill" />
+              <Image src={"/images/Rectangle 248.jpg"||"/noimage.png"} layout="fill" />
             </ProductItem>
           </div>
         );
