@@ -49,9 +49,9 @@ const Products = ({ productList = [] }) => {
 
   const handleClick = useCallback((product) => {
     async function fetchData() {
-      const response = await getProductItem(product.productId);
+      //const response = await getProductItem(product.productId);
       resetColorAndSize();
-      setSelectedProduct({...response, color: product.color, sizes: product.sizes});
+      setSelectedProduct({...product, color: product.color, sizes: product.sizes});
     }
     fetchData();
     setFittingIsOpen(true);

@@ -13,6 +13,7 @@ import {
   selectedProductState,
   colorAndSizeState,
   fittingImagesState,
+  fitmapState,
 } from "../recoil/state";
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 
@@ -30,7 +31,8 @@ const StyleController = ({ isOpen }) => {
     async function fetchData() {
       try{
         const response = await getFittingImages(fitting);
-        setFittingImages(response);
+        console.log(response);
+        setFittingImages({...response, fitmap:fitting.fitmap});
       }catch{
         resetFittingImages();
       }
@@ -85,7 +87,6 @@ const StyleController = ({ isOpen }) => {
 const StyleControlBox = ({ title, children, ...rest }) => {
   const setSsrCompleted = useSsrComplectedState();
   const [isOpen,setIsOpen] = useState(true);
-  useEffect(()=>{console.log(isOpen)},[isOpen])
   useEffect(setSsrCompleted, [setSsrCompleted]);
 
   return (
@@ -119,7 +120,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
   const [selectedShape, setSelectedShape] = useState(0);
 
   const initialValues = {
-    genders: selectedProduct.genders[0],
+    genders: selectedProduct.genders,
     height: avatar.height,
     weight: avatar.weight,
     shape: avatar.shape,
@@ -129,7 +130,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
     neck: avatar.neck,
     chest: avatar.chest,
     belt: avatar.belt,
-    shoulder: avatar.shoulder,
+    acrossShoulder: avatar.acrossShoulder,
   };
   const [values, setValues] = useState(initialValues);
 
@@ -146,7 +147,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
         chest: advancedBody.chest,
         waist: advancedBody.waist,
         belt: advancedBody.belt,
-        acrossShoulder: advancedBody.acrossShoulder,
+        acrossShoulder: advancedBody.shoulder,
         [name]: value,
       });
     } else {
@@ -162,6 +163,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
   };
 
   useEffect(() => {
+    console.log(values);
     setAvatar(values);
   }, [values]);
 
@@ -187,7 +189,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       chest: advancedBody.chest,
       waist: advancedBody.waist,
       belt: advancedBody.belt,
-      shoulder: advancedBody.shoulder,
+      acrossShoulder: advancedBody.shoulder,
     });
   }, [values, selectedShape]);
 
@@ -447,33 +449,47 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       </div>
       <div className="row w-100">
         <div className="col col-6 px-4">Gender</div>
-        {values.genders[0] === "men"
-          ?(
-            <div
-              className={
-                values.genders[0] === "men"
-                  ? (values.genders.length > 1 ? "col col-3 toggle-active": "col col-6 toggle-active"):(values.genders.length > 1  ? "col col-3 toggle": "col col-6 toggle")
-              }
-              onClick={() => changeValue("genders", "men")}
+          {selectedProduct.genders.length > 1?(
+            <>
+              <div
+              className={values.genders[0] === "men" ? "col col-3 toggle-active": "col col-3 toggle"}
+              onClick={() => changeValue("genders", ["men"])}
               data-toggle-group="gender"
               data-value="men"
-            >
-              Men
-            </div>
+              >
+                Men
+              </div>
+              <div
+              className={values.genders[0] === "women" ? "col col-3 toggle-active": "col col-3 toggle"}
+                onClick={() => changeValue("genders", ["women"])}
+                data-toggle-group="gender"
+                data-value="women"
+              >
+                Women
+              </div>
+            </>
           ):(
-            <div
-            className={
-              values.genders[0] === "women"
-                ? (values.genders.length > 1 ? "col col-3 toggle-active": "col col-6 toggle-active"):(values.genders.length > 1  ? "col col-3 toggle": "col col-6 toggle")
-            }
-              onClick={() => changeValue("genders", "women")}
-              data-toggle-group="gender"
-              data-value="women"
-            >
-              Women
-            </div>
-          )
-        }
+            values.genders[0] === "men" ? (
+              <div
+                className="col col-6 toggle-active"
+                onClick={() => changeValue("genders", ["men"])}
+                data-toggle-group="gender"
+                data-value="men"
+              >
+                Men
+              </div>
+            ):
+            (
+              <div
+                className="col col-6 toggle-active"
+                onClick={() => changeValue("genders", ["women"])}
+                data-toggle-group="gender"
+                data-value="women"
+              >
+                Women
+              </div>
+            )
+          )}
       </div>
       <div className="row w-100">
         <div className="col col-3 px-4">Height</div>
@@ -528,7 +544,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 0 ? "active" : ""}
             >
               <Image
-                src="/images/womenW_hourglass.png"
+                src="/images/women_hourglass.png"
                 width={71}
                 height={96}
               ></Image>
@@ -538,7 +554,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 1 ? "active" : ""}
             >
               <Image
-                src="/images/womenW_pear.png"
+                src="/images/women_pear.png"
                 width={71}
                 height={96}
               ></Image>
@@ -548,7 +564,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 2 ? "active" : ""}
             >
               <Image
-                src="/images/womenW_rectangle.png"
+                src="/images/women_rectangle.png"
                 width={71}
                 height={96}
               ></Image>
@@ -558,7 +574,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 3 ? "active" : ""}
             >
               <Image
-                src="/images/womenW_inverted_triangle.png"
+                src="/images/women_inverted_triangle.png"
                 width={71}
                 height={96}
               ></Image>
@@ -568,7 +584,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 4 ? "active" : ""}
             >
               <Image
-                src="/images/womenW_apple.png"
+                src="/images/women_apple.png"
                 width={71}
                 height={96}
               ></Image>
@@ -581,7 +597,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 0 ? "active" : ""}
             >
               <Image
-                src="/images/menW_trapezoid.png"
+                src="/images/men_trapezoid.png"
                 menW_triangle
                 width={71}
                 height={96}
@@ -592,7 +608,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 1 ? "active" : ""}
             >
               <Image
-                src="/images/menW_triangle.png"
+                src="/images/men_triangle.png"
                 width={71}
                 height={96}
               ></Image>
@@ -602,7 +618,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 2 ? "active" : ""}
             >
               <Image
-                src="/images/menW_rectangle.png"
+                src="/images/men_rectangle.png"
                 menW_inverted_triangle
                 width={71}
                 height={96}
@@ -613,7 +629,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               className={selectedShape === 3 ? "active" : ""}
             >
               <Image
-                src="/images/menW_inverted_triangle.png"
+                src="/images/men_inverted_triangle.png"
                 width={71}
                 height={96}
               ></Image>
@@ -622,12 +638,11 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               onClick={() => setSelectedShape(4)}
               className={selectedShape === 4 ? "active" : ""}
             >
-              <Image src="/images/menW_Oval.png" width={71} height={96}></Image>
+              <Image src="/images/men_Oval.png" width={71} height={96}></Image>
             </div>
           </div>
         )}
       </div>
-      <div className="row"></div>
       <div className="row">
         <div className="col col-12">Advanced</div>
       </div>
@@ -700,7 +715,10 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
 
 const GridMenuBox = ({ onSelect }) => {
   const avatar = useRecoilValue(avatarState);
+  const [fitmap, setFitmap] = useRecoilState(fitmapState);
   const fitting = useRecoilValue(fittingSelector);
+  useEffect(()=>{
+  },[avatar])
 
   return (
     <div className="grid-menu-box">
@@ -741,7 +759,7 @@ const GridMenuBox = ({ onSelect }) => {
           </div>
           <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
             <div>
-              <div>On</div>
+              <div className={fitmap.fitmap?"toggle-active":"toggle"} onClick={()=>{setFitmap({fitmap:!fitmap.fitmap})}}>On</div>
             </div>
           </div>
           <div className="fit-map-bottom">
@@ -806,21 +824,12 @@ const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
     if (selectedProduct.productId) {
       setColors(selectedProduct.colors.map((item) => item.color));
       setSizes(selectedProduct.colors[0].sizes);
-      setColorAndSize({...colorAndSize, color: selectedProduct.color });
+      setColorAndSize({...colorAndSize, color: selectedProduct.color, size: selectedProduct.colors[0].sizes[0] });
     } else {
       setColors();
       setSizes();
     }
   }, [selectedProduct]);
-
-  useEffect(() => {
-    if (sizes) {
-      setColorAndSize({ ...colorAndSize, size: sizes[0] });
-    } else {
-      setColorAndSize({ ...colorAndSize, size: "" });
-    }
-  }, [sizes]);
-
 
   return (
     <div className="size-color-style-box">
@@ -904,22 +913,22 @@ const WheelPicker = ({ options = [] }) => {
 };
 
 const WheelColorPicker = ({ options = [] }) => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState();
   const [scrollLeft, setScrollLeft] = useState(0);
   const [colorAndSize, setColorAndSize] = useRecoilState(colorAndSizeState);
   const selectedProduct = useRecoilValue(selectedProductState);
   const rootRef = useRef();
   const ref = useRef();
-  const handleClick = (e, index) => {
+  const handleClick = (e, index, option) => {
     e.preventDefault();
     const left = -53 * index;
     setScrollLeft(53 * index);
     ref.current.style.marginRight = `${left * -1}px`;
-    setActive(index);
+    setActive(option);
   };
 
   useEffect(() => {
-    setColorAndSize({ ...colorAndSize, color: options[active] });
+    setColorAndSize({ ...colorAndSize, color: active });
   }, [active]);
 
   useEffect(() => {
@@ -927,7 +936,7 @@ const WheelColorPicker = ({ options = [] }) => {
   }, [scrollLeft]);
 
   useEffect(() => {
-    setActive(0);
+    setActive(selectedProduct.color);
   }, [selectedProduct]);
 
   return (
@@ -938,9 +947,9 @@ const WheelColorPicker = ({ options = [] }) => {
             <li
               key={index}
               className={
-                active === index ? "picker-item active" : "picker-item"
+                active === option ? "picker-item active" : "picker-item"
               }
-              onClick={(e) => handleClick(e, index)}
+              onClick={(e) => handleClick(e, index, option)}
             >
               <ColorBadge color={option} />
             </li>
@@ -1032,6 +1041,7 @@ const ControllBody = styled.div`
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-template-rows: 95px;
+      border-right: 1px solid black;
       & > div {
         opacity: 0.5;
       }
@@ -1066,6 +1076,12 @@ const ControllBody = styled.div`
         width: 163px;
         margin: auto;
       }
+    }
+    .toggle-active::before {
+      content: "◆";
+    }
+    .toggle::before {
+      content: "◇";
     }
   }
   .recommended-style-box {

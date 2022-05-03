@@ -1,6 +1,6 @@
 import { atom, selector, useSetRecoilState, useRecoilValue } from "recoil";
 import { recoilPersist } from "recoil-persist";
-import { getBrandList, getProductList } from "../api/api";
+import { getBrandList } from "../api/api";
 
 const { persistAtom } = recoilPersist();
 // PERSIST SSR CHECK
@@ -71,7 +71,7 @@ const avatarState = atom({
     chest:"",
     waist:"",
     belt:"",
-    shoulder:"",
+    acrossShoulder:""
   }),
   // effects_UNSTABLE: [persistAtomEffect]
 });
@@ -95,10 +95,15 @@ const menuIsOpenState = atom({
   default: false,
 });
 
+const fitmapState = atom({
+  key: "fitmapState",
+  default: {fitmap:false},
+});
+
 const fittingImagesState = atom({
   key: "fittingImagesState",
   default: {
-    acrossShoulder: 308,
+    acrossShoulder: 0,
     armLength: 0,
     belt: 0,
     brand: "",
@@ -110,9 +115,10 @@ const fittingImagesState = atom({
     images: [],
     inseam: 0,
     neck: 0,
-    productId: "109d6b9f-f1f0-452c-bdcf-0d139f7ed814",
+    productId: "",
     size: "",
-    waist: 0
+    waist: 0,
+    fitmap: false
   },
 });
 
@@ -122,22 +128,23 @@ const fittingSelector = selector({
     const product=get(selectedProductState);
     const colorAndSize = get(colorAndSizeState);
     const avatar = get(avatarState);
+    const fitmap = get(fitmapState);
     const fitting={
       height: avatar.height,
       hip: avatar.hip,
       armLength: avatar.armLength,
       inseam: avatar.inseam ,
-      chest:"",
-      neck:"",
-      waist:"",
-      acrossShoulder:"",
-      belt:"",
-      gender: product.genders[0],
+      chest:avatar.chest,
+      neck:avatar.neck,
+      waist:avatar.waist,
+      acrossShoulder:avatar.acrossShoulder,
+      belt:avatar.belt,
+      gender: avatar.genders[0],
       brandId: product.brandId,
       productId:product.productId,
       color:colorAndSize.color,
       size:colorAndSize.size,
-      brand:""
+      fitmap: fitmap.fitmap
     }
     return fitting;
   },
@@ -170,4 +177,5 @@ export {
   menuIsOpenState,
   colorAndSizeState,
   fittingImagesState,
+  fitmapState
 };

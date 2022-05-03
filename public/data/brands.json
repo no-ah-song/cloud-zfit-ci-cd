@@ -1,16 +1,48 @@
 {
   "brands": {
-    "7c9ed0de-7a2d-42f1-8458-8032caf1a8c2": {
-      "brandId": "7c9ed0de-7a2d-42f1-8458-8032caf1a8c2",
+    "ecfffd3a-d251-41ac-8351-b815c41a65a2": {
+      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
       "brandName": "Demo_EENK",
       "logo": "",
       "src": "",
       "summary": "",
       "is_visible_home": true
     },
-    "f5ad3a3d-db39-4629-bc4b-b1188830f724": {
-      "brandId": "f5ad3a3d-db39-4629-bc4b-b1188830f724",
+    "d0f8b84a-876e-496d-9284-58c8b48412af": {
+      "brandId": "d0f8b84a-876e-496d-9284-58c8b48412af",
       "brandName": "Demo_Fallett",
+      "logo": "",
+      "src": "",
+      "summary": "",
+      "is_visible_home": true
+    },
+    "abc19be2-b79e-4390-a74a-2325c53677d1": {
+      "brandId": "abc19be2-b79e-4390-a74a-2325c53677d1",
+      "brandName": "Demo_Mark Gonzales",
+      "logo": "",
+      "src": "",
+      "summary": "",
+      "is_visible_home": true
+    },
+    "e385fa80-b46b-4add-8e57-e64e03b325b6": {
+      "brandId": "e385fa80-b46b-4add-8e57-e64e03b325b6",
+      "brandName": "Demo_OiOi",
+      "logo": "",
+      "src": "",
+      "summary": "",
+      "is_visible_home": true
+    },
+    "167da6e7-a689-42b1-9ec9-70022b7ecf05": {
+      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
+      "brandName": "Demo_SlowStandard",
+      "logo": "",
+      "src": "",
+      "summary": "",
+      "is_visible_home": true
+    },
+    "b3d7f938-a263-422a-acb9-aafeb42e4375": {
+      "brandId": "b3d7f938-a263-422a-acb9-aafeb42e4375",
+      "brandName": "Demo_Studio Tomboy",
       "logo": "",
       "src": "",
       "summary": "",

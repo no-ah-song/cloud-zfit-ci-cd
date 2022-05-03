@@ -12,15 +12,19 @@ const Index = ({ products, banners }) => {
 Index.propTypes = {};
 
 export async function getServerSideProps(context) {
-  const { gender, type, brand } = context.query;
   const resProduct = await fetch("http://localhost:3001/data/products.json"); // 프로덕트 전체
   const dataProduct = await resProduct.json();
   const objectProduct = Object.keys(dataProduct.products);
   let products = [];
+  // objectProduct.map((productId)=>{
+  //   products.push(dataProduct.products[productId])
+  // });
   objectProduct.map((productId)=>{
-    products.push(dataProduct.products[productId])
+    dataProduct.products[productId].colors.map((item)=>{
+      products.push({...dataProduct.products[productId],color:item.color, sizes:item.sizes, src:item.src});
+    })
   });
-
+  
   const resBrand = await fetch("http://localhost:3001/data/brands.json"); // 모바일 홈 배너에 보여줄 브랜드
   const brandData = await resBrand.json();
   const objectBrand = Object.keys(brandData.brands);

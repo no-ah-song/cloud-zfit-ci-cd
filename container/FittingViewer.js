@@ -11,21 +11,22 @@ import { useRecoilValue } from "recoil";
 
 const FittingViewer = ({}) => {
   const fittingImages = useRecoilValue(fittingImagesState);
+  const [fitmap, setFitmap] = useState();
   const [imageArray, setImageArray] = useState();
   useEffect(()=>{
     setImageArray(fittingImages.images)
-    console.log()
+    setFitmap(fittingImages.fitmap);
   },[fittingImages])
   useEffect(()=>{
   },[imageArray])
   return (
     <>
-    <FittingSlider capture={imageArray} />
+    <FittingSlider capture={imageArray} fitmap={fitmap} />
   </>
   );
 };
 
-const FittingSlider = ({capture}) => {
+const FittingSlider = ({capture, fitmap}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [delta, setDelta] = useState(0);
   const validCapture = capture && Array.isArray(capture) && capture.length > 0;
@@ -37,7 +38,13 @@ const FittingSlider = ({capture}) => {
     trackMouse: true, // track mouse input
     rotationAngle: 0, // set a rotation angle
   };
-
+  useEffect(()=>{
+    if(fitmap){
+      setCurrentIndex(capture.length / 2);
+    }else{
+      setCurrentIndex(0);
+    }
+  },[fitmap]);
   const handlers = useSwipeable({
     onSwiped: (eventData) => {
       setDelta(0);
@@ -46,10 +53,17 @@ const FittingSlider = ({capture}) => {
       if (validCapture) {
         const diff = delta - eventData.deltaX;
         if (Math.abs(diff) > deltaDiff) {
-          const start = 0;
-          const end = capture.length / 2- 1;
+          let start;
+          let end;
+          if(fitmap){
+            start = capture.length / 2;
+            end = capture.length-1;
+          }else{
+            start = 0;
+            end = capture.length / 2- 1;
+          }
           let index = currentIndex + (diff > 0 ? -1 : 1);
-
+  
           if (index < start) {
             index = end;
           } else if (index > end) {
@@ -62,7 +76,6 @@ const FittingSlider = ({capture}) => {
     },
     ...configswipeable,
   });
-
 
   return (
       <>
