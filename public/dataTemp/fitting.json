@@ -1,0 +1,18 @@
+{
+  "fitting":{
+    "height": "170",
+    "hip": "90",
+    "armLength": "60",
+    "inseam": "75" ,
+    "chest":"",
+    "neck":"",
+    "waist":"",
+    "acrossShoulder":"",
+    "belt":"",
+    "gender": "men",
+    "productId":"",
+    "color":"",
+    "size":"",
+    "brand":""
+  }
+}

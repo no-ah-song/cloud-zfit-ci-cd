@@ -1,0 +1,214 @@
+{
+  "products": [
+    {
+      "productId": "Hoodie0001",
+      "productName":"Air Jordan 1 top",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "top",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"black", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0002",
+      "productName":"Overfit String Pocket Woven Short Sleeve",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "top",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0003",
+      "productName":"Utility Nylon Cargo Pants",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "bottom",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0004",
+      "productName":"RONE Half Pants with side hidden panel",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "bottom",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0005",
+      "productName":"RINK Front Pocket Short Cardigan",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "outer",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0006",
+      "productName":"RINK Front Pocket Short Cardigan",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "outer",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0007",
+      "productName":"ROUPEE Volume Jacket with detachable sleeves",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "top",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0008",
+      "productName":"Linen String Cargo Wide Bending Pants",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "bottom",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0009",
+      "productName":"Air Jordan 1 top",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "top",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    },
+    {
+      "productId": "Hoodie0010",
+      "productName":"STORY LOGO BOA ZIP-UP JACKET",
+      "recommendSize": "L", 
+      "brandName": "What it isnt",
+      "brandId": "0000",
+      "type": "outer",
+      "colors":[
+        {
+          "color":"green", 
+          "src":"", 
+          "sizes": ["S","M","L"]
+        },
+        {
+          "color":"blue", 
+          "src":"",
+          "sizes": ["S","M"]
+        }
+      ],
+      "genders": ["men","women"]
+    }
+  ]
+}

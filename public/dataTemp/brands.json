@@ -1,0 +1,28 @@
+{
+  "brands": [
+    {
+      "brandId": "0000",
+      "brandName": "What it isnt",
+      "logo": "",
+      "src": "/images/Rectangle 249.jpg",
+      "summary":"자유로운 스케이트보드 문화를 통하여 새로운 스트릿 스타일을 개척하다. 와릿이즌 아트 바이 마크 곤잘레스 (What it isNt) ART BY MARK GONZALES는 레전드 스케이트 보더이자 아티스트 마크 곤잘레스의 아트워크를 기반으로 한 '컬처 스트릿' 브랜드입니다. 브랜드를 대표하는 아이코닉 한 '엔젤 로고'를 비롯하여 다양한 오리지널 그래픽을 접목한 컬렉션을 통하여 우리의 진정한 아이덴티티를 보여주고자 합니다.",
+      "is_visible_home": true 
+    },
+    {
+      "brandId": "0001",
+      "brandName": "Fallett",
+      "logo": "",
+      "src": "/images/Rectangle 249.jpg",
+      "summary":"Fallett팔렛 팔렛(FALLETT)은 브랜드의 모티브인 팔레트(palette)의 발음과 문자를 변형한 이름입니다. 팔레트 위에 물감을 조색하여 무한한 컬러를 만들어낼 수 있듯이, 눈을 통해 보는 세상의 수많은 시각적 이미지를 무한하게 재해석하고자 하는 컨템포러리 브랜드입니다.",
+      "is_visible_home": true
+    },
+    {
+      "brandId": "0002",
+      "brandName": "Mahagrid",
+      "logo": "",
+      "src": "/images/Rectangle 249.jpg",
+      "summary":"마하그리드(MAHAGRID)는 '위대함'을 나타내는 인도네시아어 MAHA와 격자무늬를 뜻하는 GRID라는 두 가지의 키워드를 섞어 '위대한 이정표'라는 의미를 지닙니다. 미국의 하위 문화부터 성장한 스트릿 컬처의 역사를 하나의 이정표로 삼고 그 안에서 가치를 지닌 다양한 요소를 현재의 시점에서 재해석한다는 의미를 내포합니다. ",
+      "is_visible_home": true
+    }
+  ]
+}
