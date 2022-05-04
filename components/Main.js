@@ -4,10 +4,10 @@ import styled from "styled-components";
 const MainRoot = styled.div`
   overflow: hidden;
   height: calc(100vh - 48px);
-  overflow: scroll;
+  overflow-y: scroll;
   @media only screen and (min-width: 600px) {
     height: calc(100vh - 48px);
-    overflow: scroll;
+    overflow-y: scroll;
   }
 `;
 const Main = ({ children }) => {

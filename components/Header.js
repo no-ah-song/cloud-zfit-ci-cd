@@ -27,19 +27,20 @@ const Header = ({ onClickOpen, onClickClose, isOpen }) => {
     <HeaderRoot>
       <header className="bg-white text-black border-bottom border-dark">
         <div className="justify-content-between d-flex h-100">
-          <div
-            className="d-flex flex-wrap align-items-center h-100"
-            style={{ width: "47px", borderRight: "solid 1px black" }}
-          >
-            {onClickOpen && (
+          {onClickOpen && (
+            <div
+              className="d-flex flex-wrap align-items-center h-100"
+              style={{ width: "47px", borderRight: "solid 1px black" }}
+            >
               <span
                 className="d-flex align-items-center justify-content-center text-black text-decoration-none w-100"
                 onClick={isOpen ? onClickClose : onClickOpen}
               >
                 {isOpen ? <Close /> : <NavButton />}
               </span>
-            )}
-          </div>
+            </div>
+          )}
+          <div/>
           <div className="d-flex flex-wrap justify-content-end p-2 ">
             <ul className="nav col-12 col-lg-auto justify-content-end">
               <li>
@@ -50,11 +51,9 @@ const Header = ({ onClickOpen, onClickClose, isOpen }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/" passHref>
-                  <a href="/" className="px-2 text-black">
+                  <span className="px-2 text-black">
                     All Rights Reserved.®
-                  </a>
-                </Link>
+                  </span>
               </li>
             </ul>
 

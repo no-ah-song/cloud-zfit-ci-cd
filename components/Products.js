@@ -63,15 +63,14 @@ const Products = ({ productList = [] }) => {
           <div key={index}>
             <ProductInfo>
               <div>
-                <div>{product.productId}</div>
-                <div>{product.productName}</div>
-                <div>{product.color}</div>
+                <div><b>{product.productName}</b></div>
+                <div><b>{product.color}</b></div>
                 {/* <div>{product.brandName}</div> // 일단 브랜드 네임 빼기*/} 
               </div>
-              <div className="text-end" onClick={()=>handleClick(product)}>View Fitting↗</div>
+              <div className="text-end text-nowrap" role="button" onClick={()=>handleClick(product)}>View Fitting↗</div>
             </ProductInfo>
             <ProductItem>
-              <Image src={"/images/Rectangle 248.jpg"||"/noimage.png"} layout="fill" />
+              <Image src={product.src||"/noimage.png"} layout="fill" />
             </ProductItem>
           </div>
         );

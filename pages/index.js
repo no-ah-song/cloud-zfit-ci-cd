@@ -16,9 +16,6 @@ export async function getServerSideProps(context) {
   const dataProduct = await resProduct.json();
   const objectProduct = Object.keys(dataProduct.products);
   let products = [];
-  // objectProduct.map((productId)=>{
-  //   products.push(dataProduct.products[productId])
-  // });
   objectProduct.map((productId)=>{
     dataProduct.products[productId].colors.map((item)=>{
       products.push({...dataProduct.products[productId],color:item.color, sizes:item.sizes, src:item.src});

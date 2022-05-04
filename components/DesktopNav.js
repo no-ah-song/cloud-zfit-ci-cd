@@ -197,7 +197,6 @@ const SideNavRoot = styled.div`
   a {
     color: black;
     text-align: right;
-    padding: 0 7px 0 0;
   }
   .nav-list {
     & > li {
@@ -220,6 +219,7 @@ const SideNavRoot = styled.div`
     width: 100%;
     border-bottom: 1px solid black;
     text-align: right;
+    padding: 8px 7px 0 0;
   }
   .navbar-title {
     text-align: right;

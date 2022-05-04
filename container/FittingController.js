@@ -91,7 +91,7 @@ const StyleControlBox = ({ title, children, ...rest }) => {
   return (
     <div>
       <StyledControlContainer {...rest} >
-          <ControlHeader onClick={()=>setIsOpen(!isOpen)}>COLLAPSE ↓</ControlHeader>
+          <ControlHeader onClick={()=>setIsOpen(!isOpen)} role="button">COLLAPSE ↓</ControlHeader>
           <ControllBody className={!isOpen&&"style-body-close"}>{children}</ControllBody>
       </StyledControlContainer>
     </div>
@@ -100,7 +100,6 @@ const StyleControlBox = ({ title, children, ...rest }) => {
 
 const StyledControlContainer = styled.div`
   background: white;
-  border-top: solid 1px black;
   border-left: solid 1px black;
   border-bottom: solid 1px black;
   border-radius: 4px 4px 0px 0px;
@@ -418,7 +417,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
     };
 
     return (
-      <select name={name} onChange={onChange} value={selected}>
+      <select name={name} onChange={onChange} value={selected} role="button">
         {rendering()}
       </select>
     );
@@ -429,7 +428,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       <div className="row">
         {isFirst || (
           <div className="col col-12 d-flex">
-            <span className="text-start w-100 px-4" onClick={onDone}>
+            <span className="text-start w-100 px-4" onClick={onDone} role="button">
               ← Back
             </span>
             <span className="text-end w-100 px-4">Recommended Styles</span>
@@ -440,7 +439,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
             <span className="text-start w-100 px-4">
               Welcome to Fitting Room
             </span>
-            <span className="text-end w-100 px-4" onClick={onDone}>
+            <span className="text-end w-100 px-4" onClick={onDone} role="button">
               Done →
             </span>
           </div>
@@ -455,6 +454,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
               onClick={() => changeValue("genders", ["men"])}
               data-toggle-group="gender"
               data-value="men"
+              role="button"
               >
                 Men
               </div>
@@ -463,6 +463,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
                 onClick={() => changeValue("genders", ["women"])}
                 data-toggle-group="gender"
                 data-value="women"
+                role="button"
               >
                 Women
               </div>
@@ -474,6 +475,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
                 onClick={() => changeValue("genders", ["men"])}
                 data-toggle-group="gender"
                 data-value="men"
+                role="button"
               >
                 Men
               </div>
@@ -484,6 +486,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
                 onClick={() => changeValue("genders", ["women"])}
                 data-toggle-group="gender"
                 data-value="women"
+                role="button"
               >
                 Women
               </div>
@@ -537,7 +540,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       </div>
       <div className="row">
         {values.genders === "women" ? (
-          <div className="shape-grid">
+          <div className="shape-grid" role="button">
             <div
               onClick={() => setSelectedShape(0)}
               className={selectedShape === 0 ? "active" : ""}
@@ -590,7 +593,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
             </div>
           </div>
         ) : (
-          <div className="shape-grid">
+          <div className="shape-grid" role="button">
             <div
               onClick={() => setSelectedShape(0)}
               className={selectedShape === 0 ? "active" : ""}
@@ -722,7 +725,7 @@ const GridMenuBox = ({ onSelect }) => {
   return (
     <div className="grid-menu-box">
       <div className="row w-100">
-        <div className="col col-6 position-relative h-0" onClick={onSelect[0]}>
+        <div className="col col-6 position-relative h-0" onClick={onSelect[0]} role="button">
           <div className="position-absolute d-flex w-100 top-0 grid-header">
             <span className="text-start w-100">Body Info</span>
             <span className="text-end w-100">→</span>
@@ -735,7 +738,7 @@ const GridMenuBox = ({ onSelect }) => {
             </div>
           </div>
         </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[1]}>
+        <div className="col col-6 position-relative h-0" onClick={onSelect[1]} role="button">
           <div className="position-absolute d-flex w-100 top-0 grid-header">
             <span className="text-start w-100">Recommended Styles</span>
             <span className="text-end w-100">→</span>
@@ -757,7 +760,7 @@ const GridMenuBox = ({ onSelect }) => {
             <span className="text-start w-100">Fitmap</span>
           </div>
           <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
-            <div>
+            <div role="button">
               <div className={fitmap.fitmap?"toggle-active":"toggle"} onClick={()=>{setFitmap({fitmap:!fitmap.fitmap})}}>On</div>
             </div>
           </div>
@@ -771,7 +774,7 @@ const GridMenuBox = ({ onSelect }) => {
             </div>
           </div>
         </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[2]}>
+        <div className="col col-6 position-relative h-0" onClick={onSelect[2]} role="button">
           <div className="position-absolute d-flex w-100 top-0 grid-header">
             <span className="text-start w-100">Size & Color</span>
             <span className="text-end w-100">→</span>
@@ -798,7 +801,7 @@ const RecommendedStyleBox = ({ onDone }) => {
     <div className="recommended-style-box">
       <div className="row">
         <div className="col col-12 d-flex">
-          <span className="text-start w-100 px-4" onClick={onDone}>
+          <span className="text-start w-100 px-4" onClick={onDone} role="button">
             ← Back
           </span>
           <span className="text-end w-100 px-4">Recommended Styles</span>
@@ -834,7 +837,7 @@ const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
     <div className="size-color-style-box">
       <div className="row">
         <div className="col col-12 d-flex">
-          <span className="text-start w-100 px-4" onClick={onDone}>
+          <span className="text-start w-100 px-4" onClick={onDone} role="button">
             ← Back
           </span>
           <span className="text-end w-100 px-4">Size & Color</span>
@@ -901,6 +904,7 @@ const WheelPicker = ({ options = [] }) => {
                 active === index ? "picker-item active" : "picker-item"
               }
               onClick={(e) => handleClick(e, index)}
+              role="button"
             >
               {option}
             </li>
@@ -949,6 +953,7 @@ const WheelColorPicker = ({ options = [] }) => {
                 active === option ? "picker-item active" : "picker-item"
               }
               onClick={(e) => handleClick(e, index, option)}
+              role="button"
             >
               <ColorBadge color={option} />
             </li>
@@ -961,7 +966,7 @@ const WheelColorPicker = ({ options = [] }) => {
 
 const WheelPickerContainer = styled.div`
   display: flex;
-  overflow: scroll;
+  overflow-x: scroll;
   justify-content: flex-start;
   border-bottom: 1px solid #e2e2e2;
   &::-webkit-scrollbar {
@@ -994,6 +999,11 @@ const ControlHeader = styled.div`
   padding: 17px 0;
   border-bottom: solid 1px black;
   border-right: solid 1px black;
+  position: sticky;
+  top: 0;
+  background: white;
+  border-top: solid 1px black;
+  z-index: 10;
 `;
 
 const ControllBody = styled.div`
@@ -1020,9 +1030,13 @@ const ControllBody = styled.div`
       -webkit-appearance: none; /* 네이티브 외형 감추기 */
       -moz-appearance: none;
       appearance: none;
-      width: 100%;
+      //width: 100%;
       height: 100%;
       text-align: center;
+      text-align-last: center;
+      -ms-text-align-last: center;
+      -moz-text-align-last: center;
+      background: white;
     }
     .toggle-active::before {
       content: "◆";

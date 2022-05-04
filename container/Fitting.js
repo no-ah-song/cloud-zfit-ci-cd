@@ -24,6 +24,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
               <div
                 className="text-start w-100 position-absolute text__left"
                 onClick={onClickClose}
+                role="button"
               >
                 ← EXIT
               </div>
@@ -80,7 +81,7 @@ const Container = styled.div`
     position: absolute;
     bottom: 0;
     max-height: 337px;
-    overflow: scroll;
+    overflow-y: scroll;
     width: 100%;
     z-index:999;
     & > div {

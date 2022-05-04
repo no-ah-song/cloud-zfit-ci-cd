@@ -80,11 +80,16 @@ export async function getServerSideProps(context) {
   const dataProduct = await resProduct.json();
   const objectProduct = Object.keys(dataProduct.products);
   let products = [];
+  // objectProduct.map((productId)=>{
+  //   if(dataProduct.products[productId].brandId === brand){
+  //     products.push(dataProduct.products[productId]);
+  //   }
+  // })
   objectProduct.map((productId)=>{
-    if(dataProduct.products[productId].brandId === brand){
-      products.push(dataProduct.products[productId]);
-    }
-  })
+    dataProduct.products[productId].colors.map((item)=>{
+      products.push({...dataProduct.products[productId],color:item.color, sizes:item.sizes, src:item.src});
+    })
+  });
   const resBrand = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json");
   const brandData = await resBrand.json();
   const objectBrand = Object.keys(brandData.brands);

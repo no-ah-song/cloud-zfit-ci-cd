@@ -1,252 +1,531 @@
 {
   "products": {
-    "5747b304-fd27-417a-b626-3a43747811e2": {
-      "productId": "5747b304-fd27-417a-b626-3a43747811e2",
+    "1bc0bbe1-c273-49ad-94f3-2804c450add0": {
+      "productId": "1bc0bbe1-c273-49ad-94f3-2804c450add0",
       "productName": "Look1",
       "recommendSize": "L",
-      "brandName": "Demo_EENK",
-      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
+      "brandName": "EENK",
+      "brandId": "bcc889a5-53cc-4647-8308-24eb43d675ec",
       "type": "Bottom",
       "colors": [
-        { "color": "Blue", "src": "", "sizes": ["M", "S", "XS"] },
-        { "color": "Pink", "src": "", "sizes": ["M", "S", "XS"] }
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_EENK-Bottom-Look1-Blue.jpg",
+          "sizes": ["M", "S", "XS"]
+        },
+        {
+          "color": "Pink",
+          "src": "/images/product/Demo_EENK-Bottom-Look1-Pink.jpg",
+          "sizes": ["M", "S", "XS"]
+        }
       ],
       "genders": ["women"]
     },
-    "05c0b592-49e2-4854-a6f9-e6574107b622": {
-      "productId": "05c0b592-49e2-4854-a6f9-e6574107b622",
+    "f98c288c-1500-437f-a4e6-35429fc7c6f2": {
+      "productId": "f98c288c-1500-437f-a4e6-35429fc7c6f2",
       "productName": "Look3",
       "recommendSize": "L",
-      "brandName": "Demo_EENK",
-      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
+      "brandName": "EENK",
+      "brandId": "bcc889a5-53cc-4647-8308-24eb43d675ec",
       "type": "Dress",
       "colors": [
-        { "color": "Black", "src": "", "sizes": ["M"] },
-        { "color": "Blue", "src": "", "sizes": ["M"] },
-        { "color": "Yellow", "src": "", "sizes": ["M"] }
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_EENK-Dress-Look3-Black.jpg",
+          "sizes": ["M"]
+        },
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_EENK-Dress-Look3-Blue.jpg",
+          "sizes": ["M"]
+        },
+        {
+          "color": "Yellow",
+          "src": "/images/product/Demo_EENK-Dress-Look3-Yellow.jpg",
+          "sizes": ["M"]
+        }
       ],
       "genders": ["women"]
     },
-    "dd45b85a-4539-4a7f-91b4-139cb5598be7": {
-      "productId": "dd45b85a-4539-4a7f-91b4-139cb5598be7",
+    "da1ee813-b302-487b-9013-98372341a9ea": {
+      "productId": "da1ee813-b302-487b-9013-98372341a9ea",
       "productName": "Look4",
       "recommendSize": "L",
-      "brandName": "Demo_EENK",
-      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
+      "brandName": "EENK",
+      "brandId": "bcc889a5-53cc-4647-8308-24eb43d675ec",
       "type": "Dress",
       "colors": [
-        { "color": "Black-White", "src": "", "sizes": ["M", "S", "XS"] },
-        { "color": "Blue", "src": "", "sizes": ["M", "S", "XS"] }
+        {
+          "color": "Black-White",
+          "src": "/images/product/Demo_EENK-Dress-Look4-Black-White.jpg",
+          "sizes": ["M", "S", "XS"]
+        },
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_EENK-Dress-Look4-Blue.jpg",
+          "sizes": ["M", "S", "XS"]
+        }
       ],
       "genders": ["women"]
     },
-    "5a7814af-39a6-4707-8514-60ff857646fd": {
-      "productId": "5a7814af-39a6-4707-8514-60ff857646fd",
+    "72148799-cfa3-4d63-b5f8-d13752dc236e": {
+      "productId": "72148799-cfa3-4d63-b5f8-d13752dc236e",
       "productName": "Look2",
       "recommendSize": "L",
-      "brandName": "Demo_EENK",
-      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
+      "brandName": "EENK",
+      "brandId": "bcc889a5-53cc-4647-8308-24eb43d675ec",
       "type": "Outer",
       "colors": [
-        { "color": "Neutral", "src": "", "sizes": ["M", "S", "XS"] },
-        { "color": "Pink", "src": "", "sizes": ["M", "S", "XS"] }
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_EENK-Outer-Look2-Neutral.jpg",
+          "sizes": ["M", "S", "XS"]
+        },
+        {
+          "color": "Pink",
+          "src": "/images/product/Demo_EENK-Outer-Look2-Pink.jpg",
+          "sizes": ["M", "S", "XS"]
+        }
       ],
       "genders": ["women"]
     },
-    "809da8f5-6afd-44b2-9943-67086136644a": {
-      "productId": "809da8f5-6afd-44b2-9943-67086136644a",
+    "7572c69c-20e6-48ec-86d3-de9bf7c83af2": {
+      "productId": "7572c69c-20e6-48ec-86d3-de9bf7c83af2",
       "productName": "Look1",
       "recommendSize": "L",
-      "brandName": "Demo_EENK",
-      "brandId": "ecfffd3a-d251-41ac-8351-b815c41a65a2",
+      "brandName": "EENK",
+      "brandId": "bcc889a5-53cc-4647-8308-24eb43d675ec",
       "type": "Top",
-      "colors": [{ "color": "White", "src": "", "sizes": ["M", "S", "XS"] }],
+      "colors": [
+        {
+          "color": "White",
+          "src": "/images/product/Demo_EENK-Top-Look1-White.jpg",
+          "sizes": ["M", "S", "XS"]
+        }
+      ],
       "genders": ["women"]
     },
-    "e31d332e-71e0-41ef-a730-21b2691b9451": {
-      "productId": "e31d332e-71e0-41ef-a730-21b2691b9451",
+    "ad312daf-a820-4c40-8252-4d2741fe5220": {
+      "productId": "ad312daf-a820-4c40-8252-4d2741fe5220",
       "productName": "CR06",
       "recommendSize": "L",
-      "brandName": "Demo_Fallett",
-      "brandId": "d0f8b84a-876e-496d-9284-58c8b48412af",
+      "brandName": "FALLETT",
+      "brandId": "7d97284e-49e0-45f4-a0ab-18db9ef43959",
       "type": "Top",
-      "colors": [{ "color": "Navy", "src": "", "sizes": ["L"] }],
+      "colors": [
+        {
+          "color": "Navy",
+          "src": "/images/product/Demo_Fallett-Top-CR06-Navy.jpg",
+          "sizes": ["L"]
+        }
+      ],
       "genders": ["men"]
     },
-    "5c35ebe8-9db7-4b92-9dcd-b4f15efcc738": {
-      "productId": "5c35ebe8-9db7-4b92-9dcd-b4f15efcc738",
+    "2622d1e0-6c0c-4f15-9212-baa2cd839912": {
+      "productId": "2622d1e0-6c0c-4f15-9212-baa2cd839912",
       "productName": "0PT01",
       "recommendSize": "L",
-      "brandName": "Demo_Mark Gonzales",
-      "brandId": "abc19be2-b79e-4390-a74a-2325c53677d1",
+      "brandName": "WHATITISNT",
+      "brandId": "6212c4ff-dc8e-498f-87cc-969ed2144c3c",
       "type": "Bottom",
       "colors": [
-        { "color": "Black", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Grey", "src": "", "sizes": ["L", "M", "S", "XL"] }
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Mark Gonzales-Bottom-0PT01-Black.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_Mark Gonzales-Bottom-0PT01-Grey.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        }
       ],
-      "genders": ["women"]
+      "genders": ["women", "men"]
     },
-    "a0e921af-296e-4309-b1a7-71d7e0a320c2": {
-      "productId": "a0e921af-296e-4309-b1a7-71d7e0a320c2",
+    "ff1a178b-ff05-40b9-878a-d9c78f9f08c7": {
+      "productId": "ff1a178b-ff05-40b9-878a-d9c78f9f08c7",
+      "productName": "3PT01",
+      "recommendSize": "L",
+      "brandName": "WHATITISNT",
+      "brandId": "6212c4ff-dc8e-498f-87cc-969ed2144c3c",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Mark Gonzales-Bottom-3PT01-Black.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_Mark Gonzales-Bottom-3PT01-Grey.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "White",
+          "src": "/images/product/Demo_Mark Gonzales-Bottom-3PT01-White.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "82b2acec-98bc-410c-ae6c-5d74a49a0d8f": {
+      "productId": "82b2acec-98bc-410c-ae6c-5d74a49a0d8f",
       "productName": "0HD02",
       "recommendSize": "L",
-      "brandName": "Demo_Mark Gonzales",
-      "brandId": "abc19be2-b79e-4390-a74a-2325c53677d1",
+      "brandName": "WHATITISNT",
+      "brandId": "6212c4ff-dc8e-498f-87cc-969ed2144c3c",
       "type": "Top",
       "colors": [
-        { "color": "Black", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Blue", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Green", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Grey", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Neutral", "src": "", "sizes": ["L", "M", "S", "XL"] }
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Mark Gonzales-Top-0HD02-Black.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_Mark Gonzales-Top-0HD02-Blue.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_Mark Gonzales-Top-0HD02-Green.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_Mark Gonzales-Top-0HD02-Grey.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_Mark Gonzales-Top-0HD02-Neutral.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        }
       ],
-      "genders": ["women"]
+      "genders": ["women", "men"]
     },
-    "38d7fe77-cfbf-4d36-8ef7-ecd9f68a856b": {
-      "productId": "38d7fe77-cfbf-4d36-8ef7-ecd9f68a856b",
+    "612e7637-3aaf-43a4-a270-d0c2eb0fd968": {
+      "productId": "612e7637-3aaf-43a4-a270-d0c2eb0fd968",
       "productName": "1CR11",
       "recommendSize": "L",
-      "brandName": "Demo_Mark Gonzales",
-      "brandId": "abc19be2-b79e-4390-a74a-2325c53677d1",
+      "brandName": "WHATITISNT",
+      "brandId": "6212c4ff-dc8e-498f-87cc-969ed2144c3c",
       "type": "Top",
       "colors": [
-        { "color": "Black", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Blue", "src": "", "sizes": ["L", "M", "S", "XL"] },
-        { "color": "Grey", "src": "", "sizes": ["L", "M", "S", "XL"] }
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Mark Gonzales-Top-1CR11-Black.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_Mark Gonzales-Top-1CR11-Blue.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_Mark Gonzales-Top-1CR11-Grey.jpg",
+          "sizes": ["L", "M", "S", "XL"]
+        }
       ],
-      "genders": ["women"]
+      "genders": ["women", "men"]
     },
-    "24f27cd3-3e74-42bb-a2d9-0834469a634b": {
-      "productId": "24f27cd3-3e74-42bb-a2d9-0834469a634b",
+    "17b677de-1fa9-43b2-bb45-98bfabf06cf0": {
+      "productId": "17b677de-1fa9-43b2-bb45-98bfabf06cf0",
       "productName": "KN01",
       "recommendSize": "L",
-      "brandName": "Demo_OiOi",
-      "brandId": "e385fa80-b46b-4add-8e57-e64e03b325b6",
+      "brandName": "O!Oi",
+      "brandId": "4569f5e3-aed9-4d07-8003-bebf9edc02e0",
       "type": "Top",
-      "colors": [{ "color": "Green", "src": "", "sizes": ["M"] }],
-      "genders": ["women", "men"]
-    },
-    "e4d2cccb-79f5-4598-96ef-d375369b8cf3": {
-      "productId": "e4d2cccb-79f5-4598-96ef-d375369b8cf3",
-      "productName": "DP01",
-      "recommendSize": "L",
-      "brandName": "Demo_OiOi",
-      "brandId": "e385fa80-b46b-4add-8e57-e64e03b325b6",
-      "type": "Bottom",
-      "colors": [{ "color": "Blue", "src": "", "sizes": ["L"] }],
-      "genders": ["men"]
-    },
-    "3e14ca7b-e48e-4ebd-b72d-994135e01ad3": {
-      "productId": "3e14ca7b-e48e-4ebd-b72d-994135e01ad3",
-      "productName": "HD01",
-      "recommendSize": "L",
-      "brandName": "Demo_OiOi",
-      "brandId": "e385fa80-b46b-4add-8e57-e64e03b325b6",
-      "type": "Top",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["men"]
-    },
-    "bff2b4d4-eb6e-4980-bc4a-c463588846f4": {
-      "productId": "bff2b4d4-eb6e-4980-bc4a-c463588846f4",
-      "productName": "Set1",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Bottom",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "def9541a-ee8d-4a2d-91c3-c13ed1ea0c87": {
-      "productId": "def9541a-ee8d-4a2d-91c3-c13ed1ea0c87",
-      "productName": "Set3",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Bottom",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "35647d8e-5cb6-4c96-b51b-22ba4a144fe7": {
-      "productId": "35647d8e-5cb6-4c96-b51b-22ba4a144fe7",
-      "productName": "Set4",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Bottom",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "cfd964f1-9226-4ed2-9b59-93b1560fd211": {
-      "productId": "cfd964f1-9226-4ed2-9b59-93b1560fd211",
-      "productName": "Set2",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Top",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "8126985f-a818-4b43-bd73-b199fd5585b8": {
-      "productId": "8126985f-a818-4b43-bd73-b199fd5585b8",
-      "productName": "Set3",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Top",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "223738e7-5022-475d-8837-fe8e9a667d8c": {
-      "productId": "223738e7-5022-475d-8837-fe8e9a667d8c",
-      "productName": "Set4",
-      "recommendSize": "L",
-      "brandName": "Demo_SlowStandard",
-      "brandId": "167da6e7-a689-42b1-9ec9-70022b7ecf05",
-      "type": "Top",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
-      "genders": ["women", "men"]
-    },
-    "ac0f0d7f-70cd-4118-8b03-9377632fe3b5": {
-      "productId": "ac0f0d7f-70cd-4118-8b03-9377632fe3b5",
-      "productName": "SSG731",
-      "recommendSize": "L",
-      "brandName": "Demo_Studio Tomboy",
-      "brandId": "b3d7f938-a263-422a-acb9-aafeb42e4375",
-      "type": "Bottom",
       "colors": [
-        { "color": "Blue", "src": "", "sizes": ["L"] },
-        { "color": "Black", "src": "", "sizes": ["L"] }
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_OiOi-Top-KN01-Green.jpg",
+          "sizes": ["M"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_OiOi-Top-KN01-Grey.jpg",
+          "sizes": ["M"]
+        },
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_OiOi-Top-KN01-Neutral.jpg",
+          "sizes": ["M"]
+        }
       ],
       "genders": ["women", "men"]
     },
-    "d09107b8-269e-48c6-af01-322aa535ecea": {
-      "productId": "d09107b8-269e-48c6-af01-322aa535ecea",
-      "productName": "SSG822",
+    "795b87ba-9673-4d94-8de1-c9fb291603a1": {
+      "productId": "795b87ba-9673-4d94-8de1-c9fb291603a1",
+      "productName": "DP01",
       "recommendSize": "L",
-      "brandName": "Demo_Studio Tomboy",
-      "brandId": "b3d7f938-a263-422a-acb9-aafeb42e4375",
+      "brandName": "O!Oi",
+      "brandId": "4569f5e3-aed9-4d07-8003-bebf9edc02e0",
       "type": "Bottom",
-      "colors": [{ "color": "Blue", "src": "", "sizes": ["L"] }],
+      "colors": [
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_OiOi-Bottom-DP01-Blue.jpg",
+          "sizes": ["L", "M", "S"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_OiOi-Bottom-DP01-Grey.jpg",
+          "sizes": ["L", "M", "S"]
+        }
+      ],
+      "genders": ["men"]
+    },
+    "ce56ed40-88de-4193-a1a7-7c2c3b86e11c": {
+      "productId": "ce56ed40-88de-4193-a1a7-7c2c3b86e11c",
+      "productName": "HD01",
+      "recommendSize": "L",
+      "brandName": "O!Oi",
+      "brandId": "4569f5e3-aed9-4d07-8003-bebf9edc02e0",
+      "type": "Top",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_OiOi-Top-HD01-Black.jpg",
+          "sizes": ["L", "S"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_OiOi-Top-HD01-Green.jpg",
+          "sizes": ["L", "S"]
+        },
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_OiOi-Top-HD01-Neutral.jpg",
+          "sizes": ["L"]
+        },
+        {
+          "color": "Purple",
+          "src": "/images/product/Demo_OiOi-Top-HD01-Purple.jpg",
+          "sizes": ["L", "S"]
+        }
+      ],
+      "genders": ["men"]
+    },
+    "9fd3800b-aa67-42d9-8238-a499ac86c3b2": {
+      "productId": "9fd3800b-aa67-42d9-8238-a499ac86c3b2",
+      "productName": "Set1",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Black (2)",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set1-Black (2).jpg",
+          "sizes": ["L"]
+        },
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set1-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set1-Green.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
       "genders": ["women", "men"]
     },
-    "fa93e148-5bc7-44d8-b421-8a01a3f52365": {
-      "productId": "fa93e148-5bc7-44d8-b421-8a01a3f52365",
+    "4134a018-a526-4bb5-b02e-4a5038b623de": {
+      "productId": "4134a018-a526-4bb5-b02e-4a5038b623de",
+      "productName": "Set3",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set3-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set3-Green.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "f9f47d8b-a7c0-45fd-bdcc-3cf13544a943": {
+      "productId": "f9f47d8b-a7c0-45fd-bdcc-3cf13544a943",
+      "productName": "Set4",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set4-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set4-Green.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_SlowStandard-Bottom-Set4-Grey.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "e2df89ba-4d36-46dd-b15f-3ebe07c9fac6": {
+      "productId": "e2df89ba-4d36-46dd-b15f-3ebe07c9fac6",
+      "productName": "Set2",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Top",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Top-Set2-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "0d801fa6-c8c5-4600-bf7a-3c07dfea1238": {
+      "productId": "0d801fa6-c8c5-4600-bf7a-3c07dfea1238",
+      "productName": "Set3",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Top",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Top-Set3-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_SlowStandard-Top-Set3-Green.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "f4f20460-2dde-4eb1-b66c-5b6adb9620ef": {
+      "productId": "f4f20460-2dde-4eb1-b66c-5b6adb9620ef",
+      "productName": "Set4",
+      "recommendSize": "L",
+      "brandName": "SLOWSTANDARD",
+      "brandId": "49305d1b-6c23-4b96-b5d5-e511d9a81ade",
+      "type": "Top",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_SlowStandard-Top-Set4-Black.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Green",
+          "src": "/images/product/Demo_SlowStandard-Top-Set4-Green.jpg",
+          "sizes": ["L", "M", "XL"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_SlowStandard-Top-Set4-Grey.jpg",
+          "sizes": ["L", "M", "XL"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "221e99c6-4d76-49b8-ae34-73ebd762989c": {
+      "productId": "221e99c6-4d76-49b8-ae34-73ebd762989c",
+      "productName": "SSG731",
+      "recommendSize": "L",
+      "brandName": "STUDIO TOMBOY",
+      "brandId": "fcd8b649-797a-4f45-80e5-3c4b75c3c7d5",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_Studio Tomboy-Bottom-SSG731-Blue.jpg",
+          "sizes": ["L", "M", "S"]
+        },
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Studio Tomboy-Bottom-SSG731-Black.jpg",
+          "sizes": ["L", "M", "S"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "fa1b5c19-c660-4906-b5e1-5efeb29f7274": {
+      "productId": "fa1b5c19-c660-4906-b5e1-5efeb29f7274",
+      "productName": "SSG822",
+      "recommendSize": "L",
+      "brandName": "STUDIO TOMBOY",
+      "brandId": "fcd8b649-797a-4f45-80e5-3c4b75c3c7d5",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_Studio Tomboy-Bottom-SSG822-Blue.jpg",
+          "sizes": ["L", "M"]
+        },
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_Studio Tomboy-Bottom-SSG822-Neutral.jpg",
+          "sizes": ["L", "M"]
+        }
+      ],
+      "genders": ["women", "men"]
+    },
+    "c5a17d19-b6ae-4872-b6ed-71b6a5faa4e8": {
+      "productId": "c5a17d19-b6ae-4872-b6ed-71b6a5faa4e8",
       "productName": "SSG742",
       "recommendSize": "L",
-      "brandName": "Demo_Studio Tomboy",
-      "brandId": "b3d7f938-a263-422a-acb9-aafeb42e4375",
+      "brandName": "STUDIO TOMBOY",
+      "brandId": "fcd8b649-797a-4f45-80e5-3c4b75c3c7d5",
       "type": "Top",
-      "colors": [{ "color": "Blue", "src": "", "sizes": ["M"] }],
+      "colors": [
+        {
+          "color": "Blue",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG742-Blue.jpg",
+          "sizes": ["M"]
+        }
+      ],
       "genders": ["women"]
     },
-    "01b40bb5-0127-400b-b151-388e6cc564f2": {
-      "productId": "01b40bb5-0127-400b-b151-388e6cc564f2",
+    "cb3105bb-e9fb-4ad3-b919-a5151082dc53": {
+      "productId": "cb3105bb-e9fb-4ad3-b919-a5151082dc53",
       "productName": "SSG821",
       "recommendSize": "L",
-      "brandName": "Demo_Studio Tomboy",
-      "brandId": "b3d7f938-a263-422a-acb9-aafeb42e4375",
+      "brandName": "STUDIO TOMBOY",
+      "brandId": "fcd8b649-797a-4f45-80e5-3c4b75c3c7d5",
       "type": "Top",
-      "colors": [{ "color": "Black", "src": "", "sizes": ["L"] }],
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG821-Black.jpg",
+          "sizes": ["L", "M"]
+        },
+        {
+          "color": "Burgandy",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG821-Burgandy.jpg",
+          "sizes": ["L", "M"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG821-Grey.jpg",
+          "sizes": ["L", "M"]
+        }
+      ],
       "genders": ["women"]
     }
   }
