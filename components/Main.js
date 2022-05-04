@@ -5,6 +5,8 @@ const MainRoot = styled.div`
   overflow: hidden;
   height: calc(100vh - 48px);
   overflow-y: scroll;
+  padding-bottom: calc(1rem + constant(safe-area-inset-bottom));
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   @media only screen and (min-width: 600px) {
     height: calc(100vh - 48px);
     overflow-y: scroll;

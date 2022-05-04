@@ -226,7 +226,7 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                         <div>
                           <BrandInfo>
                             <div>
-                              <div>{brand.brandName}</div>
+                              <div><b>{brand.brandName}</b></div>
                             </div>
                             <div>
                               <a href={to}>View →</a>
