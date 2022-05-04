@@ -6,7 +6,8 @@ const MainRoot = styled.div`
   height: calc(100vh - 48px);
   overflow-y: scroll;
   padding-bottom: calc(1rem + constant(safe-area-inset-bottom));
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  --ion-safe-area-top: env(safe-area-inset-top);
+  padding-bottom: calc(1rem + var(--safe-area-inset-top));
   @media only screen and (min-width: 600px) {
     height: calc(100vh - 48px);
     overflow-y: scroll;
