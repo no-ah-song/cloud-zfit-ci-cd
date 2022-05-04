@@ -62,7 +62,7 @@ const Brands = ({ brandList }) => {
             <Container>
               <BrandInfo>
                 <div>
-                  <div>{brand.brandName}</div>
+                  <div><b>{brand.brandName}</b></div>
                 </div>
                 <div>
                   <Link href={viewLink}>View→</Link>

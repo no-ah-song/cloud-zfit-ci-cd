@@ -24,7 +24,7 @@ const LayoutTemplate = styled.div`
 
 const StickyFooter = styled.div`
   position: sticky;
-  bottom: 60px;
+  bottom: calc(env(safe-area-inset-bottom) + 60px);
   max-width: 100%;
   margin: auto;
   font-size: 16px;

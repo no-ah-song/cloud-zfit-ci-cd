@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 import IconZfit from "../assets/icon-nav-zfit.svg";
@@ -48,16 +49,16 @@ const DesktopNav = () => {
     <SideNavRoot>
       <div className="col-auto bg-white">
         <div className="d-flex flex-column align-items-end text-black min-vh-100">
-          <div className="zfit-logo align-items-end ">
-            <Link href="/" passHref>
-              <a
-                href="/"
-                className="align-items-end text-black text-decoration-none"
-              >
-                <IconZfit />
-              </a>
-            </Link>
-          </div>
+          <Link href="/" passHref>
+            <a
+              href="/"
+              className="text-black text-decoration-none"
+            >
+              <div className="d-flex zfit-logo align-items-center justify-content-center">
+                <Image src="/images/z-fit.png" width={56} height={56}/>
+              </div>
+            </a>
+          </Link>
           <ul
             className="nav-list nav nav-pills flex-column align-items-end w-100"
             id="menu"
@@ -197,6 +198,7 @@ const SideNavRoot = styled.div`
   a {
     color: black;
     text-align: right;
+    width: 100%;
   }
   .nav-list {
     & > li {
@@ -210,6 +212,7 @@ const SideNavRoot = styled.div`
   .nav-pills .nav-link.active {
     &::before {
       content: "⟶";
+      padding-right: 5px;
     }
     color: black;
     background-color: white;
@@ -218,8 +221,6 @@ const SideNavRoot = styled.div`
     height: 119px;
     width: 100%;
     border-bottom: 1px solid black;
-    text-align: right;
-    padding: 8px 7px 0 0;
   }
   .navbar-title {
     text-align: right;

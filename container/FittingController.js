@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Link from "next/link";
 import Image from "next/image";
 import ProductsHorizontal from "../components/ProductsHorizontal";
 import { getFittingImages } from "../api/api";
@@ -161,7 +160,6 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
   };
 
   useEffect(() => {
-    console.log(values);
     setAvatar(values);
   }, [values]);
 
@@ -429,7 +427,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
         {isFirst || (
           <div className="col col-12 d-flex">
             <span className="text-start w-100 px-4" onClick={onDone} role="button">
-              ← Back
+            <b>← Back</b>
             </span>
             <span className="text-end w-100 px-4">Recommended Styles</span>
           </div>
@@ -437,10 +435,10 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
         {isFirst && (
           <div className="col col-12 d-flex">
             <span className="text-start w-100 px-4">
-              Welcome to Fitting Room
+              <b>Welcome to Fitting Room</b>
             </span>
-            <span className="text-end w-100 px-4" onClick={onDone} role="button">
-              Done →
+            <span className="text-end px-4 text-nowrap" onClick={onDone} role="button">
+              <b>Done →</b>
             </span>
           </div>
         )}
@@ -802,7 +800,7 @@ const RecommendedStyleBox = ({ onDone }) => {
       <div className="row">
         <div className="col col-12 d-flex">
           <span className="text-start w-100 px-4" onClick={onDone} role="button">
-            ← Back
+            <b>← Back</b>
           </span>
           <span className="text-end w-100 px-4">Recommended Styles</span>
         </div>
@@ -838,7 +836,7 @@ const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
       <div className="row">
         <div className="col col-12 d-flex">
           <span className="text-start w-100 px-4" onClick={onDone} role="button">
-            ← Back
+          <b>← Back</b>
           </span>
           <span className="text-end w-100 px-4">Size & Color</span>
         </div>

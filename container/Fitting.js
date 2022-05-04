@@ -6,6 +6,7 @@ import Image from "next/image";
 import ProductsHorizontal from "../components/ProductsHorizontal";
 import FittingViewer from "./FittingViewer";
 import { StyleController } from "../container/FittingController";
+import Close from "../assets/icon-close-white.svg";
 
 
 const Fitting = ({ onClickClose, isOpen }) => {
@@ -19,14 +20,15 @@ const Fitting = ({ onClickClose, isOpen }) => {
       <FittingRoot isOpen={isOpen}>
         <Container className="header__container">
           <div className="p-1 bg-black text-white">
-            <div className="d-flex flex-wrap align-items-center h-100">
-              <div className="text-center w-100">Fitting room</div>
+            <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
+              <div/>
+              <div className="text-center">Fitting room</div>
               <div
-                className="text-start w-100 position-absolute text__left"
+                className="text-end px-3"
                 onClick={onClickClose}
                 role="button"
               >
-                ← EXIT
+                <Close/>
               </div>
             </div>
           </div>
