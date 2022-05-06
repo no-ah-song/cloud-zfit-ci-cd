@@ -1,50 +1,50 @@
 {
   "brands": {
-    "b21891f6-a5b7-4fae-9c33-a3ebe45e042c": {
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+    "1683157b-fe9f-426b-94f0-56b44d997ba5": {
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "brandName": "EENK",
-      "logo": "/images/logo/logoeenk.png",
-      "src": "/images/logo/logoeenk.png",
+      "logo": "/images/logo/eenk.png",
+      "src": "/images/logo/eenk.png",
       "summary": "EENK was created by designer Lee Hyemee, beloved for her boldness and passion which crosses from fashion to art to lifestyle. In the age of fast fashion and endless cycles of trends, EENK aims to bring collectibles instead of disposables into the client's personal archives. Each season we move on to the next letter to inspire the new collection, presenting new concepts and items, keeping the brand exciting and inspiring all the time. While our pieces look into the curiosities of the moment, they have the unmistakable taste of the designer's classic vintage sensibility.",
       "is_visible_home": true
     },
-    "3b359c44-432c-4dc7-873f-98d86ba9e3b5": {
-      "brandId": "3b359c44-432c-4dc7-873f-98d86ba9e3b5",
+    "9ee7c1c3-c123-4ee5-bbf7-31d3701eb86d": {
+      "brandId": "9ee7c1c3-c123-4ee5-bbf7-31d3701eb86d",
       "brandName": "FALLETT",
-      "logo": "/images/logo/logofallett.png",
-      "src": "/images/logo/logofallett.png",
+      "logo": "/images/logo/fallett.png",
+      "src": "/images/logo/fallett.png",
       "summary": "FALLETT is combines the pronunciation and letters of the brand's motif, Palette. Just as you can create infinite colors by the paints on a palette, it is a contemporary brand that reinterprets infinite visual images of the world through a different perspective.",
       "is_visible_home": true
     },
-    "42710c61-c982-4f36-8895-4b0931599404": {
-      "brandId": "42710c61-c982-4f36-8895-4b0931599404",
+    "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e": {
+      "brandId": "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e",
       "brandName": "WHATITISNT",
-      "logo": "/images/logo/logowhat_it_isnt.png",
-      "src": "/images/logo/logowhat_it_isnt.png",
+      "logo": "/images/logo/what_it_isnt.png",
+      "src": "/images/logo/what_it_isnt.png",
       "summary": "WHATITISNT aims to develop a new street style out of the skateboarding culture. It is a brand born from the Culture Street in Korea based on the artworks of legendary skateboarder and artist Mark Gonzalez. The brand identity is showcased through a collection that combines various original graphics, including the Iconic \"Angel Logo.\"",
       "is_visible_home": true
     },
-    "8e836c38-5f88-4341-85d2-9e111872682f": {
-      "brandId": "8e836c38-5f88-4341-85d2-9e111872682f",
+    "70654941-5af7-4e7b-9a71-d96667bb9a66": {
+      "brandId": "70654941-5af7-4e7b-9a71-d96667bb9a66",
       "brandName": "O!Oi",
-      "logo": "/images/logo/logooioi.png",
-      "src": "/images/logo/logooioi.png",
+      "logo": "/images/logo/oioi.png",
+      "src": "/images/logo/oioi.png",
       "summary": "O!Oi designs for women and provides selections of dramatic elements. By applying new concepts in every season, the virtual 'ish girl' has been used as a muse for developing new ideas.",
       "is_visible_home": true
     },
-    "e38e0729-4fae-49b6-80e5-3780c3c31f08": {
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+    "d200f24f-ce28-497f-89da-714e4d461e73": {
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "brandName": "SLOWSTANDARD",
-      "logo": "/images/logo/logoslowstandard.png",
-      "src": "/images/logo/logoslowstandard.png",
+      "logo": "/images/logo/slowstandard.png",
+      "src": "/images/logo/slowstandard.png",
       "summary": "SLOWSTANDARD is a material-oriented brand that designs in a minimal way with the sensibility to the daily life of ordinary people.",
       "is_visible_home": true
     },
-    "cc11fc98-d090-4cf5-9118-0fcac70af6ba": {
-      "brandId": "cc11fc98-d090-4cf5-9118-0fcac70af6ba",
+    "7ffec208-ef48-4e23-a870-7e815cf4ceb2": {
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
       "brandName": "STUDIO TOMBOY",
-      "logo": "/images/logo/logostudio_tomboy.png",
-      "src": "/images/logo/logostudio_tomboy.png",
+      "logo": "/images/logo/studio_tomboy.png",
+      "src": "/images/logo/studio_tomboy.png",
       "summary": "STUDIO TOMBOY is a Korea-based women fashion brand founded in 1977. With the coolness and elegance of the brand's personality, it continues to reflect the modern and confident lifestyle of today's women.",
       "is_visible_home": true
     }

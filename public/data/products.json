@@ -1,11 +1,11 @@
 {
   "products": {
-    "795258c9-b0aa-4757-92e6-d0f3b74d9835": {
-      "productId": "795258c9-b0aa-4757-92e6-d0f3b74d9835",
+    "7e75021c-1ec8-4dd3-92c5-7d2c5ce61846": {
+      "productId": "7e75021c-1ec8-4dd3-92c5-7d2c5ce61846",
       "productName": "Look1",
       "recommendSize": "L",
       "brandName": "EENK",
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "type": "Bottom",
       "colors": [
         {
@@ -21,12 +21,12 @@
       ],
       "genders": ["women"]
     },
-    "e9691f7f-e2e3-426e-82db-6e7da7e9c89f": {
-      "productId": "e9691f7f-e2e3-426e-82db-6e7da7e9c89f",
+    "f4dbe635-b9da-4964-adf8-6aba4e4102c2": {
+      "productId": "f4dbe635-b9da-4964-adf8-6aba4e4102c2",
       "productName": "Look3",
       "recommendSize": "L",
       "brandName": "EENK",
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "type": "Dress",
       "colors": [
         {
@@ -47,12 +47,12 @@
       ],
       "genders": ["women"]
     },
-    "af1cc8c9-43bb-4dc8-9605-087e52ca27b5": {
-      "productId": "af1cc8c9-43bb-4dc8-9605-087e52ca27b5",
+    "28460fd5-a562-4d43-9df9-8ad193cd96f3": {
+      "productId": "28460fd5-a562-4d43-9df9-8ad193cd96f3",
       "productName": "Look4",
       "recommendSize": "L",
       "brandName": "EENK",
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "type": "Dress",
       "colors": [
         {
@@ -68,12 +68,12 @@
       ],
       "genders": ["women"]
     },
-    "b939c485-e083-4a3a-bff8-f5aa38fa337f": {
-      "productId": "b939c485-e083-4a3a-bff8-f5aa38fa337f",
+    "b54d07cd-13ed-47f0-bd15-09cb2c2f5af8": {
+      "productId": "b54d07cd-13ed-47f0-bd15-09cb2c2f5af8",
       "productName": "Look2",
       "recommendSize": "L",
       "brandName": "EENK",
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "type": "Outer",
       "colors": [
         {
@@ -89,12 +89,12 @@
       ],
       "genders": ["women"]
     },
-    "172464a7-1996-4801-af7c-48d0764726d6": {
-      "productId": "172464a7-1996-4801-af7c-48d0764726d6",
+    "0d69e28e-2ab4-4dfb-8214-5df822589a91": {
+      "productId": "0d69e28e-2ab4-4dfb-8214-5df822589a91",
       "productName": "Look1",
       "recommendSize": "L",
       "brandName": "EENK",
-      "brandId": "b21891f6-a5b7-4fae-9c33-a3ebe45e042c",
+      "brandId": "1683157b-fe9f-426b-94f0-56b44d997ba5",
       "type": "Top",
       "colors": [
         {
@@ -105,12 +105,12 @@
       ],
       "genders": ["women"]
     },
-    "551f4408-5336-4563-b5c4-c9ec4db66397": {
-      "productId": "551f4408-5336-4563-b5c4-c9ec4db66397",
+    "523bcfca-9d1e-44f9-a59b-80459dbeae4f": {
+      "productId": "523bcfca-9d1e-44f9-a59b-80459dbeae4f",
       "productName": "CR06",
       "recommendSize": "L",
       "brandName": "FALLETT",
-      "brandId": "3b359c44-432c-4dc7-873f-98d86ba9e3b5",
+      "brandId": "9ee7c1c3-c123-4ee5-bbf7-31d3701eb86d",
       "type": "Top",
       "colors": [
         {
@@ -121,12 +121,12 @@
       ],
       "genders": ["men"]
     },
-    "4006b69e-1c55-4309-9583-0673474772b6": {
-      "productId": "4006b69e-1c55-4309-9583-0673474772b6",
+    "bae76fe1-6405-4ecf-8bfd-f974861d69f3": {
+      "productId": "bae76fe1-6405-4ecf-8bfd-f974861d69f3",
       "productName": "0PT01",
       "recommendSize": "L",
       "brandName": "WHATITISNT",
-      "brandId": "42710c61-c982-4f36-8895-4b0931599404",
+      "brandId": "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e",
       "type": "Bottom",
       "colors": [
         {
@@ -142,12 +142,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "d1692831-ff5a-441e-9854-5822b35cd9c1": {
-      "productId": "d1692831-ff5a-441e-9854-5822b35cd9c1",
+    "35e36fab-633b-465d-9efe-a9e2fd653239": {
+      "productId": "35e36fab-633b-465d-9efe-a9e2fd653239",
       "productName": "3PT01",
       "recommendSize": "L",
       "brandName": "WHATITISNT",
-      "brandId": "42710c61-c982-4f36-8895-4b0931599404",
+      "brandId": "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e",
       "type": "Bottom",
       "colors": [
         {
@@ -168,12 +168,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "5197147c-9e08-42f4-bf66-2d27e2d499f0": {
-      "productId": "5197147c-9e08-42f4-bf66-2d27e2d499f0",
+    "e49c2a41-17ab-4e93-ba13-9205ff39a97f": {
+      "productId": "e49c2a41-17ab-4e93-ba13-9205ff39a97f",
       "productName": "0HD02",
       "recommendSize": "L",
       "brandName": "WHATITISNT",
-      "brandId": "42710c61-c982-4f36-8895-4b0931599404",
+      "brandId": "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e",
       "type": "Top",
       "colors": [
         {
@@ -204,12 +204,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "c58a66e8-f745-469c-abee-6b5517d76a19": {
-      "productId": "c58a66e8-f745-469c-abee-6b5517d76a19",
+    "46549ab6-83f6-42f4-9a64-583fe2c10b19": {
+      "productId": "46549ab6-83f6-42f4-9a64-583fe2c10b19",
       "productName": "1CR11",
       "recommendSize": "L",
       "brandName": "WHATITISNT",
-      "brandId": "42710c61-c982-4f36-8895-4b0931599404",
+      "brandId": "4f3823cf-3ead-44d4-bb85-0cb5c7ad465e",
       "type": "Top",
       "colors": [
         {
@@ -230,12 +230,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "3b089dbd-b4ca-4116-b565-41f872644dd2": {
-      "productId": "3b089dbd-b4ca-4116-b565-41f872644dd2",
+    "526e9369-7af7-40bb-a4c4-2c45ddc02860": {
+      "productId": "526e9369-7af7-40bb-a4c4-2c45ddc02860",
       "productName": "KN01",
       "recommendSize": "L",
       "brandName": "O!Oi",
-      "brandId": "8e836c38-5f88-4341-85d2-9e111872682f",
+      "brandId": "70654941-5af7-4e7b-9a71-d96667bb9a66",
       "type": "Top",
       "colors": [
         {
@@ -256,12 +256,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "e512ee3c-5c62-40d2-8d5a-bf70dd852f7b": {
-      "productId": "e512ee3c-5c62-40d2-8d5a-bf70dd852f7b",
+    "98ba7e65-b420-4dca-89a5-aaded669391a": {
+      "productId": "98ba7e65-b420-4dca-89a5-aaded669391a",
       "productName": "DP01",
       "recommendSize": "L",
       "brandName": "O!Oi",
-      "brandId": "8e836c38-5f88-4341-85d2-9e111872682f",
+      "brandId": "70654941-5af7-4e7b-9a71-d96667bb9a66",
       "type": "Bottom",
       "colors": [
         {
@@ -277,12 +277,38 @@
       ],
       "genders": ["men"]
     },
-    "960b08cd-823f-4c73-a0d0-e961fbaacfcc": {
-      "productId": "960b08cd-823f-4c73-a0d0-e961fbaacfcc",
+    "840ef32d-b5c1-45e0-a427-c2f687cd9950": {
+      "productId": "840ef32d-b5c1-45e0-a427-c2f687cd9950",
+      "productName": "PN02",
+      "recommendSize": "L",
+      "brandName": "O!Oi",
+      "brandId": "70654941-5af7-4e7b-9a71-d96667bb9a66",
+      "type": "Bottom",
+      "colors": [
+        {
+          "color": "Black",
+          "src": "/images/product/Demo_OiOi-Bottom-PN02-Black.jpg",
+          "sizes": ["L", "M"]
+        },
+        {
+          "color": "Grey",
+          "src": "/images/product/Demo_OiOi-Bottom-PN02-Grey.jpg",
+          "sizes": ["L", "M"]
+        },
+        {
+          "color": "White",
+          "src": "/images/product/Demo_OiOi-Bottom-PN02-White.jpg",
+          "sizes": ["L", "M"]
+        }
+      ],
+      "genders": ["men"]
+    },
+    "7b0aa325-79cc-4293-b8f1-de4071f51884": {
+      "productId": "7b0aa325-79cc-4293-b8f1-de4071f51884",
       "productName": "HD01",
       "recommendSize": "L",
       "brandName": "O!Oi",
-      "brandId": "8e836c38-5f88-4341-85d2-9e111872682f",
+      "brandId": "70654941-5af7-4e7b-9a71-d96667bb9a66",
       "type": "Top",
       "colors": [
         {
@@ -308,19 +334,14 @@
       ],
       "genders": ["men"]
     },
-    "9ece9a8e-e1e0-412f-afa6-d027d209892d": {
-      "productId": "9ece9a8e-e1e0-412f-afa6-d027d209892d",
+    "f0862548-c670-4a5e-ad8e-cc3151d71cb4": {
+      "productId": "f0862548-c670-4a5e-ad8e-cc3151d71cb4",
       "productName": "Set1",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Bottom",
       "colors": [
-        {
-          "color": "Black (2)",
-          "src": "/images/product/Demo_SlowStandard-Bottom-Set1-Black (2).jpg",
-          "sizes": ["L"]
-        },
         {
           "color": "Black",
           "src": "/images/product/Demo_SlowStandard-Bottom-Set1-Black.jpg",
@@ -334,12 +355,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "7d6b75e1-742f-40be-ac91-a4a7f0b11fea": {
-      "productId": "7d6b75e1-742f-40be-ac91-a4a7f0b11fea",
+    "119bc785-7933-4a02-be0e-b897ce17c5cc": {
+      "productId": "119bc785-7933-4a02-be0e-b897ce17c5cc",
       "productName": "Set3",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Bottom",
       "colors": [
         {
@@ -355,12 +376,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "b790abd3-78ad-429e-8a87-c2fe746033e9": {
-      "productId": "b790abd3-78ad-429e-8a87-c2fe746033e9",
+    "48f5900a-8b46-4f5c-9b90-c3ecb639ca04": {
+      "productId": "48f5900a-8b46-4f5c-9b90-c3ecb639ca04",
       "productName": "Set4",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Bottom",
       "colors": [
         {
@@ -381,12 +402,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "763e7250-7de9-44b2-bfda-fd53eb8f7416": {
-      "productId": "763e7250-7de9-44b2-bfda-fd53eb8f7416",
+    "cb74dd27-577a-4f96-8d00-b6bcc31ca529": {
+      "productId": "cb74dd27-577a-4f96-8d00-b6bcc31ca529",
       "productName": "Set2",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Top",
       "colors": [
         {
@@ -397,12 +418,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "8a9d0f6c-add1-4c33-a033-5b5751ae2400": {
-      "productId": "8a9d0f6c-add1-4c33-a033-5b5751ae2400",
+    "17981cdf-592d-4c9e-92de-b96a455beb1c": {
+      "productId": "17981cdf-592d-4c9e-92de-b96a455beb1c",
       "productName": "Set3",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Top",
       "colors": [
         {
@@ -418,12 +439,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "a00ac216-34d7-4302-b0bc-0696edb94026": {
-      "productId": "a00ac216-34d7-4302-b0bc-0696edb94026",
+    "32ff5754-c429-45b7-8c59-17e48afaaa49": {
+      "productId": "32ff5754-c429-45b7-8c59-17e48afaaa49",
       "productName": "Set4",
       "recommendSize": "L",
       "brandName": "SLOWSTANDARD",
-      "brandId": "e38e0729-4fae-49b6-80e5-3780c3c31f08",
+      "brandId": "d200f24f-ce28-497f-89da-714e4d461e73",
       "type": "Top",
       "colors": [
         {
@@ -444,12 +465,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "51f5f2c9-2d81-4c69-b6fd-c5279d2dea5f": {
-      "productId": "51f5f2c9-2d81-4c69-b6fd-c5279d2dea5f",
+    "06e4fc1a-d47d-4957-9140-e815e33ef3dc": {
+      "productId": "06e4fc1a-d47d-4957-9140-e815e33ef3dc",
       "productName": "SSG731",
       "recommendSize": "L",
       "brandName": "STUDIO TOMBOY",
-      "brandId": "cc11fc98-d090-4cf5-9118-0fcac70af6ba",
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
       "type": "Bottom",
       "colors": [
         {
@@ -465,12 +486,12 @@
       ],
       "genders": ["women", "men"]
     },
-    "8e975ce3-f5f8-4029-8d06-6609532ea10f": {
-      "productId": "8e975ce3-f5f8-4029-8d06-6609532ea10f",
+    "e42ed15b-0922-4095-b5ae-3d3cde989a05": {
+      "productId": "e42ed15b-0922-4095-b5ae-3d3cde989a05",
       "productName": "SSG822",
       "recommendSize": "L",
       "brandName": "STUDIO TOMBOY",
-      "brandId": "cc11fc98-d090-4cf5-9118-0fcac70af6ba",
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
       "type": "Bottom",
       "colors": [
         {
@@ -486,28 +507,33 @@
       ],
       "genders": ["women", "men"]
     },
-    "b4a26735-d175-43ee-8905-9be053a7abf1": {
-      "productId": "b4a26735-d175-43ee-8905-9be053a7abf1",
+    "d0864264-0695-40dd-9799-8c9324ff29e3": {
+      "productId": "d0864264-0695-40dd-9799-8c9324ff29e3",
       "productName": "SSG742",
       "recommendSize": "L",
       "brandName": "STUDIO TOMBOY",
-      "brandId": "cc11fc98-d090-4cf5-9118-0fcac70af6ba",
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
       "type": "Top",
       "colors": [
         {
           "color": "Blue",
           "src": "/images/product/Demo_Studio Tomboy-Top-SSG742-Blue.jpg",
           "sizes": ["M"]
+        },
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG742-Neutral.jpg",
+          "sizes": ["M"]
         }
       ],
-      "genders": ["women"]
+      "genders": ["women", "men"]
     },
-    "c4678cdb-8ec1-4be7-be6a-cdf6c6f186fd": {
-      "productId": "c4678cdb-8ec1-4be7-be6a-cdf6c6f186fd",
+    "fdff1179-6a2a-4b32-b02c-20bad56a32b4": {
+      "productId": "fdff1179-6a2a-4b32-b02c-20bad56a32b4",
       "productName": "SSG821",
       "recommendSize": "L",
       "brandName": "STUDIO TOMBOY",
-      "brandId": "cc11fc98-d090-4cf5-9118-0fcac70af6ba",
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
       "type": "Top",
       "colors": [
         {
@@ -526,7 +552,23 @@
           "sizes": ["L", "M"]
         }
       ],
-      "genders": ["women"]
+      "genders": ["women", "men"]
+    },
+    "88edb463-b572-4f9a-af22-7cbd18f4cbf2": {
+      "productId": "88edb463-b572-4f9a-af22-7cbd18f4cbf2",
+      "productName": "SSG912",
+      "recommendSize": "L",
+      "brandName": "STUDIO TOMBOY",
+      "brandId": "7ffec208-ef48-4e23-a870-7e815cf4ceb2",
+      "type": "Top",
+      "colors": [
+        {
+          "color": "Neutral",
+          "src": "/images/product/Demo_Studio Tomboy-Top-SSG912-Neutral.jpg",
+          "sizes": ["M"]
+        }
+      ],
+      "genders": ["men"]
     }
   }
 }
