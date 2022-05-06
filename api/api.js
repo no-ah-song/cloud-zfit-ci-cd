@@ -1,5 +1,4 @@
 import _ from "lodash";
-import data from "../public/data/fitting.json";
 
 const getBrandList = async () => {
   const res = await fetch(
@@ -44,6 +43,8 @@ const getFittingImages = async ({
   belt,
   acrossShoulder,
 }) => {
+  const res = await fetch("./data/fitting.json");
+  const data = await res.json();
   async function filter() {
     try {
       if (brandId && productId && color && size && gender && height) {
