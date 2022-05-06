@@ -58,8 +58,7 @@ body {
   overflow:hidden;
   height: 100vh;
   --ion-safe-area-top: env(safe-area-inset-top);
-  padding-bottom: calc(1rem + var(--safe-area-inset-top));
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  padding-bottom: calc(1rem + var(--ion-safe-area-top));
 }
 
 a {

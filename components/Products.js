@@ -24,6 +24,12 @@ const ProductItem = styled.div`
   padding-top: 145%;
   width: 100%;
   background: white;
+  img {
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+  }
 `;
 const ProductInfo = styled.div`
   text-align: left;
@@ -70,7 +76,7 @@ const Products = ({ productList = [] }) => {
               <div className="text-end text-nowrap" role="button" onClick={()=>handleClick(product)}>View Fitting↗</div>
             </ProductInfo>
             <ProductItem>
-              <Image src={product.src||"/noimage.png"} layout="fill" />
+              <Image src={product.src||"/noimage.png"} layout="fill" objectFit="cover"/>
             </ProductItem>
           </div>
         );
