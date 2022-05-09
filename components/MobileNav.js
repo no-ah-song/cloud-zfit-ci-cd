@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import ProductsHorizontal from "./ProductsHorizontal";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
-import { getBrandList } from "../api/api";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import ProductsHorizontal from './ProductsHorizontal';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getBrandList } from '../api/api';
 
 /* eslint-disable */
 const MenuRoot = styled.div`
@@ -19,7 +19,7 @@ const MenuRoot = styled.div`
   overflow: hidden;
   top: -100%;
   transition: transform 0.4s;
-  ${(props) => (props.isOpen ? "transform: translate(0, calc(100vh + 48px));" : "")}
+  ${props => (props.isOpen ? 'transform: translate(0, calc(100vh + 48px));' : '')}
 
   display: flex;
   justify-content: space-between;
@@ -149,8 +149,7 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                 type="button"
                 role="tab"
                 aria-controls="nav-home"
-                aria-selected="true"
-              >
+                aria-selected="true">
                 Men
               </button>
               <button
@@ -161,8 +160,7 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                 type="button"
                 role="tab"
                 aria-controls="nav-profile"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Women
               </button>
               <button
@@ -173,49 +171,45 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                 type="button"
                 role="tab"
                 aria-controls="nav-contact"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Brand
               </button>
             </div>
           </nav>
           <div className="tab-content" id="nav-tabContent">
-            <div
-              className="tab-pane fade show active"
-              id="nav-home"
-              role="tabpanel"
-              aria-labelledby="nav-home-tab"
-            >
+            <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <a href="/products?gender=men&type=all">ALL</a>
                 </li>
-                <li className="list-group-item"><a href="/products?gender=men&type=top">Top</a></li>
-                <li className="list-group-item"><a href="/products?gender=men&type=bottom">Bottom</a></li>
-                <li className="list-group-item"><a href="/products?gender=men&type=outer">Outer</a></li>
+                <li className="list-group-item">
+                  <a href="/products?gender=men&type=top">Top</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/products?gender=men&type=bottom">Bottom</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/products?gender=men&type=outer">Outer</a>
+                </li>
               </ul>
             </div>
-            <div
-              className="tab-pane fade"
-              id="nav-profile"
-              role="tabpanel"
-              aria-labelledby="nav-profile-tab"
-            >
+            <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <a href="/products?gender=women&type=all">ALL</a>
                 </li>
-                <li className="list-group-item"><a href="/products?gender=women&type=top">Top</a></li>
-                <li className="list-group-item"><a href="/products?gender=women&type=bottom">Bottom</a></li>
-                <li className="list-group-item"><a href="/products?gender=women&type=outer">Outer</a></li>
+                <li className="list-group-item">
+                  <a href="/products?gender=women&type=top">Top</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/products?gender=women&type=bottom">Bottom</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/products?gender=women&type=outer">Outer</a>
+                </li>
               </ul>
             </div>
-            <div
-              className="tab-pane fade"
-              id="nav-contact"
-              role="tabpanel"
-              aria-labelledby="nav-contact-tab"
-            >
+            <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
               <ul className="list-group list-group-flush brand-list">
                 {brands.length > 0 &&
                   brands.map((brand, index) => {
@@ -225,7 +219,9 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                         <div>
                           <BrandInfo>
                             <div>
-                              <div><b>{brand.brandName}</b></div>
+                              <div>
+                                <b>{brand.brandName}</b>
+                              </div>
                             </div>
                             <div>
                               <a href={to}>View →</a>
@@ -233,11 +229,7 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                           </BrandInfo>
                           <BrandItem>
                             <BrandImageBox>
-                              <Image
-                                src={brand.logo||"/noimage.png"}
-                                width={72}
-                                height={72}
-                              />
+                              <Image src={brand.logo || '/noimage.png'} width={72} height={72} />
                             </BrandImageBox>
                           </BrandItem>
                         </div>

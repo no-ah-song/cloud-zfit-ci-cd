@@ -1,48 +1,44 @@
-import React, { useEffect, useState, useRef } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
-import ProductsHorizontal from "../components/ProductsHorizontal";
-import FittingViewer from "./FittingViewer";
-import { StyleController } from "../container/FittingController";
-import Close from "../assets/icon-close-white.svg";
-import ZfitLogo from "../assets/icon-fitting-zfit.svg";
-
+import React, { useEffect, useState, useRef } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import Image from 'next/image';
+import ProductsHorizontal from '../components/ProductsHorizontal';
+import FittingViewer from './FittingViewer';
+import { StyleController } from '../container/FittingController';
+import Close from '../assets/icon-close-white.svg';
+import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 
 const Fitting = ({ onClickClose, isOpen }) => {
-  useEffect(()=>{
-  },[]);
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-  }, [isOpen]);
+  useEffect(() => {}, [isOpen]);
 
   return (
-      <FittingRoot isOpen={isOpen}>
-        <Container className="header__container">
-          <div className="p-1 bg-black text-white">
-            <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
-              <div/>
-              <div className="header-center-text"><ZfitLogo/><span>Fitting Room</span></div>
-              <div
-                className="text-end px-3"
-                onClick={onClickClose}
-                role="button"
-              >
-                <Close/>
-              </div>
+    <FittingRoot isOpen={isOpen}>
+      <Container className="header__container">
+        <div className="p-1 bg-black text-white">
+          <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
+            <div />
+            <div className="header-center-text">
+              <ZfitLogo />
+              <span>Fitting Room</span>
+            </div>
+            <div className="text-end px-3" onClick={onClickClose} role="button">
+              <Close />
             </div>
           </div>
-        </Container>
-        <Container className="model__container">
-          <FittingViewer/>
-        </Container>
-        <Container className="bottom__container">
-          <div>
-            <StyleController isOpen={isOpen}/>
-          </div>
-        </Container>
-      </FittingRoot>
+        </div>
+      </Container>
+      <Container className="model__container">
+        <FittingViewer />
+      </Container>
+      <Container className="bottom__container">
+        <div>
+          <StyleController isOpen={isOpen} />
+        </div>
+      </Container>
+    </FittingRoot>
   );
 };
 
@@ -56,15 +52,15 @@ const FittingRoot = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   transition: transform 0.4s;
-  ${(props) => (props.isOpen ? "transform: translate(0, calc(-100vh));" : "")}
+  ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
   @media only screen and (min-width: 600px) {
     right: 0;
     top: unset;
     left: unset;
     bottom: -100vh;
-    width:400px;
+    width: 400px;
     height: 700px;
-    ${(props) => (props.isOpen ? "transform: translate(0, calc(-100vh));" : "")}
+    ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
   }
 `;
 const Container = styled.div`
@@ -84,7 +80,7 @@ const Container = styled.div`
     bottom: 0;
     max-height: 337px;
     width: 100%;
-    z-index:999;
+    z-index: 999;
     & > div {
       width: 90%;
       margin: auto;
@@ -105,12 +101,12 @@ const Container = styled.div`
       font-weight: 600;
       border-radius: 4px;
     }
-    .header-center-text{
+    .header-center-text {
       display: flex;
       text-align: center;
       column-gap: 4px;
       margin-left: 48px;
-      span{
+      span {
         line-height: 15px;
       }
     }

@@ -1,12 +1,12 @@
-import React, { useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Header from "./Header";
-import MobileNav from "./MobileNav";
-import Fitting from "../container/Fitting";
-import Footer from "./Footer";
-import Main from "./Main";
-import { fittingIsOpenState, menuIsOpenState, selectedProductState } from "../recoil/state";
+import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Header from './Header';
+import MobileNav from './MobileNav';
+import Fitting from '../container/Fitting';
+import Footer from './Footer';
+import Main from './Main';
+import { fittingIsOpenState, menuIsOpenState, selectedProductState } from '../recoil/state';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
 //const Menu = dynamic(() => import('./Menu'), { suspense: true })
@@ -44,13 +44,13 @@ const StickyFooter = styled.div`
 const initialState = { menuIsOpen: false, fittingIsOpen: false };
 const reducer = (state, action) => {
   switch (action.type) {
-    case "MENU_OPEN":
+    case 'MENU_OPEN':
       return { menuIsOpen: true };
-    case "MENU_CLOSE":
+    case 'MENU_CLOSE':
       return { menuIsOpen: false };
-    case "FITTING_OPEN":
+    case 'FITTING_OPEN':
       return { fittingIsOpen: true };
-    case "FITTING_CLOSE":
+    case 'FITTING_CLOSE':
       return { fittingIsOpen: false };
     default:
       throw new Error();
@@ -62,34 +62,30 @@ const MobileLayout = ({ children }) => {
   const [fittingIsOpen, setFittingIsOpen] = useRecoilState(fittingIsOpenState);
   const resetSelectedProduct = useResetRecoilState(selectedProductState);
   const [menuIsOpen, setMenuIsOPen] = useRecoilState(menuIsOpenState);
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   return (
     <>
       <LayoutTemplate>
         <Header
-          onClickOpen={() => dispatch({ type: "MENU_OPEN" })}
-          onClickClose={() => dispatch({ type: "MENU_CLOSE" })}
-          isOpen={state.menuIsOpen}
-        ></Header>
-        <MobileNav
-          onClickClose={() => dispatch({ type: "MENU_CLOSE" })}
-          isOpen={state.menuIsOpen}
-        />
+          onClickOpen={() => dispatch({ type: 'MENU_OPEN' })}
+          onClickClose={() => dispatch({ type: 'MENU_CLOSE' })}
+          isOpen={state.menuIsOpen}></Header>
+        <MobileNav onClickClose={() => dispatch({ type: 'MENU_CLOSE' })} isOpen={state.menuIsOpen} />
 
-        <Fitting
-          onClickClose={() => setFittingIsOpen(false)}
-          isOpen={fittingIsOpen}
-        />
-        <div style={{ display: "flex" }}>
+        <Fitting onClickClose={() => setFittingIsOpen(false)} isOpen={fittingIsOpen} />
+        <div style={{ display: 'flex' }}>
           {/* <SideNav /> */}
           <Main>{children}</Main>
         </div>
         <Footer> </Footer>
       </LayoutTemplate>
       <StickyFooter>
-        <button onClick={() => {setFittingIsOpen(true); resetSelectedProduct()}}>
+        <button
+          onClick={() => {
+            setFittingIsOpen(true);
+            resetSelectedProduct();
+          }}>
           Fitting Room↗
         </button>
       </StickyFooter>

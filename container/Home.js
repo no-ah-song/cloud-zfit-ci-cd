@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import Layout from "../components/Layout";
-import Products from "../components/Products";
+import Layout from '../components/Layout';
+import Products from '../components/Products';
 
 const Container = styled.div`
   &.bottom__container {
@@ -98,19 +98,15 @@ const Home = ({ products, bannerList }) => {
 
 const BrandCarousel = ({ bannerList }) => {
   const ref = useRef([]);
-  const handleCollapse = (index) => {
-    if (ref.current[index].classList.contains("active")) {
-      ref.current[index].classList.remove("active");
+  const handleCollapse = index => {
+    if (ref.current[index].classList.contains('active')) {
+      ref.current[index].classList.remove('active');
     } else {
-      ref.current[index].classList.add("active");
+      ref.current[index].classList.add('active');
     }
   };
   return (
-    <div
-      id="carouselExampleCaptions"
-      className="carousel"
-      data-bs-ride="carousel"
-    >
+    <div id="carouselExampleCaptions" className="carousel" data-bs-ride="carousel">
       <div className="carousel-indicators">
         {bannerList.map((banner, index) => {
           const label = `Slide ${index + 1}`;
@@ -120,10 +116,9 @@ const BrandCarousel = ({ bannerList }) => {
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to={index}
-              className={index === 0 ? "active" : ""}
+              className={index === 0 ? 'active' : ''}
               aria-current="true"
-              aria-label={label}
-            ></button>
+              aria-label={label}></button>
           );
         })}
       </div>
@@ -131,10 +126,7 @@ const BrandCarousel = ({ bannerList }) => {
         {bannerList.map((banner, index) => {
           const to = `/brand?brand=${banner.brandId}`;
           return (
-            <div
-              key={index}
-              className={index === 0 ? "carousel-item active" : "carousel-item"}
-            >
+            <div key={index} className={index === 0 ? 'carousel-item active' : 'carousel-item'}>
               <div className="carousel-top">
                 <div>
                   <div className="top__text">
@@ -144,22 +136,18 @@ const BrandCarousel = ({ bannerList }) => {
                   </div>
                   <div
                     className="bottom__text"
-                    ref={(el) => {
+                    ref={el => {
                       ref.current.push(el);
-                    }}
-                  >
+                    }}>
                     {banner.summary}
                   </div>
                 </div>
-                <div
-                  className="collapse-button"
-                  onClick={() => handleCollapse(index)}
-                >
+                <div className="collapse-button" onClick={() => handleCollapse(index)}>
                   View More
                 </div>
               </div>
               <div className="carousel-bottom">
-                <Image src={banner.src||"/noimage.png"} layout="fill" />
+                <Image src={banner.src || '/noimage.png'} layout="fill" />
               </div>
             </div>
           );

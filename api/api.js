@@ -1,13 +1,11 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const getBrandList = async () => {
-  const res = await fetch(
-    "https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json"
-  );
+  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json');
   const data = await res.json();
   const objectData = Object.keys(data.brands);
   let brands = [];
-  objectData.map((objectId) => {
+  objectData.map(objectId => {
     brands.push(data.brands[objectId]);
   });
   return brands;
@@ -43,70 +41,54 @@ const getFittingImages = async ({
   belt,
   acrossShoulder,
 }) => {
-  const res = await fetch("./data/fitting.json");
+  const res = await fetch('./data/fitting.json');
   const data = await res.json();
   async function filter() {
     try {
       if (brandId && productId && color && size && gender && height) {
         let fittings = data.fitting[brandId][productId][color][size][gender];
-        let nearestHeight = await processBodyInfoData(
-          fittings,
-          "height",
-          height
-        );
-        fittings = await fittings.filter((fitting) => {
+        let nearestHeight = await processBodyInfoData(fittings, 'height', height);
+        fittings = await fittings.filter(fitting => {
           return fitting.height == nearestHeight;
         });
-        let nearestHip = await processBodyInfoData(fittings, "hip", hip);
-        fittings = await fittings.filter((fitting) => {
+        let nearestHip = await processBodyInfoData(fittings, 'hip', hip);
+        fittings = await fittings.filter(fitting => {
           return fitting.hip == nearestHip;
         });
-        let nearestArmLength = await processBodyInfoData(
-          fittings,
-          "armLength",
-          armLength
-        );
-        fittings = await fittings.filter((fitting) => {
+        let nearestArmLength = await processBodyInfoData(fittings, 'armLength', armLength);
+        fittings = await fittings.filter(fitting => {
           return fitting.armLength == nearestArmLength;
         });
-        let nearestInseam = await processBodyInfoData(
-          fittings,
-          "inseam",
-          inseam
-        );
-        fittings = await fittings.filter((fitting) => {
+        let nearestInseam = await processBodyInfoData(fittings, 'inseam', inseam);
+        fittings = await fittings.filter(fitting => {
           return fitting.inseam == nearestInseam;
         });
-        let nearestChest = await processBodyInfoData(fittings, "chest", chest);
-        fittings = await fittings.filter((fitting) => {
+        let nearestChest = await processBodyInfoData(fittings, 'chest', chest);
+        fittings = await fittings.filter(fitting => {
           return fitting.chest == nearestChest;
         });
-        let nearestNeck = await processBodyInfoData(fittings, "neck", neck);
-        fittings = await fittings.filter((fitting) => {
+        let nearestNeck = await processBodyInfoData(fittings, 'neck', neck);
+        fittings = await fittings.filter(fitting => {
           return fitting.neck == nearestNeck;
         });
-        let nearestBelt = await processBodyInfoData(fittings, "belt", belt);
-        fittings = await fittings.filter((fitting) => {
+        let nearestBelt = await processBodyInfoData(fittings, 'belt', belt);
+        fittings = await fittings.filter(fitting => {
           return fitting.belt == nearestBelt;
         });
-        let nearestWaist = await processBodyInfoData(fittings, "waist", waist);
-        fittings = await fittings.filter((fitting) => {
+        let nearestWaist = await processBodyInfoData(fittings, 'waist', waist);
+        fittings = await fittings.filter(fitting => {
           return fitting.waist == nearestWaist;
         });
-        let nearestShoulder = await processBodyInfoData(
-          fittings,
-          "acrossShoulder",
-          acrossShoulder
-        );
-        fittings = await fittings.filter((fitting) => {
+        let nearestShoulder = await processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
+        fittings = await fittings.filter(fitting => {
           return fitting.acrossShoulder == nearestShoulder;
         });
         return fittings[0];
       } else {
-        throw "Fiter Data is Invalid";
+        throw 'Fiter Data is Invalid';
       }
     } catch (error) {
-      throw "Fiter Data is Invalid";
+      throw 'Fiter Data is Invalid';
     }
   }
   const fittingImage = filter();
@@ -132,7 +114,7 @@ async function findNearestInteger(data, target) {
 async function processBodyInfoData(data, key, value) {
   await data.sort((a, b) => a[key] - b[key]);
   let distinctArr = _.uniqBy(data, key);
-  const keyArr = distinctArr.map((el) => {
+  const keyArr = distinctArr.map(el => {
     return el[key];
   });
   let nearestKey = await findNearestInteger(keyArr, value);

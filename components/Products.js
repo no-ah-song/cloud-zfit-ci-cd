@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from "react";
-import Image from "next/image";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { colorAndSizeState, selectedProductState, fittingIsOpenState, fittingImagesState } from "../recoil/state";
+import React, { useEffect, useCallback } from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { colorAndSizeState, selectedProductState, fittingIsOpenState, fittingImagesState } from '../recoil/state';
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
 const ProductList = styled.div`
@@ -11,11 +11,11 @@ const ProductList = styled.div`
   & > div {
     border-bottom: 1px solid black;
     border-right: 1px solid black;
-    // box-shadow: 
-    // 1px 0 0 0 #000000, 
-    // 0 1px 0 0 #000000, 
+    // box-shadow:
+    // 1px 0 0 0 #000000,
+    // 0 1px 0 0 #000000,
     // 1px 1px 0 0 #000000,
-    // 1px 0 0 0 #000000 inset, 
+    // 1px 0 0 0 #000000 inset,
     // 0 1px 0 0 #000000 inset;
   }
   @media only screen and (min-width: 600px) {
@@ -44,10 +44,10 @@ const ProductInfo = styled.div`
   justify-content: space-between;
   height: 88px;
   & > div:nth-child(1) > div {
-    padding-right:18px;
+    padding-right: 18px;
     word-break: keep-all;
   }
-  &>div{
+  & > div {
     flex: 1 1 0;
   }
 `;
@@ -58,31 +58,35 @@ const Products = ({ productList = [] }) => {
   const setFittingIsOpen = useSetRecoilState(fittingIsOpenState);
   const resetColorAndSize = useResetRecoilState(colorAndSizeState);
   const resetFittingImage = useResetRecoilState(fittingImagesState);
-  const handleClick = useCallback((product) => {
+  const handleClick = useCallback(product => {
     async function fetchData() {
       resetColorAndSize();
       resetFittingImage();
-      setSelectedProduct({...product, color: product.color, sizes: product.sizes});
+      setSelectedProduct({ ...product, color: product.color, sizes: product.sizes });
     }
     fetchData();
     setFittingIsOpen(true);
-  },[]);
+  }, []);
 
   return (
     <ProductList>
       {productList.map((product, index) => {
         return (
-          <div key={index} onClick={()=>handleClick(product)} role="button">
+          <div key={index} onClick={() => handleClick(product)} role="button">
             <ProductInfo>
               <div>
-                <div><b>{product.productName}</b></div>
-                <div><b>{product.color}</b></div>
-                {/* <div>{product.brandName}</div> // 일단 브랜드 네임 빼기*/} 
+                <div>
+                  <b>{product.productName}</b>
+                </div>
+                <div>
+                  <b>{product.color}</b>
+                </div>
+                {/* <div>{product.brandName}</div> // 일단 브랜드 네임 빼기*/}
               </div>
               <div className="text-end text-nowrap">View Fitting↗</div>
             </ProductInfo>
             <ProductItem>
-              <Image src={product.src||"/noimage.png"} layout="fill" objectFit="cover"/>
+              <Image src={product.src || '/noimage.png'} layout="fill" objectFit="cover" />
             </ProductItem>
           </div>
         );

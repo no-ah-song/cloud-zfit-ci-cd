@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import Image from "next/image";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ProductList = styled.div`
   display: flex;
   overflow-x: auto;
-  &::-webkit-scrollbar{
-    display: none; 
+  &::-webkit-scrollbar {
+    display: none;
   }
   & > div {
     border-bottom: 1px solid black;
@@ -17,8 +17,8 @@ const ProductList = styled.div`
 const ProductItem = styled.div`
   position: relative;
   padding-top: 145%;
-  //width: ${props=>props.width?props.width+"px":"195px"};
-  min-width: ${props=>props.width?props.width+"px":"195px"};
+  //width: ${props => (props.width ? props.width + 'px' : '195px')};
+  min-width: ${props => (props.width ? props.width + 'px' : '195px')};
   background: white;
 `;
 const ProductInfo = styled.div`
@@ -33,7 +33,7 @@ const ProductInfo = styled.div`
   }
 `;
 
-const ProductsHorizontal = ({ productList=[], itemWidth }) => {
+const ProductsHorizontal = ({ productList = [], itemWidth }) => {
   useEffect(() => {}, [productList]);
   return (
     <ProductList>
@@ -48,7 +48,7 @@ const ProductsHorizontal = ({ productList=[], itemWidth }) => {
               <div>View Fitting↗</div>
             </ProductInfo>
             <ProductItem width={itemWidth}>
-              <Image src={"/images/Rectangle 248.jpg"||"/noimage.png"} layout="fill" />
+              <Image src={'/images/Rectangle 248.jpg' || '/noimage.png'} layout="fill" />
             </ProductItem>
           </div>
         );
