@@ -5,6 +5,9 @@ import Close from '../assets/icon-close.svg';
 import NavButton from '../assets/icon-header.svg';
 
 const HeaderRoot = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
   .menu {
     position: absolute;
     top: 0;

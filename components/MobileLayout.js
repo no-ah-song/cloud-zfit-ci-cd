@@ -12,11 +12,9 @@ import { useRecoilState, useResetRecoilState } from 'recoil';
 //const Menu = dynamic(() => import('./Menu'), { suspense: true })
 const LayoutTemplate = styled.div`
   width: 100%;
-  height: 100vh;
   max-width: 100%;
   position: relative;
   margin: auto;
-  overflow-x: hidden;
   @media only screen and (min-width: 800px) {
     max-width: 100%;
   }
@@ -24,7 +22,7 @@ const LayoutTemplate = styled.div`
 
 const StickyFooter = styled.div`
   position: sticky;
-  bottom: 60px;
+  bottom: 16px;
   max-width: 100%;
   margin: auto;
   font-size: 16px;

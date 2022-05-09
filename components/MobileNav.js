@@ -17,7 +17,7 @@ const MenuRoot = styled.div`
   max-width: 100%;
   height: 100vh;
   overflow: hidden;
-  top: -100%;
+  top: -100vh;
   transition: transform 0.4s;
   ${props => (props.isOpen ? 'transform: translate(0, calc(100vh + 48px));' : '')}
 
@@ -121,9 +121,9 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
 
   useEffect(() => {
     if (isOpen) {
-      // document.body.style.overflow = "hidden";
+      document.body.classList.add('scroll-hidden')
     } else {
-      //document.body.style.overflow = "unset";
+      document.body.classList.remove('scroll-hidden')
     }
   }, [isOpen]);
 

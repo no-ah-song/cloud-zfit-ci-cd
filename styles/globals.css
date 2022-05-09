@@ -53,14 +53,18 @@ body {
   background: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
-  overflow: hidden;
-  --ion-safe-area-top: env(safe-area-inset-top);
-  padding-bottom: calc(1rem + var(--ion-safe-area-top));
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
-  height: calc(100vh + 48px);
+  min-height: 100vh;
+  width: 100%;
 }
 
+body.scroll-hidden {
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  /* 이외의 브라우저 */
+  overscroll-behavior: none;
+  position: relative;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -82,12 +86,11 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  display: none;
+  background: #555;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  position: absolute;
   background: #888;
 }
 

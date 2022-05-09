@@ -10,7 +10,14 @@ import Close from '../assets/icon-close-white.svg';
 import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 
 const Fitting = ({ onClickClose, isOpen }) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (isOpen) {
+      /* 이외의 브라우저 */
+      document.body.classList.add('scroll-hidden')
+    } else {
+      document.body.classList.remove('scroll-hidden')
+    }
+  }, [isOpen]);
 
   useEffect(() => {}, [isOpen]);
 
@@ -48,7 +55,7 @@ const FittingRoot = styled.div`
   bottom: -100vh;
   background: white;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   transition: transform 0.4s;
