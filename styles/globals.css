@@ -58,8 +58,7 @@ body {
   padding-bottom: calc(1rem + var(--ion-safe-area-top));
   scrollbar-width: thin;
   scrollbar-color: #888 transparent;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(100vh + 48px);
 }
 
 a {
