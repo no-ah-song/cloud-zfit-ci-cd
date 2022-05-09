@@ -11,6 +11,12 @@ const ProductList = styled.div`
   & > div {
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+    // box-shadow: 
+    // 1px 0 0 0 #000000, 
+    // 0 1px 0 0 #000000, 
+    // 1px 1px 0 0 #000000,
+    // 1px 0 0 0 #000000 inset, 
+    // 0 1px 0 0 #000000 inset;
   }
   @media only screen and (min-width: 600px) {
     grid-template-columns: repeat(4, 1fr);
@@ -66,14 +72,14 @@ const Products = ({ productList = [] }) => {
     <ProductList>
       {productList.map((product, index) => {
         return (
-          <div key={index}>
+          <div key={index} onClick={()=>handleClick(product)} role="button">
             <ProductInfo>
               <div>
                 <div><b>{product.productName}</b></div>
                 <div><b>{product.color}</b></div>
                 {/* <div>{product.brandName}</div> // 일단 브랜드 네임 빼기*/} 
               </div>
-              <div className="text-end text-nowrap" role="button" onClick={()=>handleClick(product)}>View Fitting↗</div>
+              <div className="text-end text-nowrap">View Fitting↗</div>
             </ProductInfo>
             <ProductItem>
               <Image src={product.src||"/noimage.png"} layout="fill" objectFit="cover"/>

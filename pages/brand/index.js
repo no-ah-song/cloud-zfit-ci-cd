@@ -86,9 +86,11 @@ export async function getServerSideProps(context) {
   //   }
   // })
   objectProduct.map((productId)=>{
-    dataProduct.products[productId].colors.map((item)=>{
-      products.push({...dataProduct.products[productId],color:item.color, sizes:item.sizes, src:item.src});
-    })
+    if(dataProduct.products[productId].brandId === brand){
+      dataProduct.products[productId].colors.map((item)=>{
+        products.push({...dataProduct.products[productId],color:item.color, sizes:item.sizes, src:item.src});
+      })
+    }
   });
   const resBrand = await fetch("https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json");
   const brandData = await resBrand.json();

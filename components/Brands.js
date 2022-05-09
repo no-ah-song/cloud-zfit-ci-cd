@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import Image from "next/image";
-import styled from "styled-components";
-import Link from "next/link";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const BrandList = styled.div`
   display: grid;
@@ -59,25 +59,23 @@ const Brands = ({ brandList }) => {
         const viewLink = `/brand?brand=${brand.brandId}`;
         return (
           <div key={index}>
-            <Container>
-              <BrandInfo>
-                <div>
-                  <div><b>{brand.brandName}</b></div>
-                </div>
-                <div>
-                  <Link href={viewLink}>View→</Link>
-                </div>
-              </BrandInfo>
-              <BrandItem>
-                <BrandImageBox>
-                  <Image
-                    src={brand.src||"/noimage.png"}
-                    width={72}
-                    height={72}
-                  />
-                </BrandImageBox>
-              </BrandItem>
-            </Container>
+            <Link href={viewLink}>
+              <Container role="button">
+                <BrandInfo>
+                  <div>
+                    <div>
+                      <b>{brand.brandName}</b>
+                    </div>
+                  </div>
+                  <div>View→</div>
+                </BrandInfo>
+                <BrandItem>
+                  <BrandImageBox>
+                    <Image src={brand.src || '/noimage.png'} width={72} height={72} />
+                  </BrandImageBox>
+                </BrandItem>
+              </Container>
+            </Link>
           </div>
         );
       })}

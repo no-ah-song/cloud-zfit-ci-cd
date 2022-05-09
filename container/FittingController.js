@@ -14,13 +14,18 @@ import {
   fittingImagesState,
   fitmapState,
 } from "../recoil/state";
-import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from "recoil";
 
 const StyleController = ({ isOpen }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
-  const setFittingImages = useSetRecoilState(fittingImagesState)
-  const resetFittingImages = useResetRecoilState(fittingImagesState)
+  const setFittingImages = useSetRecoilState(fittingImagesState);
+  const resetFittingImages = useResetRecoilState(fittingImagesState);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -28,10 +33,10 @@ const StyleController = ({ isOpen }) => {
 
   useEffect(() => {
     async function fetchData() {
-      try{
+      try {
         const response = await getFittingImages(fitting);
-        setFittingImages({...response, fitmap:fitting.fitmap});
-      }catch{
+        setFittingImages({ ...response, fitmap: fitting.fitmap });
+      } catch {
         resetFittingImages();
       }
     }
@@ -84,14 +89,29 @@ const StyleController = ({ isOpen }) => {
 
 const StyleControlBox = ({ title, children, ...rest }) => {
   const setSsrCompleted = useSsrComplectedState();
-  const [isOpen,setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   useEffect(setSsrCompleted, [setSsrCompleted]);
 
   return (
     <div>
-      <StyledControlContainer {...rest} >
-          <ControlHeader onClick={()=>setIsOpen(!isOpen)} role="button">COLLAPSE ↓</ControlHeader>
-          <ControllBody className={!isOpen&&"style-body-close"}>{children}</ControllBody>
+      <StyledControlContainer {...rest}>
+        <ControlHeader onClick={() => setIsOpen(!isOpen)} role="button">
+          {isOpen ? (
+            <div>COLLAPSE ↓</div>
+          ) : (
+            <div classNma="row">
+              <div className="col col-12 d-flex">
+                <span className="text-start w-100 px-4 text-nowrap">
+                  <b>View Style & Body</b>
+                </span>
+                <span className="text-end px-4 text-nowrap">EXPAND ↑</span>
+              </div>
+            </div>
+          )}
+        </ControlHeader>
+        <ControllBody className={!isOpen && "style-body-close"}>
+          {children}
+        </ControllBody>
       </StyledControlContainer>
     </div>
   );
@@ -106,7 +126,7 @@ const StyledControlContainer = styled.div`
   &.active {
     display: block;
   }
-  .style-body-close{
+  .style-body-close {
     display: none;
   }
 `;
@@ -426,8 +446,12 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       <div className="row">
         {isFirst || (
           <div className="col col-12 d-flex">
-            <span className="text-start w-100 px-4" onClick={onDone} role="button">
-            <b>← Back</b>
+            <span
+              className="text-start w-100 px-4"
+              onClick={onDone}
+              role="button"
+            >
+              <b>← Back</b>
             </span>
             <span className="text-end w-100 px-4">Recommended Styles</span>
           </div>
@@ -437,7 +461,11 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
             <span className="text-start w-100 px-4">
               <b>Welcome to Fitting Room</b>
             </span>
-            <span className="text-end px-4 text-nowrap" onClick={onDone} role="button">
+            <span
+              className="text-end px-4 text-nowrap"
+              onClick={onDone}
+              role="button"
+            >
               <b>Done →</b>
             </span>
           </div>
@@ -445,51 +473,56 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
       </div>
       <div className="row w-100">
         <div className="col col-6 px-4">Gender</div>
-          {selectedProduct.genders.length > 1?(
-            <>
-              <div
-              className={values.genders[0] === "men" ? "col col-3 toggle-active": "col col-3 toggle"}
+        {selectedProduct.genders.length > 1 ? (
+          <>
+            <div
+              className={
+                values.genders[0] === "men"
+                  ? "col col-3 toggle-active"
+                  : "col col-3 toggle"
+              }
               onClick={() => changeValue("genders", ["men"])}
               data-toggle-group="gender"
               data-value="men"
               role="button"
-              >
-                Men
-              </div>
-              <div
-              className={values.genders[0] === "women" ? "col col-3 toggle-active": "col col-3 toggle"}
-                onClick={() => changeValue("genders", ["women"])}
-                data-toggle-group="gender"
-                data-value="women"
-                role="button"
-              >
-                Women
-              </div>
-            </>
-          ):(
-            values.genders[0] === "men" ? (
-              <div
-                className="col col-6 toggle-active"
-                onClick={() => changeValue("genders", ["men"])}
-                data-toggle-group="gender"
-                data-value="men"
-                role="button"
-              >
-                Men
-              </div>
-            ):
-            (
-              <div
-                className="col col-6 toggle-active"
-                onClick={() => changeValue("genders", ["women"])}
-                data-toggle-group="gender"
-                data-value="women"
-                role="button"
-              >
-                Women
-              </div>
-            )
-          )}
+            >
+              Men
+            </div>
+            <div
+              className={
+                values.genders[0] === "women"
+                  ? "col col-3 toggle-active"
+                  : "col col-3 toggle"
+              }
+              onClick={() => changeValue("genders", ["women"])}
+              data-toggle-group="gender"
+              data-value="women"
+              role="button"
+            >
+              Women
+            </div>
+          </>
+        ) : values.genders[0] === "men" ? (
+          <div
+            className="col col-6 toggle-active"
+            onClick={() => changeValue("genders", ["men"])}
+            data-toggle-group="gender"
+            data-value="men"
+            role="button"
+          >
+            Men
+          </div>
+        ) : (
+          <div
+            className="col col-6 toggle-active"
+            onClick={() => changeValue("genders", ["women"])}
+            data-toggle-group="gender"
+            data-value="women"
+            role="button"
+          >
+            Women
+          </div>
+        )}
       </div>
       <div className="row w-100">
         <div className="col col-3 px-4">Height</div>
@@ -537,7 +570,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
         <div className="col col-12">Shape</div>
       </div>
       <div className="row">
-        {values.genders === "women" ? (
+        {values.genders[0] === "women" ? (
           <div className="shape-grid" role="button">
             <div
               onClick={() => setSelectedShape(0)}
@@ -668,7 +701,7 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
         </div>
       </div>
       <div className="row w-100">
-        <div className="col col-3 px-4">Arm Length</div>
+        <div className="col col-3 px-4 text-nowrap">Arm Length</div>
         <div className="col col-6">
           <BodyDimensionSelectBox
             selected={values.armLength}
@@ -717,26 +750,33 @@ const GridMenuBox = ({ onSelect }) => {
   const avatar = useRecoilValue(avatarState);
   const [fitmap, setFitmap] = useRecoilState(fitmapState);
   const fitting = useRecoilValue(fittingSelector);
-  useEffect(()=>{
-  },[avatar])
+  useEffect(() => {}, [avatar]);
 
   return (
     <div className="grid-menu-box">
       <div className="row w-100">
-        <div className="col col-6 position-relative h-0" onClick={onSelect[0]} role="button">
+        <div
+          className="col col-6 position-relative h-0"
+          onClick={onSelect[0]}
+          role="button"
+        >
           <div className="position-absolute d-flex w-100 top-0 grid-header">
             <span className="text-start w-100">Body Info</span>
             <span className="text-end w-100">→</span>
           </div>
           <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
             <div>
-              <div>{avatar.genders === "men" ? "Men" : "Women"}</div>
+              <div>{avatar.genders[0] === "men" ? "Men" : "Women"}</div>
               <div>{avatar.height}cm</div>
               <div>{avatar.weight}kg</div>
             </div>
           </div>
         </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[1]} role="button">
+        <div
+          className="col col-6 position-relative h-0"
+          onClick={onSelect[1]}
+          role="button"
+        >
           <div className="position-absolute d-flex w-100 top-0 grid-header">
             <span className="text-start w-100">Recommended Styles</span>
             <span className="text-end w-100">→</span>
@@ -759,22 +799,41 @@ const GridMenuBox = ({ onSelect }) => {
           </div>
           <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
             <div role="button">
-              <div className={fitmap.fitmap?"toggle-active":"toggle"} onClick={()=>{setFitmap({fitmap:!fitmap.fitmap})}}>On</div>
+              <div
+                className={fitmap.fitmap ? "toggle-active" : "toggle"}
+                onClick={() => {
+                  setFitmap({ fitmap: !fitmap.fitmap });
+                }}
+              >
+                On
+              </div>
             </div>
           </div>
           <div className="fit-map-bottom">
-            <div className="fit-text">
-              <span>Loose</span>
-              <span>Tight</span>
-            </div>
-            <div className="fit-map-bar">
-              <Image src="/images/Rectangle 12.jpg" width={163} height={4} />
-            </div>
+            {fitmap.fitmap && (
+              <>
+                <div className="fit-text">
+                  <span>Loose</span>
+                  <span>Tight</span>
+                </div>
+                <div className="fit-map-bar">
+                  <Image
+                    src="/images/Rectangle 12.jpg"
+                    width={163}
+                    height={4}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[2]} role="button">
+        <div
+          className="col col-6 position-relative h-0"
+          onClick={onSelect[2]}
+          role="button"
+        >
           <div className="position-absolute d-flex w-100 top-0 grid-header">
-            <span className="text-start w-100">Size & Color</span>
+            <span className="text-start w-100 text-nowrap">Size & Color</span>
             <span className="text-end w-100">→</span>
           </div>
           <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
@@ -794,12 +853,15 @@ const GridMenuBox = ({ onSelect }) => {
 const RecommendedStyleBox = ({ onDone }) => {
   const [fitting, setFitting] = useRecoilState(selectedProductState);
 
-  // productList={[fittingProduct]}
   return (
     <div className="recommended-style-box">
       <div className="row">
         <div className="col col-12 d-flex">
-          <span className="text-start w-100 px-4" onClick={onDone} role="button">
+          <span
+            className="text-start w-100 px-4"
+            onClick={onDone}
+            role="button"
+          >
             <b>← Back</b>
           </span>
           <span className="text-end w-100 px-4">Recommended Styles</span>
@@ -807,7 +869,10 @@ const RecommendedStyleBox = ({ onDone }) => {
       </div>
       <div className="row">
         <div className="col col-12 p-0">
-          <ProductsHorizontal itemWidth={139} productList={[fitting]} />
+          <ProductsHorizontal
+            itemWidth={145}
+            productList={[fitting, fitting, fitting]}
+          />
         </div>
       </div>
     </div>
@@ -824,7 +889,11 @@ const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
     if (selectedProduct.productId) {
       setColors(selectedProduct.colors.map((item) => item.color));
       setSizes(selectedProduct.colors[0].sizes);
-      setColorAndSize({...colorAndSize, color: selectedProduct.color, size: selectedProduct.colors[0].sizes[0] });
+      setColorAndSize({
+        ...colorAndSize,
+        color: selectedProduct.color,
+        size: selectedProduct.colors[0].sizes[0],
+      });
     } else {
       setColors();
       setSizes();
@@ -835,8 +904,12 @@ const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
     <div className="size-color-style-box">
       <div className="row">
         <div className="col col-12 d-flex">
-          <span className="text-start w-100 px-4" onClick={onDone} role="button">
-          <b>← Back</b>
+          <span
+            className="text-start w-100 px-4"
+            onClick={onDone}
+            role="button"
+          >
+            <b>← Back</b>
           </span>
           <span className="text-end w-100 px-4">Size & Color</span>
         </div>
@@ -964,11 +1037,14 @@ const WheelColorPicker = ({ options = [] }) => {
 
 const WheelPickerContainer = styled.div`
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   justify-content: flex-start;
   border-bottom: 1px solid #e2e2e2;
   &::-webkit-scrollbar {
     display: none;
+  }
+  &::-webkit-scrollbar:active {
+    display: block;
   }
   ul {
     display: flex;
@@ -1007,6 +1083,8 @@ const ControlHeader = styled.div`
 const ControllBody = styled.div`
   font-weight: 400;
   text-align: center;
+  height: 283px;
+  overflow-y: auto;
   .row {
     margin: 0;
     padding: 0;
@@ -1037,10 +1115,10 @@ const ControllBody = styled.div`
       background: white;
     }
     .toggle-active::before {
-      content: "◆";
+      content: " ◆ ";
     }
     .toggle::before {
-      content: "◇";
+      content: " ◇ ";
     }
     .toggle-active {
       color: black;
@@ -1067,7 +1145,7 @@ const ControllBody = styled.div`
     }
     .col {
       padding: 0;
-      padding-top: 40%;
+      padding-top: 43%;
       border-right: solid 1px black;
     }
     .grid-header {
@@ -1077,8 +1155,11 @@ const ControllBody = styled.div`
       }
     }
     .fit-map-bottom {
-      top: 0;
       flex-wrap: wrap;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translate(-50%);
       .fit-map-bar {
       }
       .fit-text {
@@ -1089,10 +1170,10 @@ const ControllBody = styled.div`
       }
     }
     .toggle-active::before {
-      content: "◆";
+      content: " ◆ ";
     }
     .toggle::before {
-      content: "◇";
+      content: " ◇ ";
     }
   }
   .recommended-style-box {
@@ -1136,7 +1217,7 @@ const styleColor = {
   silver: "linear-gradient(180deg, #CFCFCF 0%, #898989 100%)",
   white: "#FFFFFF",
   yellow: "#FCEA72",
-  navy: "#000080"
+  navy: "#000080",
 };
 
 const ColorBadgeContainer = styled.span`

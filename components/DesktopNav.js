@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import React, { useEffect, useState, useCallback } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import IconZfit from "../assets/icon-nav-zfit.svg";
+import IconZfit from '../assets/icon-nav-zfit.svg';
 /* eslint-disable */
 
 const DesktopNav = () => {
@@ -13,34 +13,34 @@ const DesktopNav = () => {
   const { gender, type } = router.query;
   const [active, setActive] = useState(0);
 
-  const updateNav = useCallback((index) => {
+  const updateNav = useCallback(index => {
     setActive(index);
   }, []);
 
   useEffect(() => {
-    if (router.route === "/products") {
-      if (gender === "men") {
-        if (type === "all") {
+    if (router.route === '/products') {
+      if (gender === 'men') {
+        if (type === 'all') {
           setActive(1);
-        } else if (type === "top") {
+        } else if (type === 'top') {
           setActive(2);
-        } else if (type === "bottom") {
+        } else if (type === 'bottom') {
           setActive(3);
-        } else if (type === "outer") {
+        } else if (type === 'outer') {
           setActive(4);
         }
-      } else if (gender === "women") {
-        if (type === "all") {
+      } else if (gender === 'women') {
+        if (type === 'all') {
           setActive(5);
-        } else if (type === "top") {
+        } else if (type === 'top') {
           setActive(6);
-        } else if (type === "bottom") {
+        } else if (type === 'bottom') {
           setActive(7);
-        } else if (type === "outer") {
+        } else if (type === 'outer') {
           setActive(8);
         }
       }
-    } else if (router.route === "/brand") {
+    } else if (router.route === '/brand') {
       setActive(9);
     }
   }, []);
@@ -50,33 +50,19 @@ const DesktopNav = () => {
       <div className="col-auto bg-white">
         <div className="d-flex flex-column align-items-end text-black min-vh-100">
           <Link href="/" passHref>
-            <a
-              href="/"
-              className="text-black text-decoration-none"
-            >
+            <a href="/" className="text-black text-decoration-none">
               <div className="d-flex zfit-logo align-items-center justify-content-center">
-                <Image src="/images/z-fit.png" width={56} height={56}/>
+                <Image src="/images/z-fit.png" width={56} height={56} />
               </div>
             </a>
           </Link>
-          <ul
-            className="nav-list nav nav-pills flex-column align-items-end w-100"
-            id="menu"
-          >
+          <ul className="nav-list nav nav-pills flex-column align-items-end w-100" id="menu">
             <li className="w-100">
               <div className="w-100 navbar-title">MEN</div>
-              <ul
-                className=" nav flex-column ms-1"
-                id="submenu1"
-                data-bs-parent="#menu"
-              >
+              <ul className=" nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                 <li className="w-100">
                   <Link href="/products?gender=men&type=all" passHref>
-                    <a
-                      href="/"
-                      className={active === 1 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(1)}
-                    >
+                    <a href="/" className={active === 1 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(1)}>
                       <span>All</span>
                     </a>
                   </Link>
@@ -86,31 +72,22 @@ const DesktopNav = () => {
                     <a
                       href="/"
                       className="nav-link"
-                      className={active === 2 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(2)}
-                    >
+                      className={active === 2 ? 'nav-link active' : 'nav-link'}
+                      onClick={() => updateNav(2)}>
                       <span>Top</span>
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/products?gender=men&type=bottom" passHref>
-                    <a
-                      href="/"
-                      className={active === 3 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(3)}
-                    >
+                    <a href="/" className={active === 3 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(3)}>
                       <span>Bottom</span>
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/products?gender=men&type=outer" passHref>
-                    <a
-                      href="/"
-                      className={active === 4 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(4)}
-                    >
+                    <a href="/" className={active === 4 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(4)}>
                       <span>Outer</span>
                     </a>
                   </Link>
@@ -119,51 +96,31 @@ const DesktopNav = () => {
             </li>
             <li className="w-100">
               <div className="w-100 navbar-title">WOMEN</div>
-              <ul
-                className=" nav flex-column ms-1"
-                id="submenu2"
-                data-bs-parent="#menu"
-              >
+              <ul className=" nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                 <li className="w-100">
                   <Link href="/products?gender=women&type=all" passHref>
-                    <a
-                      href="/"
-                      className={active === 5 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(5)}
-                    >
+                    <a href="/" className={active === 5 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(5)}>
                       <span>All</span>
                     </a>
                   </Link>
                 </li>
                 <li className="w-100">
                   <Link href="/products?gender=women&type=top" passHref>
-                    <a
-                      href="/"
-                      className={active === 6 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(6)}
-                    >
+                    <a href="/" className={active === 6 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(6)}>
                       <span>Top</span>
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/products?gender=women&type=bottom" passHref>
-                    <a
-                      href="/"
-                      className={active === 7 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(7)}
-                    >
+                    <a href="/" className={active === 7 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(7)}>
                       <span>Bottom</span>
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/products?gender=women&type=outer" passHref>
-                    <a
-                      href="/"
-                      className={active === 8 ? "nav-link active" : "nav-link"}
-                      onClick={() => updateNav(8)}
-                    >
+                    <a href="/" className={active === 8 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(8)}>
                       <span>Outer</span>
                     </a>
                   </Link>
@@ -174,13 +131,8 @@ const DesktopNav = () => {
               <Link href="/brand" passHref>
                 <a
                   href="/"
-                  className={
-                    active === 9
-                      ? "nav-link navbar-title active"
-                      : "nav-link navbar-title"
-                  }
-                  onClick={() => updateNav(9)}
-                >
+                  className={active === 9 ? 'nav-link navbar-title active' : 'nav-link navbar-title'}
+                  onClick={() => updateNav(9)}>
                   <span className="ms-1 d-none d-sm-inline">BRAND</span>
                 </a>
               </Link>
@@ -211,7 +163,7 @@ const SideNavRoot = styled.div`
   }
   .nav-pills .nav-link.active {
     &::before {
-      content: "⟶";
+      content: '→';
       padding-right: 5px;
     }
     color: black;

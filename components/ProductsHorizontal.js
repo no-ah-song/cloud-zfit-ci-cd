@@ -5,7 +5,10 @@ import PropTypes from "prop-types";
 
 const ProductList = styled.div`
   display: flex;
-  overflow: scroll;
+  overflow-x: auto;
+  &::-webkit-scrollbar{
+    display: none; 
+  }
   & > div {
     border-bottom: 1px solid black;
     border-right: 1px solid black;

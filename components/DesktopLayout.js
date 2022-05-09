@@ -1,11 +1,11 @@
-import React, { useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Header from "./Header";
-import DesktopNav from "./DesktopNav";
-import Fitting from "../container/Fitting";
-import Main from "./Main";
-import { fittingIsOpenState } from "../recoil/state";
+import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Header from './Header';
+import DesktopNav from './DesktopNav';
+import Fitting from '../container/Fitting';
+import Main from './Main';
+import { fittingIsOpenState } from '../recoil/state';
 import { useRecoilState } from 'recoil';
 
 const LayoutTemplate = styled.div`
@@ -26,13 +26,13 @@ const LayoutTemplate = styled.div`
 const initialState = { menuIsOpen: false, fittingIsOpen: false };
 const reducer = (state, action) => {
   switch (action.type) {
-    case "MENU_OPEN":
+    case 'MENU_OPEN':
       return { menuIsOpen: true };
-    case "MENU_CLOSE":
+    case 'MENU_CLOSE':
       return { menuIsOpen: false };
-    case "FITTING_OPEN":
+    case 'FITTING_OPEN':
       return { fittingIsOpen: true };
-    case "FITTING_CLOSE":
+    case 'FITTING_CLOSE':
       return { fittingIsOpen: false };
     default:
       throw new Error();
@@ -42,8 +42,7 @@ const reducer = (state, action) => {
 const DesktopLayout = ({ children }) => {
   const [fittingIsOpen, setFittingIsOpen] = useRecoilState(fittingIsOpenState);
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-  }, [fittingIsOpen]);
+  useEffect(() => {}, [fittingIsOpen]);
 
   return (
     <>
@@ -51,10 +50,7 @@ const DesktopLayout = ({ children }) => {
         <Header></Header>
         <div className="bottom__grid">
           <DesktopNav />
-          <Fitting
-            onClickClose={() => setFittingIsOpen(false)}
-            isOpen={fittingIsOpen}
-          />
+          <Fitting onClickClose={() => setFittingIsOpen(false)} isOpen={fittingIsOpen} />
           <div className="p-0">
             {/* <SideNav /> */}
             <Main>{children}</Main>

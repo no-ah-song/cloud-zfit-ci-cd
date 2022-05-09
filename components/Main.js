@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const MainRoot = styled.div`
   overflow: hidden;
@@ -14,9 +14,7 @@ const MainRoot = styled.div`
   }
 `;
 const Main = ({ children }) => {
-  return (
-    <MainRoot className="main-wrapper w-100 oh d-block">{children}</MainRoot>
-  );
+  return <MainRoot className="main-wrapper w-100 oh d-block">{children}</MainRoot>;
 };
 
 export default Main;

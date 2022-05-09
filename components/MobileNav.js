@@ -16,11 +16,10 @@ const MenuRoot = styled.div`
   width: 100%;
   max-width: 100%;
   height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  left: -100%;
+  overflow: hidden;
+  top: -100%;
   transition: transform 0.4s;
-  ${(props) => (props.isOpen ? "transform: translate(100%, 0);" : "")}
+  ${(props) => (props.isOpen ? "transform: translate(0, calc(100vh + 48px));" : "")}
 
   display: flex;
   justify-content: space-between;

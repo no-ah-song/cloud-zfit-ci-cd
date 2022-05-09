@@ -7,6 +7,7 @@ import ProductsHorizontal from "../components/ProductsHorizontal";
 import FittingViewer from "./FittingViewer";
 import { StyleController } from "../container/FittingController";
 import Close from "../assets/icon-close-white.svg";
+import ZfitLogo from "../assets/icon-fitting-zfit.svg";
 
 
 const Fitting = ({ onClickClose, isOpen }) => {
@@ -22,7 +23,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
           <div className="p-1 bg-black text-white">
             <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
               <div/>
-              <div className="text-center">Fitting room</div>
+              <div className="header-center-text"><ZfitLogo/><span>Fitting Room</span></div>
               <div
                 className="text-end px-3"
                 onClick={onClickClose}
@@ -48,23 +49,22 @@ const Fitting = ({ onClickClose, isOpen }) => {
 const FittingRoot = styled.div`
   position: fixed;
   z-index: 999;
-  top: 0;
-  bottom: 0;
+  bottom: -100vh;
   background: white;
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
-  left: -100%;
   transition: transform 0.4s;
-  ${(props) => (props.isOpen ? "transform: translate(100%, 0);" : "")}
+  ${(props) => (props.isOpen ? "transform: translate(0, calc(-100vh));" : "")}
   @media only screen and (min-width: 600px) {
     right: 0;
     top: unset;
     left: unset;
+    bottom: -100vh;
     width:400px;
     height: 700px;
-    ${(props) => (props.isOpen ? "transform: translate(0, 0);" : "transform: translate(100%, 0)")}
+    ${(props) => (props.isOpen ? "transform: translate(0, calc(-100vh));" : "")}
   }
 `;
 const Container = styled.div`
@@ -83,7 +83,6 @@ const Container = styled.div`
     position: absolute;
     bottom: 0;
     max-height: 337px;
-    overflow-y: scroll;
     width: 100%;
     z-index:999;
     & > div {
@@ -105,6 +104,15 @@ const Container = styled.div`
       height: 48px;
       font-weight: 600;
       border-radius: 4px;
+    }
+    .header-center-text{
+      display: flex;
+      text-align: center;
+      column-gap: 4px;
+      margin-left: 48px;
+      span{
+        line-height: 15px;
+      }
     }
   }
 `;
