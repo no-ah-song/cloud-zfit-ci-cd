@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -10,16 +10,31 @@ import Close from '../assets/icon-close-white.svg';
 import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 
 const Fitting = ({ onClickClose, isOpen }) => {
+  const [matches, setMatches] = useState(window.matchMedia('(min-width: 600px)').matches);
+
   useEffect(() => {
-    if (isOpen) {
-      /* 이외의 브라우저 */
-      document.body.classList.add('scroll-hidden')
-    } else {
-      document.body.classList.remove('scroll-hidden')
+    if (!matches) {
+      if (isOpen) {
+        document.body.classList.add('scroll-hidden');
+      } else {
+        document.body.classList.remove('scroll-hidden');
+      }
+    }
+  }, [isOpen, matches]);
+
+  const handler = useCallback(() => {
+    if (!matches) {
+      if (isOpen) {
+        document.body.classList.add('scroll-hidden');
+      } else {
+        document.body.classList.remove('scroll-hidden');
+      }
     }
   }, [isOpen]);
 
-  useEffect(() => {}, [isOpen]);
+  useEffect(() => {
+    window.matchMedia('(min-width: 600px)').addEventListener('change', e => setMatches(e.matches));
+  }, []);
 
   return (
     <FittingRoot isOpen={isOpen}>
