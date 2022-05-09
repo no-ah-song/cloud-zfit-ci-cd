@@ -976,12 +976,13 @@ const ControllBody = styled.div`
     }
   }
   .grid-menu-box {
+    height: 100%;
     .row {
+      height: 50%;
       border-bottom: solid 1px black;
     }
     .col {
       padding: 0;
-      padding-top: 43%;
       border-right: solid 1px black;
     }
     .grid-header {
