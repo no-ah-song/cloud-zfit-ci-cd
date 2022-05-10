@@ -14,7 +14,15 @@
 }
 
 /* Small screen devices (600px and above) */
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
+  body.scroll-hidden {
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overflow: hidden;
+    /* 이외의 브라우저 */
+    overscroll-behavior: none;
+    position: relative;
+  }
 }
 
 /* Medium screen devices (768px and above) */

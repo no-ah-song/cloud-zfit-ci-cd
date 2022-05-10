@@ -1,15 +1,14 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, lazy } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from './Header';
 import MobileNav from './MobileNav';
-import Fitting from '../container/Fitting';
 import Footer from './Footer';
 import Main from './Main';
+import Fitting from '../container/Fitting';
 import { fittingIsOpenState, menuIsOpenState, selectedProductState } from '../recoil/state';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
-//const Menu = dynamic(() => import('./Menu'), { suspense: true })
 const LayoutTemplate = styled.div`
   width: 100%;
   max-width: 100%;
@@ -70,8 +69,7 @@ const MobileLayout = ({ children }) => {
           onClickClose={() => dispatch({ type: 'MENU_CLOSE' })}
           isOpen={state.menuIsOpen}></Header>
         <MobileNav onClickClose={() => dispatch({ type: 'MENU_CLOSE' })} isOpen={state.menuIsOpen} />
-
-        <Fitting onClickClose={() => setFittingIsOpen(false)} isOpen={fittingIsOpen} />
+          <Fitting onClickClose={() => setFittingIsOpen(false)} isOpen={fittingIsOpen} />
         <div style={{ display: 'flex' }}>
           {/* <SideNav /> */}
           <Main>{children}</Main>

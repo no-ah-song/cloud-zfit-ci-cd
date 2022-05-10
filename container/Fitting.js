@@ -10,31 +10,28 @@ import Close from '../assets/icon-close-white.svg';
 import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 
 const Fitting = ({ onClickClose, isOpen }) => {
-  const [matches, setMatches] = useState(window.matchMedia('(min-width: 600px)').matches);
 
   useEffect(() => {
-    if (!matches) {
-      if (isOpen) {
-        document.body.classList.add('scroll-hidden');
-      } else {
-        document.body.classList.remove('scroll-hidden');
-      }
-    }
-  }, [isOpen, matches]);
-
-  const handler = useCallback(() => {
-    if (!matches) {
-      if (isOpen) {
-        document.body.classList.add('scroll-hidden');
-      } else {
-        document.body.classList.remove('scroll-hidden');
-      }
+    if (isOpen) {
+      document.body.classList.add('scroll-hidden');
+    } else {
+      document.body.classList.remove('scroll-hidden');
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    window.matchMedia('(min-width: 600px)').addEventListener('change', e => setMatches(e.matches));
-  }, []);
+  // const handler = useCallback(() => {
+  //   if (!matches) {
+  //     if (isOpen) {
+  //       document.body.classList.add('scroll-hidden');
+  //     } else {
+  //       document.body.classList.remove('scroll-hidden');
+  //     }
+  //   }
+  // }, [isOpen]);
+
+  // useEffect(() => {
+  //   window.matchMedia('(min-width: 600px)').addEventListener('change', e => setMatches(e.matches));
+  // }, []);
 
   return (
     <FittingRoot isOpen={isOpen}>

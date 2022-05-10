@@ -1,10 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Header from './Header';
-import MobileNav from './MobileNav';
-import Fitting from '../container/Fitting';
-import Footer from './Footer';
 import MobileLayout from './MobileLayout';
 import DesktopLayout from './DesktopLayout';
 
