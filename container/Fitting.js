@@ -1,16 +1,13 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
-import Image from 'next/image';
-import ProductsHorizontal from '../components/ProductsHorizontal';
 import FittingViewer from './FittingViewer';
 import { StyleController } from '../container/FittingController';
 import Close from '../assets/icon-close-white.svg';
 import ZfitLogo from '../assets/icon-fitting-zfit.svg';
-
+import FitmapController from './FitmapController';
+import ColorController from './ColorController';
+import SizeController from './SizeController';
 const Fitting = ({ onClickClose, isOpen }) => {
-
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('scroll-hidden');
@@ -18,45 +15,54 @@ const Fitting = ({ onClickClose, isOpen }) => {
       document.body.classList.remove('scroll-hidden');
     }
   }, [isOpen]);
+  const ref = useRef();
+  const [width, setWidth] = useState();
 
-  // const handler = useCallback(() => {
-  //   if (!matches) {
-  //     if (isOpen) {
-  //       document.body.classList.add('scroll-hidden');
-  //     } else {
-  //       document.body.classList.remove('scroll-hidden');
-  //     }
-  //   }
-  // }, [isOpen]);
-
-  // useEffect(() => {
-  //   window.matchMedia('(min-width: 600px)').addEventListener('change', e => setMatches(e.matches));
-  // }, []);
+  useEffect(() => {
+    setWidth(parseInt(ref.current.clientHeight * 0.5));
+  }, []);
 
   return (
-    <FittingRoot isOpen={isOpen}>
-      <Container className="header__container">
-        <div className="p-1 bg-black text-white">
-          <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
-            <div />
-            <div className="header-center-text">
-              <ZfitLogo />
-              <span>Fitting Room</span>
-            </div>
-            <div className="text-end px-3" onClick={onClickClose} role="button">
-              <Close />
+    <FittingRoot isOpen={isOpen} ref={ref} width={width}>
+      <div>
+        <Container className="header__container">
+          <div className="p-1 bg-black text-white">
+            <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
+              <div />
+              <div className="header-center-text">
+                <ZfitLogo />
+                <span>Fitting Room</span>
+              </div>
+              <div className="text-end px-3" onClick={onClickClose} role="button">
+                <Close />
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
-      <Container className="model__container">
-        <FittingViewer />
-      </Container>
-      <Container className="bottom__container">
-        <div>
-          <StyleController isOpen={isOpen} />
-        </div>
-      </Container>
+        </Container>
+        <Container className="model__container">
+          <FittingViewer />
+        </Container>
+        <Container className="float__container">
+          <Wrapper>
+            <div>
+              <div>
+                <FitmapController />
+              </div>
+              <div>
+                <ColorController />
+              </div>
+              <div>
+                <SizeController />
+              </div>
+            </div>
+          </Wrapper>
+        </Container>
+        <Container className="bottom__container">
+          <div>
+            <StyleController isOpen={isOpen} />
+          </div>
+        </Container>
+      </div>
     </FittingRoot>
   );
 };
@@ -77,9 +83,15 @@ const FittingRoot = styled.div`
     top: unset;
     left: unset;
     bottom: -100vh;
-    width: 400px;
-    height: 700px;
+    height: 80%;
+    width: ${props => (props.width ? props.width : '0')}px;
+    margin: 0 auto;
     ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
+  }
+  & > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 `;
 const Container = styled.div`
@@ -94,10 +106,16 @@ const Container = styled.div`
     padding: 0;
     margin: 0;
   }
+  &.float__container {
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+  }
   &.bottom__container {
     position: absolute;
     bottom: 0;
-    max-height: 337px;
+    max-height: 70%;
+    //height: 70%;
     width: 100%;
     z-index: 999;
     & > div {
@@ -128,6 +146,19 @@ const Container = styled.div`
       span {
         line-height: 15px;
       }
+    }
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 90%;
+  margin: auto;
+  & > div {
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+    & > div {
+      padding-top: 12px;
     }
   }
 `;

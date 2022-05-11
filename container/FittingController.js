@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
 import ProductsHorizontal from '../components/ProductsHorizontal';
 import { getFittingImages } from '../api/api';
@@ -10,9 +9,7 @@ import {
   avatarState,
   useSsrComplectedState,
   selectedProductState,
-  colorAndSizeState,
   fittingImagesState,
-  fitmapState,
 } from '../recoil/state';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
@@ -41,23 +38,7 @@ const StyleController = ({ isOpen }) => {
   return (
     <>
       <StyleControlBox className={activeIndex === 0 ? 'style-control-box active' : 'style-control-box'}>
-        <BodyInfoBox onDone={() => setActiveIndex(1)} isFirst />
-      </StyleControlBox>
-      <StyleControlBox className={activeIndex === 1 ? 'style-control-box active' : 'style-control-box'}>
-        <GridMenuBox
-          onSelect={[
-            () => setActiveIndex(0),
-            () => setActiveIndex(3),
-            () => setActiveIndex(4),
-            () => setActiveIndex(5),
-          ]}
-        />
-      </StyleControlBox>
-      <StyleControlBox className={activeIndex === 3 ? 'style-control-box active' : 'style-control-box'}>
-        <RecommendedStyleBox onDone={() => setActiveIndex(1)} />
-      </StyleControlBox>
-      <StyleControlBox className={activeIndex === 4 ? 'style-control-box active' : 'style-control-box'}>
-        <SizeAndColorStyleBox onDone={() => setActiveIndex(1)} toBodyInfo={() => setActiveIndex(0)} />
+        <BodyInfoBox />
       </StyleControlBox>
     </>
   );
@@ -105,7 +86,7 @@ const StyledControlContainer = styled.div`
   }
 `;
 
-const BodyInfoBox = ({ onDone, isFirst }) => {
+const BodyInfoBox = () => {
   const [avatar, setAvatar] = useRecoilState(avatarState);
   const selectedProduct = useRecoilValue(selectedProductState);
   const [selectedShape, setSelectedShape] = useState(0);
@@ -409,26 +390,6 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
 
   return (
     <div className="body-info-box">
-      <div className="row">
-        {isFirst || (
-          <div className="col col-12 d-flex">
-            <span className="text-start w-100 px-4" onClick={onDone} role="button">
-              <b>← Back</b>
-            </span>
-            <span className="text-end w-100 px-4">Recommended Styles</span>
-          </div>
-        )}
-        {isFirst && (
-          <div className="col col-12 d-flex">
-            <span className="text-start w-100 px-4">
-              <b>Welcome to Fitting Room</b>
-            </span>
-            <span className="text-end px-4 text-nowrap" onClick={onDone} role="button">
-              <b>Done →</b>
-            </span>
-          </div>
-        )}
-      </div>
       <div className="row w-100">
         <div className="col col-6 px-4">Gender</div>
         {selectedProduct.genders.length > 1 ? (
@@ -616,93 +577,6 @@ const BodyInfoBox = ({ onDone, isFirst }) => {
   );
 };
 
-const GridMenuBox = ({ onSelect }) => {
-  const avatar = useRecoilValue(avatarState);
-  const [fitmap, setFitmap] = useRecoilState(fitmapState);
-  const fitting = useRecoilValue(fittingSelector);
-  useEffect(() => {}, [avatar]);
-
-  return (
-    <div className="grid-menu-box">
-      <div className="row w-100">
-        <div className="col col-6 position-relative h-0" onClick={onSelect[0]} role="button">
-          <div className="position-absolute d-flex w-100 top-0 grid-header">
-            <span className="text-start w-100">Body Info</span>
-            <span className="text-end w-100">→</span>
-          </div>
-          <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
-            <div>
-              <div>{avatar.genders[0] === 'men' ? 'Men' : 'Women'}</div>
-              <div>{avatar.height}cm</div>
-              <div>{avatar.weight}kg</div>
-            </div>
-          </div>
-        </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[1]} role="button">
-          <div className="position-absolute d-flex w-100 top-0 grid-header">
-            <span className="text-start w-100">Recommended Styles</span>
-            <span className="text-end w-100">→</span>
-          </div>
-          <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
-            <div>
-              <div>
-                Select Style to Check
-                <br />
-                Garment Pressure Map
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="row w-100">
-        <div className="col col-6 position-relative h-0">
-          <div className="position-absolute d-flex w-100 top-0 grid-header">
-            <span className="text-start w-100">Fitmap</span>
-          </div>
-          <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
-            <div role="button">
-              <div
-                className={fitmap.fitmap ? 'toggle-active' : 'toggle'}
-                onClick={() => {
-                  setFitmap({ fitmap: !fitmap.fitmap });
-                }}>
-                On
-              </div>
-            </div>
-          </div>
-          <div className="fit-map-bottom">
-            {fitmap.fitmap && (
-              <>
-                <div className="fit-text">
-                  <span>Loose</span>
-                  <span>Tight</span>
-                </div>
-                <div className="fit-map-bar">
-                  <Image src="/images/Rectangle 12.jpg" width={163} height={4} />
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="col col-6 position-relative h-0" onClick={onSelect[2]} role="button">
-          <div className="position-absolute d-flex w-100 top-0 grid-header">
-            <span className="text-start w-100 text-nowrap">Size & Color</span>
-            <span className="text-end w-100">→</span>
-          </div>
-          <div className="position-absolute h-100 w-100 justify-content-center align-items-center top-0 d-flex">
-            <div>
-              <div className="d-flex align-items-center">
-                <ColorBadge color={fitting.color} />
-                &nbsp;&nbsp;{fitting.size}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const RecommendedStyleBox = ({ onDone }) => {
   const [fitting, setFitting] = useRecoilState(selectedProductState);
 
@@ -725,184 +599,6 @@ const RecommendedStyleBox = ({ onDone }) => {
   );
 };
 
-const SizeAndColorStyleBox = ({ onDone, toBodyInfo }) => {
-  const selectedProduct = useRecoilValue(selectedProductState); // fitting으로 선택된 옷
-  const [colors, setColors] = useState();
-  const [sizes, setSizes] = useState();
-  const [colorAndSize, setColorAndSize] = useRecoilState(colorAndSizeState);
-
-  useEffect(() => {
-    if (selectedProduct.productId) {
-      setColors(selectedProduct.colors.map(item => item.color));
-      setSizes(selectedProduct.colors[0].sizes);
-      setColorAndSize({
-        ...colorAndSize,
-        color: selectedProduct.color,
-        size: selectedProduct.colors[0].sizes[0],
-      });
-    } else {
-      setColors();
-      setSizes();
-    }
-  }, [selectedProduct]);
-
-  return (
-    <div className="size-color-style-box">
-      <div className="row">
-        <div className="col col-12 d-flex">
-          <span className="text-start w-100 px-4" onClick={onDone} role="button">
-            <b>← Back</b>
-          </span>
-          <span className="text-end w-100 px-4">Size & Color</span>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col col-12 p-0">
-          <WheelColorPicker options={colors} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col col-12 p-0">
-          <WheelPicker options={sizes} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col col-12 px-2">
-          <button className="p-3" onClick={toBodyInfo}>
-            Change Body Information
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const WheelPicker = ({ options = [] }) => {
-  const [active, setActive] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [colorAndSize, setColorAndSize] = useRecoilState(colorAndSizeState);
-  const selectedProduct = useRecoilValue(selectedProductState);
-  const rootRef = useRef();
-  const ref = useRef();
-  const handleClick = (e, index) => {
-    e.preventDefault();
-    const left = -53 * index;
-    setScrollLeft(53 * index);
-    ref.current.style.marginRight = `${left * -1}px`;
-    setActive(index);
-  };
-
-  useEffect(() => {
-    setColorAndSize({ ...colorAndSize, size: options[active] });
-  }, [active]);
-
-  useEffect(() => {
-    rootRef.current.scrollLeft = scrollLeft;
-  }, [scrollLeft]);
-
-  useEffect(() => {
-    // product 바뀌면 선택된 사이즈&색깔 초기화
-    setActive(0);
-  }, [selectedProduct]);
-
-  return (
-    <WheelPickerContainer ref={rootRef}>
-      <ul ref={ref}>
-        {options.map((option, index) => {
-          return (
-            <li
-              key={index}
-              value={option}
-              className={active === index ? 'picker-item active' : 'picker-item'}
-              onClick={e => handleClick(e, index)}
-              role="button">
-              {option}
-            </li>
-          );
-        })}
-      </ul>
-    </WheelPickerContainer>
-  );
-};
-
-const WheelColorPicker = ({ options = [] }) => {
-  const [active, setActive] = useState();
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [colorAndSize, setColorAndSize] = useRecoilState(colorAndSizeState);
-  const selectedProduct = useRecoilValue(selectedProductState);
-  const rootRef = useRef();
-  const ref = useRef();
-  const handleClick = (e, index, option) => {
-    e.preventDefault();
-    const left = -53 * index;
-    setScrollLeft(53 * index);
-    ref.current.style.marginRight = `${left * -1}px`;
-    setActive(option);
-  };
-
-  useEffect(() => {
-    setColorAndSize({ ...colorAndSize, color: active });
-  }, [active]);
-
-  useEffect(() => {
-    rootRef.current.scrollLeft = scrollLeft;
-  }, [scrollLeft]);
-
-  useEffect(() => {
-    setActive(selectedProduct.color);
-  }, [selectedProduct]);
-
-  return (
-    <WheelPickerContainer ref={rootRef}>
-      <ul ref={ref}>
-        {options.map((option, index) => {
-          return (
-            <li
-              key={index}
-              className={active === option ? 'picker-item active' : 'picker-item'}
-              onClick={e => handleClick(e, index, option)}
-              role="button">
-              <ColorBadge color={option} />
-            </li>
-          );
-        })}
-      </ul>
-    </WheelPickerContainer>
-  );
-};
-
-const WheelPickerContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  justify-content: flex-start;
-  border-bottom: 1px solid #e2e2e2;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  &::-webkit-scrollbar:active {
-    display: block;
-  }
-  ul {
-    display: flex;
-    position: relative;
-    column-gap: 18px;
-    white-space: nowrap;
-    width: 100%;
-  }
-  li {
-    min-width: 35px;
-    text-align: center;
-    padding: 17px 0;
-  }
-  .picker-item {
-    color: #777777;
-  }
-  .picker-item.active {
-    color: black;
-    border-bottom: 1px solid black;
-  }
-`;
-
 const ControlHeader = styled.div`
   font-weight: 400;
   text-align: center;
@@ -919,7 +615,7 @@ const ControlHeader = styled.div`
 const ControllBody = styled.div`
   font-weight: 400;
   text-align: center;
-  height: 283px;
+  height: 100%;
   overflow-y: auto;
   .row {
     margin: 0;
@@ -975,44 +671,7 @@ const ControllBody = styled.div`
       }
     }
   }
-  .grid-menu-box {
-    height: 100%;
-    .row {
-      height: 50%;
-      border-bottom: solid 1px black;
-    }
-    .col {
-      padding: 0;
-      border-right: solid 1px black;
-    }
-    .grid-header {
-      span {
-        margin: 8px;
-        font-weight: 600;
-      }
-    }
-    .fit-map-bottom {
-      flex-wrap: wrap;
-      position: absolute;
-      bottom: 0px;
-      left: 50%;
-      transform: translate(-50%);
-      .fit-map-bar {
-      }
-      .fit-text {
-        display: flex;
-        justify-content: space-between;
-        width: 163px;
-        margin: auto;
-      }
-    }
-    .toggle-active::before {
-      content: ' ◆ ';
-    }
-    .toggle::before {
-      content: ' ◇ ';
-    }
-  }
+
   .recommended-style-box {
     .row {
       border-bottom: solid 1px black;
@@ -1022,51 +681,6 @@ const ControllBody = styled.div`
       border-right: solid 1px black;
     }
   }
-  .size-color-style-box {
-    .col {
-      padding: 17px 0;
-      border-right: solid 1px black;
-    }
-    button {
-      border: solid 1px black;
-      border-radius: 4px;
-      margin: 75px 0 0 0;
-      width: 100%;
-    }
-  }
 `;
 
-const styleColor = {
-  blue: '#006FD5',
-  black: '#000000',
-  brown: '#C88A54',
-  burgundy: '#9F0707',
-  gold: 'linear-gradient(180deg, #FCE071 0%, #D0A64A 100%)',
-  green: '#6BC887',
-  grey: '#CBCBCB',
-  muticolour:
-    'linear-gradient(36.03deg, #F569CE 8.42%, #B368F4 26.95%, #5F9DE6 46.73%, #79EA9B 63.85%, #FFF572 81.45%)',
-  netural: '#F7DBB1',
-  orange: '#FFA34F',
-  pink: '#EE88DE',
-  purple: '#8640C4',
-  red: '#F63C3C',
-  silver: 'linear-gradient(180deg, #CFCFCF 0%, #898989 100%)',
-  white: '#FFFFFF',
-  yellow: '#FCEA72',
-  navy: '#000080',
-};
-
-const ColorBadgeContainer = styled.span`
-  background: ${props => styleColor[props.color?.toLowerCase()]};
-  width: 16px;
-  height: 16px;
-  border: 1px solid black;
-  border-radius: 999px;
-  display: inline-block;
-`;
-const ColorBadge = ({ color }) => {
-  return <ColorBadgeContainer color={color} />;
-};
-
-export { StyleControlBox, BodyInfoBox, GridMenuBox, RecommendedStyleBox, SizeAndColorStyleBox, StyleController };
+export { StyleControlBox, BodyInfoBox, RecommendedStyleBox, StyleController };
