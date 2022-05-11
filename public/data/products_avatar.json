@@ -1,0 +1,25 @@
+{
+  "products": {
+    "6fd11057-05b1-4adc-9752-81f5b035e687": {
+      "productId": "6fd11057-05b1-4adc-9752-81f5b035e687",
+      "productName": "underwear",
+      "recommendSize": "L",
+      "brandName": "Demo_Avatar",
+      "brandId": "1155036d-eb6c-4518-8002-c411f61210c5",
+      "type": "underwear",
+      "colors": [
+        {
+          "color": "no_color",
+          "src": "/images/product/Demo_Avatar-underwear-underwear-no_color.jpg",
+          "sizes": [
+            "no_size"
+          ]
+        }
+      ],
+      "genders": [
+        "women",
+        "men"
+      ]
+    }
+  }
+}

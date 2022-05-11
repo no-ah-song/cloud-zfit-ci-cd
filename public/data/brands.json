@@ -1,1 +1,60 @@
-{"brands":{"2d976d28-5b4a-4093-8e1f-3da22080c373":{"brandId":"2d976d28-5b4a-4093-8e1f-3da22080c373","brandName":"EENK","logo":"/images/logo/eenk.png","src":"/images/logo/eenk.png","summary":"EENK was created by designer Lee Hyemee, beloved for her boldness and passion which crosses from fashion to art to lifestyle. In the age of fast fashion and endless cycles of trends, EENK aims to bring collectibles instead of disposables into the client's personal archives. Each season we move on to the next letter to inspire the new collection, presenting new concepts and items, keeping the brand exciting and inspiring all the time. While our pieces look into the curiosities of the moment, they have the unmistakable taste of the designer's classic vintage sensibility.","is_visible_home":true},"3848a5b5-95f7-4d79-a37d-d423caa00147":{"brandId":"3848a5b5-95f7-4d79-a37d-d423caa00147","brandName":"FILA","logo":"/images/logo/fila.png","src":"/images/logo/fila.png","summary":"FILA was founded in 1911 in the small village of Biella, Italy. Although today the brand is mostly known for sneakers and sportswear, it started as a textile manufacturer for local trade. After a few years, the brand started to focus on the international market and in 1973 FILA started to produce sportswear.","is_visible_home":true},"9b37c62b-05e5-47f0-8cc4-55e6bafea0d4":{"brandId":"9b37c62b-05e5-47f0-8cc4-55e6bafea0d4","brandName":"Mahagrid","logo":"/images/logo/mahagrid.png","src":"/images/logo/mahagrid.png","summary":"'Mahagrid' combines two keywords 'Maha' the indonesian word that represents the greatness and 'Grid' which means grid patterns containing 'the great milestone”. It showcases the growing history of the sub-cultures in the America and major milestones of the street culture. It implies the value of various cultural elements. Mahagrid's objective is to bring joys and values in the urban life style.","is_visible_home":true},"ecad6951-175f-4344-bcfe-bd844c92f4ef":{"brandId":"ecad6951-175f-4344-bcfe-bd844c92f4ef","brandName":"WHATITISNT","logo":"/images/logo/what_it_isnt.png","src":"/images/logo/what_it_isnt.png","summary":"WHATITISNT aims to develop a new street style out of the skateboarding culture. It is a brand born from the Culture Street in Korea based on the artworks of legendary skateboarder and artist Mark Gonzalez. The brand identity is showcased through a collection that combines various original graphics, including the Iconic \"Angel Logo.\"","is_visible_home":true},"65fd7996-3bc4-400e-bd12-2da7ce02a7a4":{"brandId":"65fd7996-3bc4-400e-bd12-2da7ce02a7a4","brandName":"O!Oi","logo":"/images/logo/oioi.png","src":"/images/logo/oioi.png","summary":"O!Oi designs for women and provides selections of dramatic elements. By applying new concepts in every season, the virtual 'ish girl' has been used as a muse for developing new ideas.","is_visible_home":true},"8417c8e9-731e-463d-8d71-0859dd445867":{"brandId":"8417c8e9-731e-463d-8d71-0859dd445867","brandName":"SLOWSTANDARD","logo":"/images/logo/slowstandard.png","src":"/images/logo/slowstandard.png","summary":"SLOWSTANDARD is a material-oriented brand that designs in a minimal way with the sensibility to the daily life of ordinary people.","is_visible_home":true},"5e7acf42-c451-4390-8501-f079d3183108":{"brandId":"5e7acf42-c451-4390-8501-f079d3183108","brandName":"STUDIO TOMBOY","logo":"/images/logo/studio_tomboy.png","src":"/images/logo/studio_tomboy.png","summary":"STUDIO TOMBOY is a Korea-based women fashion brand founded in 1977. With the coolness and elegance of the brand's personality, it continues to reflect the modern and confident lifestyle of today's women.","is_visible_home":true}}}
+{
+  "brands": {
+    "e5f7c8b5-a5c1-409b-81d4-4427c6f2055b": {
+      "brandId": "e5f7c8b5-a5c1-409b-81d4-4427c6f2055b",
+      "brandName": "EENK",
+      "logo": "/images/logo/eenk.png",
+      "src": "/images/logo/eenk.png",
+      "summary": "EENK was created by designer Lee Hyemee, beloved for her boldness and passion which crosses from fashion to art to lifestyle. In the age of fast fashion and endless cycles of trends, EENK aims to bring collectibles instead of disposables into the client's personal archives. Each season we move on to the next letter to inspire the new collection, presenting new concepts and items, keeping the brand exciting and inspiring all the time. While our pieces look into the curiosities of the moment, they have the unmistakable taste of the designer's classic vintage sensibility.",
+      "is_visible_home": true
+    },
+    "5286f915-177c-48bc-b779-9bf3cd94fe9d": {
+      "brandId": "5286f915-177c-48bc-b779-9bf3cd94fe9d",
+      "brandName": "FILA",
+      "logo": "/images/logo/fila.png",
+      "src": "/images/logo/fila.png",
+      "summary": "FILA was founded in 1911 in the small village of Biella, Italy. Although today the brand is mostly known for sneakers and sportswear, it started as a textile manufacturer for local trade. After a few years, the brand started to focus on the international market and in 1973 FILA started to produce sportswear.",
+      "is_visible_home": true
+    },
+    "223415c6-c6a7-4334-ac61-ab8fd9dc447c": {
+      "brandId": "223415c6-c6a7-4334-ac61-ab8fd9dc447c",
+      "brandName": "Mahagrid",
+      "logo": "/images/logo/mahagrid.png",
+      "src": "/images/logo/mahagrid.png",
+      "summary": "'Mahagrid' combines two keywords 'Maha' the indonesian word that represents the greatness and 'Grid' which means grid patterns containing 'the great milestone”. It showcases the growing history of the sub-cultures in the America and major milestones of the street culture. It implies the value of various cultural elements. Mahagrid's objective is to bring joys and values in the urban life style.",
+      "is_visible_home": true
+    },
+    "cf84cdf1-b997-4caf-bb74-904e930bdfd6": {
+      "brandId": "cf84cdf1-b997-4caf-bb74-904e930bdfd6",
+      "brandName": "WHATITISNT",
+      "logo": "/images/logo/what_it_isnt.png",
+      "src": "/images/logo/what_it_isnt.png",
+      "summary": "WHATITISNT aims to develop a new street style out of the skateboarding culture. It is a brand born from the Culture Street in Korea based on the artworks of legendary skateboarder and artist Mark Gonzalez. The brand identity is showcased through a collection that combines various original graphics, including the Iconic \"Angel Logo.\"",
+      "is_visible_home": true
+    },
+    "a16be0f7-f189-4ddd-ae61-6b473667000f": {
+      "brandId": "a16be0f7-f189-4ddd-ae61-6b473667000f",
+      "brandName": "O!Oi",
+      "logo": "/images/logo/oioi.png",
+      "src": "/images/logo/oioi.png",
+      "summary": "O!Oi designs for women and provides selections of dramatic elements. By applying new concepts in every season, the virtual 'ish girl' has been used as a muse for developing new ideas.",
+      "is_visible_home": true
+    },
+    "0a3b0172-77b0-4cde-bd18-8a7ca75000fa": {
+      "brandId": "0a3b0172-77b0-4cde-bd18-8a7ca75000fa",
+      "brandName": "SLOWSTANDARD",
+      "logo": "/images/logo/slowstandard.png",
+      "src": "/images/logo/slowstandard.png",
+      "summary": "SLOWSTANDARD is a material-oriented brand that designs in a minimal way with the sensibility to the daily life of ordinary people.",
+      "is_visible_home": true
+    },
+    "3a5913f1-5724-432d-a0eb-a8746f0affc1": {
+      "brandId": "3a5913f1-5724-432d-a0eb-a8746f0affc1",
+      "brandName": "STUDIO TOMBOY",
+      "logo": "/images/logo/studio_tomboy.png",
+      "src": "/images/logo/studio_tomboy.png",
+      "summary": "STUDIO TOMBOY is a Korea-based women fashion brand founded in 1977. With the coolness and elegance of the brand's personality, it continues to reflect the modern and confident lifestyle of today's women.",
+      "is_visible_home": true
+    }
+  }
+}

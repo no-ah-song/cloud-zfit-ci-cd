@@ -1,0 +1,15 @@
+{
+  "type": {
+    "men": [
+      "Bottom",
+      "Outer",
+      "Top"
+    ],
+    "women": [
+      "Bottom",
+      "Dress",
+      "Outer",
+      "Top"
+    ]
+  }
+}
