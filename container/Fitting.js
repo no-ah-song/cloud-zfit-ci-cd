@@ -207,7 +207,7 @@ const Wrapper = styled.div`
   margin: auto;
   & > div {
     z-index: 999;
-    position: absolute;
+    position: relative;
     bottom: 0;
     & > div {
       padding-top: 12px;

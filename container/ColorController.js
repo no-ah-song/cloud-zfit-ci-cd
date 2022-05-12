@@ -7,13 +7,13 @@ const styleColor = {
   blue: '#006FD5',
   black: '#000000',
   brown: '#C88A54',
-  burgundy: '#9F0707',
+  burgandy: '#9F0707',
   gold: 'linear-gradient(180deg, #FCE071 0%, #D0A64A 100%)',
   green: '#6BC887',
   grey: '#CBCBCB',
   muticolour:
     'linear-gradient(36.03deg, #F569CE 8.42%, #B368F4 26.95%, #5F9DE6 46.73%, #79EA9B 63.85%, #FFF572 81.45%)',
-  netural: '#F7DBB1',
+  neutral: '#F7DBB1',
   orange: '#FFA34F',
   pink: '#EE88DE',
   purple: '#8640C4',
@@ -63,10 +63,11 @@ const ColorController = () => {
 
 const ColorBadgeContainer = styled.span`
   background: ${props => styleColor[props.color?.toLowerCase()]};
+  border: ${props => (props.color?.toLowerCase() === 'black')?'1px solid white;':'1px solid black;'}
   ${props => (props.size === 's' ? 'width: 12px; height:12px;' : 'width: 16px; height:16px;')}
-  border: 1px solid black;
   border-radius: 999px;
   display: inline-block;
+  box-sizing: content-box;
 `;
 const ColorBadge = ({ color, size }) => {
   return <ColorBadgeContainer color={color} size={size} />;

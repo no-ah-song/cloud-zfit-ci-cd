@@ -70,7 +70,6 @@ const BodyInfoBox = () => {
   const [selectedShape, setSelectedShape] = useState(0);
 
   useEffect(() => {
-    console.log(selectedProduct.genders);
     setValues({
       ...values,
       ['genders']: selectedProduct.genders,
