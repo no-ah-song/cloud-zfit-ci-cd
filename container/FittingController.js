@@ -12,6 +12,7 @@ const StyleController = ({ isOpen }) => {
   useEffect(() => {
     setActiveIndex(0);
   }, [isOpen]);
+
   return (
     <>
       <StyleControlBox className={activeIndex === 0 ? 'style-control-box active' : 'style-control-box'}>
@@ -33,7 +34,7 @@ const StyleControlBox = ({ title, children, ...rest }) => {
           {isOpen ? (
             <div>COLLAPSE ↓</div>
           ) : (
-            <div classNma="row">
+            <div className="row">
               <div className="col col-12 d-flex">
                 <span className="text-start w-100 px-4 text-nowrap">
                   <b>View Style & Body</b>
@@ -68,24 +69,36 @@ const BodyInfoBox = () => {
   const selectedProduct = useRecoilValue(selectedProductState);
   const [selectedShape, setSelectedShape] = useState(0);
 
+  useEffect(() => {
+    console.log(selectedProduct.genders);
+    setValues({
+      ...values,
+      ['genders']: selectedProduct.genders,
+    });
+    setAvatar({
+      ...values,
+      ['genders']: selectedProduct.genders,
+    });
+  }, [selectedProduct]);
+
   const initialValues = {
     genders: selectedProduct.genders,
-    height: avatar.height,
-    weight: avatar.weight,
-    shape: avatar.shape,
-    hip: avatar.hip,
-    armLength: avatar.armLength,
-    inseam: avatar.inseam,
-    neck: avatar.neck,
-    chest: avatar.chest,
-    belt: avatar.belt,
+    height: 170,
+    weight: 60,
+    hip: 90,
+    armLength: 60,
+    inseam: 75,
+    neck: 0,
+    chest: 0,
+    belt: 0,
     acrossShoulder: avatar.acrossShoulder,
   };
   const [values, setValues] = useState(initialValues);
 
-  const handleChange = async event => {
+  const handleChange = event => {
     const { name, value } = event.target;
-    if (name === 'height' || name === 'gender') {
+    if (name === 'height') {
+      // 신장 입력 시점만 advance 자동 계산
       const advancedBody = calcBodyDimention(selectedShape);
       setValues({
         ...values,
@@ -107,20 +120,41 @@ const BodyInfoBox = () => {
     }
   }; // shape
 
-  const changeValue = (targetName, targetValue) => {
-    setValues({ ...values, [targetName]: targetValue });
-  };
-
-  useEffect(() => {
-    setAvatar(values);
-  }, [values]);
-
-  useEffect(() => {
+  const changeGender = (targetName, targetValue) => {
+    const advancedBody = calcBodyDimention(selectedShape, targetValue);
     setValues({
       ...values,
-      ['genders']: selectedProduct.genders,
+      hip: advancedBody.hip,
+      armLength: advancedBody.armLength,
+      inseam: advancedBody.inseam,
+      neck: advancedBody.neck,
+      chest: advancedBody.chest,
+      waist: advancedBody.waist,
+      belt: advancedBody.belt,
+      acrossShoulder: advancedBody.shoulder,
+      [targetName]: targetValue,
     });
-  }, [selectedProduct]);
+    setAvatar({
+      ...values,
+      hip: advancedBody.hip,
+      armLength: advancedBody.armLength,
+      inseam: advancedBody.inseam,
+      neck: advancedBody.neck,
+      chest: advancedBody.chest,
+      waist: advancedBody.waist,
+      belt: advancedBody.belt,
+      acrossShoulder: advancedBody.shoulder,
+      [targetName]: targetValue,
+    });
+  };
+
+  const handleSubmit = useCallback(
+    e => {
+      e?.preventDefault();
+      setAvatar(values);
+    },
+    [values]
+  );
 
   useEffect(() => {
     updateBodyDimention();
@@ -139,12 +173,22 @@ const BodyInfoBox = () => {
       belt: advancedBody.belt,
       acrossShoulder: advancedBody.shoulder,
     });
+    setAvatar({
+      ...values,
+      hip: advancedBody.hip,
+      armLength: advancedBody.armLength,
+      inseam: advancedBody.inseam,
+      neck: advancedBody.neck,
+      chest: advancedBody.chest,
+      waist: advancedBody.waist,
+      belt: advancedBody.belt,
+      acrossShoulder: advancedBody.shoulder,
+    });
   }, [values, selectedShape]);
 
-  function calcBodyDimention(selectedShape) {
+  function calcBodyDimention(selectedShape, genders = []) {
     const height = Number(document.getElementsByName('height')[0].value);
-    const genderEl = document.querySelectorAll("[data-toggle-group='gender']");
-    if (avatar.gender === 'women') {
+    if (genders[0] === 'women') {
       const baseSize = {
         neck: height * 0.251,
         chest: height * 0.541,
@@ -345,26 +389,6 @@ const BodyInfoBox = () => {
     event.target.classList.add('toggle-active');
   }, []);
 
-  function BodyDimensionSelectBox({ selected, onChange, min = 0, max = 100, name }) {
-    const rendering = () => {
-      const result = [];
-      for (let i = min; i <= max; i++) {
-        result.push(
-          <option key={i} value={i}>
-            {i}
-          </option>
-        );
-      }
-      return result;
-    };
-
-    return (
-      <select name={name} onChange={onChange} value={selected} role="button">
-        {rendering()}
-      </select>
-    );
-  }
-
   return (
     <div className="body-info-box">
       <div className="row w-100">
@@ -373,7 +397,7 @@ const BodyInfoBox = () => {
           <>
             <div
               className={values.genders[0] === 'men' ? 'col col-3 toggle-active' : 'col col-3 toggle'}
-              onClick={() => changeValue('genders', ['men'])}
+              onClick={() => changeGender('genders', ['men', 'women'])}
               data-toggle-group="gender"
               data-value="men"
               role="button">
@@ -381,7 +405,7 @@ const BodyInfoBox = () => {
             </div>
             <div
               className={values.genders[0] === 'women' ? 'col col-3 toggle-active' : 'col col-3 toggle'}
-              onClick={() => changeValue('genders', ['women'])}
+              onClick={() => changeGender('genders', ['women', 'men'])}
               data-toggle-group="gender"
               data-value="women"
               role="button">
@@ -391,7 +415,7 @@ const BodyInfoBox = () => {
         ) : values.genders[0] === 'men' ? (
           <div
             className="col col-6 toggle-active"
-            onClick={() => changeValue('genders', ['men'])}
+            onClick={() => changeGender('genders', ['men'])}
             data-toggle-group="gender"
             data-value="men"
             role="button">
@@ -400,7 +424,7 @@ const BodyInfoBox = () => {
         ) : (
           <div
             className="col col-6 toggle-active"
-            onClick={() => changeValue('genders', ['women'])}
+            onClick={() => changeGender(e, 'genders', ['women'])}
             data-toggle-group="gender"
             data-value="women"
             role="button">
@@ -411,12 +435,13 @@ const BodyInfoBox = () => {
       <div className="row w-100">
         <div className="col col-3 px-4">Height</div>
         <div className="col col-6">
-          <BodyDimensionSelectBox
-            selected={values.height}
-            onChange={handleChange}
-            min={values.genders === 'men' ? 150 : 140}
-            max={values.genders === 'men' ? 230 : 205}
+          <BodyDimensionsInput
+            value={values.height}
             name="height"
+            min={values.genders[0] === 'men' ? 150 : 140}
+            max={values.genders[0] === 'men' ? 230 : 205}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
           />
         </div>
         <div className="col-3 d-flex p-0">
@@ -431,12 +456,13 @@ const BodyInfoBox = () => {
       <div className="row w-100">
         <div className="col col-3 px-4">Weight</div>
         <div className="col col-6">
-          <BodyDimensionSelectBox
-            selected={values.weight}
-            onChange={handleChange}
-            min={values.genders === 'men' ? 50 : 40}
-            max={values.genders === 'men' ? 100 : 100}
+          <BodyDimensionsInput
+            value={values.weight}
             name="weight"
+            min={values.genders[0] === 'men' ? 50 : 40}
+            max={values.genders[0] === 'men' ? 100 : 100}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
           />
         </div>
         <div className="col-3 d-flex p-0">
@@ -473,13 +499,13 @@ const BodyInfoBox = () => {
         ) : (
           <div className="shape-grid" role="button">
             <div onClick={() => setSelectedShape(0)} className={selectedShape === 0 ? 'active' : ''}>
-              <Image src="/images/men_trapezoid.png" menW_triangle width={71} height={96}></Image>
+              <Image src="/images/men_trapezoid.png" width={71} height={96}></Image>
             </div>
             <div onClick={() => setSelectedShape(1)} className={selectedShape === 1 ? 'active' : ''}>
               <Image src="/images/men_triangle.png" width={71} height={96}></Image>
             </div>
             <div onClick={() => setSelectedShape(2)} className={selectedShape === 2 ? 'active' : ''}>
-              <Image src="/images/men_rectangle.png" menW_inverted_triangle width={71} height={96}></Image>
+              <Image src="/images/men_rectangle.png" width={71} height={96}></Image>
             </div>
             <div onClick={() => setSelectedShape(3)} className={selectedShape === 3 ? 'active' : ''}>
               <Image src="/images/men_inverted_triangle.png" width={71} height={96}></Image>
@@ -496,13 +522,7 @@ const BodyInfoBox = () => {
       <div className="row w-100">
         <div className="col col-3 px-4">Hip</div>
         <div className="col col-6">
-          <BodyDimensionSelectBox
-            selected={values.hip}
-            onChange={handleChange}
-            min={values.genders === 'men' ? 85 : 80}
-            max={values.genders === 'men' ? 120 : 125}
-            name="hip"
-          />
+          <BodyDimensionsInput value={values.hip} name="hip" onChange={handleChange} onSubmit={handleSubmit} />
         </div>
         <div className="col-3 d-flex p-0">
           <div className="col col-12 toggle-active hip-unit" data-toggle-group="hip-unit" onClick={handleChangeToggle}>
@@ -513,12 +533,11 @@ const BodyInfoBox = () => {
       <div className="row w-100">
         <div className="col col-3 px-4 text-nowrap">Arm Length</div>
         <div className="col col-6">
-          <BodyDimensionSelectBox
-            selected={values.armLength}
-            onChange={handleChange}
-            min={values.genders === 'men' ? 43 : 41}
-            max={values.genders === 'men' ? 81 : 72}
+          <BodyDimensionsInput
+            value={values.armLength}
             name="armLength"
+            onChange={handleChange}
+            onSubmit={handleSubmit}
           />
         </div>
         <div className="col-3 d-flex p-0">
@@ -533,13 +552,7 @@ const BodyInfoBox = () => {
       <div className="row w-100">
         <div className="col col-3 px-4">Inseam</div>
         <div className="col col-6">
-          <BodyDimensionSelectBox
-            selected={values.inseam}
-            onChange={handleChange}
-            min={values.genders === 'men' ? 61 : 59}
-            max={values.genders === 'men' ? 118 : 109}
-            name="inseam"
-          />
+          <BodyDimensionsInput value={values.inseam} name="inseam" onChange={handleChange} onSubmit={handleSubmit} />
         </div>
         <div className="col-3 d-flex p-0">
           <div
@@ -576,6 +589,56 @@ const RecommendedStyleBox = ({ onDone }) => {
   );
 };
 
+function BodyDimensionsInput({
+  value,
+  min = 150,
+  max = 220,
+  name,
+  onChange,
+  onSubmit,
+  errorMessage = 'Enter a number between',
+  variant,
+}) {
+  const inputRef = useRef();
+  const [error, setError] = useState(false);
+  const invalid = () => {
+    const pattern_num = /[0-9]/;
+    if (pattern_num.test(value) && value >= min && value <= max) {
+      setError(false);
+    } else {
+      setError(true);
+      return;
+    }
+    onSubmit();
+  };
+
+  const onKeyPress = e => {
+    if (e.key === 'Enter') {
+      invalid();
+    }
+  };
+  return (
+    <>
+      <input
+        ref={inputRef}
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={invalid}
+        onKeyPress={onKeyPress}
+      />
+      <div>
+        {error && (
+          <span className="input-error">
+            {errorMessage} {min}~{max}
+          </span>
+        )}{' '}
+      </div>
+    </>
+  );
+}
+
 const ControlHeader = styled.div`
   font-weight: 400;
   text-align: center;
@@ -599,6 +662,11 @@ const ControllBody = styled.div`
     padding: 0;
   }
   .body-info-box {
+    input[type='text'] {
+      border: none;
+      box-sizing: border-box;
+      text-align: center;
+    }
     .row {
       border-bottom: solid 1px black;
     }
@@ -646,6 +714,9 @@ const ControllBody = styled.div`
       .active {
         opacity: 1;
       }
+    }
+    .input-error {
+      color: red;
     }
   }
 

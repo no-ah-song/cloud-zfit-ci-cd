@@ -12,6 +12,9 @@ import { getFittingImages } from '../api/api';
 import { fittingSelector, fittingImagesState } from '../recoil/state';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 const Fitting = ({ onClickClose, isOpen }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const countRef = useRef(0);
+
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('scroll-hidden');
@@ -24,7 +27,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const [width, setWidth] = useState();
 
   useEffect(() => {
-    setWidth(parseInt(ref.current.clientHeight * 0.5));
+    setWidth(parseInt(ref.current.clientHeight * 0.6));
   }, []);
 
   const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
@@ -34,12 +37,15 @@ const Fitting = ({ onClickClose, isOpen }) => {
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         const response = await getFittingImages(fitting);
         setFittingImages({ ...response, fitmap: fitting.fitmap });
+        setIsLoading(false);
       } catch {
         resetFittingImages();
       }
     }
+    countRef = countRef.current + 1;
     if (fitting.brandId && fitting.productId && fitting.color && fitting.size && fitting.gender && fitting.height) {
       fetchData();
     }
@@ -47,7 +53,14 @@ const Fitting = ({ onClickClose, isOpen }) => {
 
   return (
     <FittingRoot isOpen={isOpen} ref={ref} width={width}>
-      <div>
+      {isLoading && (
+        <Loading>
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </Loading>
+      )}
+      <Container className="root__container">
         <Container className="header__container">
           <div className="p-1 bg-black text-white">
             <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
@@ -85,10 +98,27 @@ const Fitting = ({ onClickClose, isOpen }) => {
             <StyleController isOpen={isOpen} />
           </div>
         </Container>
-      </div>
+      </Container>
     </FittingRoot>
   );
 };
+const Loading = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .spinner-border {
+    width: 6rem;
+    height: 6rem;
+    border: 0.45em solid currentColor;
+    border-right-color: transparent;
+  }
+`;
 
 const FittingRoot = styled.div`
   position: fixed;
@@ -97,8 +127,6 @@ const FittingRoot = styled.div`
   background: white;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
   transition: transform 0.4s;
   ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
   @media only screen and (min-width: 600px) {
@@ -106,21 +134,22 @@ const FittingRoot = styled.div`
     top: unset;
     left: unset;
     bottom: -100vh;
-    height: 80%;
+    height: 90%;
+    min-width: 30%;
     width: ${props => (props.width ? props.width : '0')}px;
     margin: 0 auto;
     ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
-  }
-  & > div {
-    position: absolute;
-    width: 100%;
-    height: 100%;
   }
 `;
 const Container = styled.div`
   .title {
     text-align: center;
     padding: 12px;
+  }
+  &.root__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
   &.model__container {
     height: 100%;
@@ -137,8 +166,8 @@ const Container = styled.div`
   &.bottom__container {
     position: absolute;
     bottom: 0;
-    max-height: 70%;
-    //height: 70%;
+    max-height: 30%;
+    overflow: auto;
     width: 100%;
     z-index: 999;
     & > div {
@@ -185,7 +214,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
 Fitting.propTypes = {};
 
 export default React.memo(Fitting);

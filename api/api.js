@@ -11,20 +11,6 @@ const getBrandList = async () => {
   return brands;
 };
 
-// const getProductList = async () => {
-//   const res = await fetch("./data/products.json");
-//   const data = await res.json();
-//   const products = data.products;
-//   return products;
-// };
-
-// const getProductItem = async (productId) => {
-//   const res = await fetch("./data/products.json");
-//   const data = await res.json();
-//   const product = data.products[productId];
-//   return product;
-// };
-
 const getFittingImages = async ({
   brandId,
   productId,
@@ -43,7 +29,7 @@ const getFittingImages = async ({
 }) => {
   const res = await fetch('./data/fitting.json');
   const data = await res.json();
-  async function filter() {
+  function filter() {
     try {
       let fittings = data.fitting[brandId][productId][color][size][gender];
       let nearestHeight = processBodyInfoData(fittings, 'height', height);
@@ -88,6 +74,7 @@ const getFittingImages = async ({
     }
   }
   const fittingImage = filter();
+  //console.log(fittingImage);
   return fittingImage;
 };
 

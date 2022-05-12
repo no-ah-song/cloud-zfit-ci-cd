@@ -42,31 +42,21 @@ const selectedProductState = atom({
       },
     ],
     gender: '',
-    genders: ['men'],
+    genders: [],
     color: '',
     sizes: '',
   }),
 });
-
-const selectedState = atom({
-  key: 'selectedState',
-  default: {
-    productId: 'Hoodie0001',
-    gender: 'men',
-  },
-});
-
 const avatarState = atom({
   key: 'avatarState',
   default: Object.freeze({
     // avartar 정보
-    height: '170',
-    weight: '60',
-    genders: 'men',
-    shape: 'square',
-    hip: '90',
-    armLength: '60',
-    inseam: '75',
+    height: '',
+    weight: '',
+    genders: '',
+    hip: '',
+    armLength: '',
+    inseam: '',
     neck: '',
     chest: '',
     waist: '',
@@ -150,29 +140,13 @@ const fittingSelector = selector({
   },
 });
 
-// SELECTOR
-const avatarSelector = selector({
-  key: 'avatarSelector',
-  get: ({ get }) => get(avatarState),
-});
-const brandListSelector = selector({
-  key: 'brandListSelector',
-  get: async ({ get }) => {
-    const response = await getBrandList();
-    return response;
-  },
-});
-
 export {
   navState,
   brandState,
   avatarState,
-  brandListSelector,
-  avatarSelector,
   useSsrComplectedState,
   selectedProductState,
   fittingSelector,
-  selectedState,
   fittingIsOpenState,
   menuIsOpenState,
   colorAndSizeState,
