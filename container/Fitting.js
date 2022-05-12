@@ -7,6 +7,10 @@ import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 import FitmapController from './FitmapController';
 import ColorController from './ColorController';
 import SizeController from './SizeController';
+import { getFittingImages } from '../api/api';
+
+import { fittingSelector, fittingImagesState } from '../recoil/state';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 const Fitting = ({ onClickClose, isOpen }) => {
   useEffect(() => {
     if (isOpen) {
@@ -15,12 +19,31 @@ const Fitting = ({ onClickClose, isOpen }) => {
       document.body.classList.remove('scroll-hidden');
     }
   }, [isOpen]);
+
   const ref = useRef();
   const [width, setWidth] = useState();
 
   useEffect(() => {
     setWidth(parseInt(ref.current.clientHeight * 0.5));
   }, []);
+
+  const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
+  const setFittingImages = useSetRecoilState(fittingImagesState);
+  const resetFittingImages = useResetRecoilState(fittingImagesState);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getFittingImages(fitting);
+        setFittingImages({ ...response, fitmap: fitting.fitmap });
+      } catch {
+        resetFittingImages();
+      }
+    }
+    if (fitting.brandId && fitting.productId && fitting.color && fitting.size && fitting.gender && fitting.height) {
+      fetchData();
+    }
+  }, [fitting]);
 
   return (
     <FittingRoot isOpen={isOpen} ref={ref} width={width}>

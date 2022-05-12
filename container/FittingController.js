@@ -2,39 +2,16 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import ProductsHorizontal from '../components/ProductsHorizontal';
-import { getFittingImages } from '../api/api';
 
-import {
-  fittingSelector,
-  avatarState,
-  useSsrComplectedState,
-  selectedProductState,
-  fittingImagesState,
-} from '../recoil/state';
+import { avatarState, useSsrComplectedState, selectedProductState } from '../recoil/state';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 const StyleController = ({ isOpen }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
-  const setFittingImages = useSetRecoilState(fittingImagesState);
-  const resetFittingImages = useResetRecoilState(fittingImagesState);
 
   useEffect(() => {
     setActiveIndex(0);
   }, [isOpen]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getFittingImages(fitting);
-        setFittingImages({ ...response, fitmap: fitting.fitmap });
-      } catch {
-        resetFittingImages();
-      }
-    }
-    fetchData();
-  }, [fitting]);
-
   return (
     <>
       <StyleControlBox className={activeIndex === 0 ? 'style-control-box active' : 'style-control-box'}>

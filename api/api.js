@@ -45,48 +45,44 @@ const getFittingImages = async ({
   const data = await res.json();
   async function filter() {
     try {
-      if (brandId && productId && color && size && gender && height) {
-        let fittings = data.fitting[brandId][productId][color][size][gender];
-        let nearestHeight = processBodyInfoData(fittings, 'height', height);
-        fittings = fittings.filter(fitting => {
-          return fitting.height == nearestHeight;
-        });
-        let nearestHip = processBodyInfoData(fittings, 'hip', hip);
-        fittings = fittings.filter(fitting => {
-          return fitting.hip == nearestHip;
-        });
-        let nearestArmLength = processBodyInfoData(fittings, 'armLength', armLength);
-        fittings = fittings.filter(fitting => {
-          return fitting.armLength == nearestArmLength;
-        });
-        let nearestInseam = processBodyInfoData(fittings, 'inseam', inseam);
-        fittings = fittings.filter(fitting => {
-          return fitting.inseam == nearestInseam;
-        });
-        let nearestChest = processBodyInfoData(fittings, 'chest', chest);
-        fittings = fittings.filter(fitting => {
-          return fitting.chest == nearestChest;
-        });
-        let nearestNeck = processBodyInfoData(fittings, 'neck', neck);
-        fittings = fittings.filter(fitting => {
-          return fitting.neck == nearestNeck;
-        });
-        let nearestBelt = processBodyInfoData(fittings, 'belt', belt);
-        fittings = fittings.filter(fitting => {
-          return fitting.belt == nearestBelt;
-        });
-        let nearestWaist = processBodyInfoData(fittings, 'waist', waist);
-        fittings = fittings.filter(fitting => {
-          return fitting.waist == nearestWaist;
-        });
-        let nearestShoulder = processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
-        fittings = fittings.filter(fitting => {
-          return fitting.acrossShoulder == nearestShoulder;
-        });
-        return fittings[0];
-      } else {
-        throw 'Fiter Data is Invalid';
-      }
+      let fittings = data.fitting[brandId][productId][color][size][gender];
+      let nearestHeight = processBodyInfoData(fittings, 'height', height);
+      fittings = fittings.filter(fitting => {
+        return fitting.height == nearestHeight;
+      });
+      let nearestHip = processBodyInfoData(fittings, 'hip', hip);
+      fittings = fittings.filter(fitting => {
+        return fitting.hip == nearestHip;
+      });
+      let nearestArmLength = processBodyInfoData(fittings, 'armLength', armLength);
+      fittings = fittings.filter(fitting => {
+        return fitting.armLength == nearestArmLength;
+      });
+      let nearestInseam = processBodyInfoData(fittings, 'inseam', inseam);
+      fittings = fittings.filter(fitting => {
+        return fitting.inseam == nearestInseam;
+      });
+      let nearestChest = processBodyInfoData(fittings, 'chest', chest);
+      fittings = fittings.filter(fitting => {
+        return fitting.chest == nearestChest;
+      });
+      let nearestNeck = processBodyInfoData(fittings, 'neck', neck);
+      fittings = fittings.filter(fitting => {
+        return fitting.neck == nearestNeck;
+      });
+      let nearestBelt = processBodyInfoData(fittings, 'belt', belt);
+      fittings = fittings.filter(fitting => {
+        return fitting.belt == nearestBelt;
+      });
+      let nearestWaist = processBodyInfoData(fittings, 'waist', waist);
+      fittings = fittings.filter(fitting => {
+        return fitting.waist == nearestWaist;
+      });
+      let nearestShoulder = processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
+      fittings = fittings.filter(fitting => {
+        return fitting.acrossShoulder == nearestShoulder;
+      });
+      return fittings[0];
     } catch (error) {
       throw 'Fiter Data is Invalid';
     }
