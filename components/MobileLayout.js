@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, lazy } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from './Header';
@@ -35,6 +36,12 @@ const StickyFooter = styled.div`
     border-radius: 4px;
     border: solid 1px black;
     font-weight: 600;
+    &>div{
+      display: flex;
+      justify-content: center;
+      column-gap: 4px;
+      white-space: nowrap;
+    }
   }
 `;
 
@@ -82,7 +89,10 @@ const MobileLayout = ({ children }) => {
             setFittingIsOpen(true);
             resetSelectedProduct();
           }}>
+            <div>
+          <Image src="/images/small_z-fit.png" width={15} height={15}/>
           Fitting Room↗
+          </div>
         </button>
       </StickyFooter>
     </>

@@ -27,7 +27,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const [width, setWidth] = useState();
 
   useEffect(() => {
-    setWidth(parseInt(ref.current.clientHeight * 0.6));
+    setWidth(parseInt(ref.current.clientHeight * 0.5));
   }, []);
 
   const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
@@ -135,7 +135,7 @@ const FittingRoot = styled.div`
     left: unset;
     bottom: -100vh;
     height: 90%;
-    min-width: 30%;
+   // min-width: 30%;
     width: ${props => (props.width ? props.width : '0')}px;
     margin: 0 auto;
     ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}

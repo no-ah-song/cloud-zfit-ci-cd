@@ -83,18 +83,19 @@ const ColorControllerRoot = styled.div`
     border-radius: 4px;
     border: solid 1px black;
     background: white;
+    color: black;
   }
 `;
 
 const SelectArea = styled.div`
-  margin: 0 0 0 12px;
+  margin: 0 0 0 16px;
   overflow: hidden;
   display: ${props => (props.active ? 'block' : 'none')};
 `;
 
 const SelectList = styled.ul`
   display: flex;
-  column-gap: 12px;
+  column-gap: 8px;
   overflow: scroll;
   padding-right: 32px;
   &::-webkit-scrollbar {
