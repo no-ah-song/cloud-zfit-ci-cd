@@ -102,4 +102,70 @@ function processBodyInfoData(data, key, value) {
   let nearestKey = findNearestInteger(keyArr, value);
   return nearestKey;
 }
-export { getBrandList, getFittingImages };
+
+const getDefaultFittingImages = async ({
+  brandId,
+  productId,
+  color,
+  size,
+  gender,
+  height,
+  hip,
+  armLength,
+  inseam,
+  chest,
+  neck,
+  waist,
+  belt,
+  acrossShoulder,
+}) => {
+  const res = await fetch('./data/fitting_avatar.json');
+  const data = await res.json();
+  function filter() {
+    try {
+      let fittings = data.fitting[brandId][productId][color][size][gender];
+      let nearestHeight = processBodyInfoData(fittings, 'height', height);
+      fittings = fittings.filter(fitting => {
+        return fitting.height == nearestHeight;
+      });
+      let nearestHip = processBodyInfoData(fittings, 'hip', hip);
+      fittings = fittings.filter(fitting => {
+        return fitting.hip == nearestHip;
+      });
+      let nearestArmLength = processBodyInfoData(fittings, 'armLength', armLength);
+      fittings = fittings.filter(fitting => {
+        return fitting.armLength == nearestArmLength;
+      });
+      let nearestInseam = processBodyInfoData(fittings, 'inseam', inseam);
+      fittings = fittings.filter(fitting => {
+        return fitting.inseam == nearestInseam;
+      });
+      let nearestChest = processBodyInfoData(fittings, 'chest', chest);
+      fittings = fittings.filter(fitting => {
+        return fitting.chest == nearestChest;
+      });
+      let nearestNeck = processBodyInfoData(fittings, 'neck', neck);
+      fittings = fittings.filter(fitting => {
+        return fitting.neck == nearestNeck;
+      });
+      let nearestBelt = processBodyInfoData(fittings, 'belt', belt);
+      fittings = fittings.filter(fitting => {
+        return fitting.belt == nearestBelt;
+      });
+      let nearestWaist = processBodyInfoData(fittings, 'waist', waist);
+      fittings = fittings.filter(fitting => {
+        return fitting.waist == nearestWaist;
+      });
+      let nearestShoulder = processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
+      fittings = fittings.filter(fitting => {
+        return fitting.acrossShoulder == nearestShoulder;
+      });
+      return fittings[0];
+    } catch (error) {
+      throw 'Fiter Data is Invalid';
+    }
+  }
+  const fittingImage = filter();
+  return fittingImage;
+};
+export { getBrandList, getFittingImages, getDefaultFittingImages };

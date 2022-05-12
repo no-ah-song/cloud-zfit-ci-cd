@@ -590,8 +590,8 @@ const RecommendedStyleBox = ({ onDone }) => {
 
 function BodyDimensionsInput({
   value,
-  min = 150,
-  max = 220,
+  min = 0,
+  max = 0,
   name,
   onChange,
   onSubmit,
@@ -602,11 +602,13 @@ function BodyDimensionsInput({
   const [error, setError] = useState(false);
   const invalid = () => {
     const pattern_num = /[0-9]/;
-    if (pattern_num.test(value) && value >= min && value <= max) {
-      setError(false);
-    } else {
-      setError(true);
-      return;
+    if (max > 0) {
+      if (pattern_num.test(value) && value >= min && value <= max) {
+        setError(false);
+      } else {
+        setError(true);
+        return;
+      }
     }
     onSubmit();
   };

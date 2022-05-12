@@ -6,8 +6,8 @@ import DesktopNav from './DesktopNav';
 import Fitting from '../container/Fitting';
 import Main from './Main';
 import Image from 'next/image';
-import { fittingIsOpenState, selectedProductState } from '../recoil/state';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { fittingIsOpenState, selectedProductState, colorAndSizeState } from '../recoil/state';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 const LayoutTemplate = styled.div`
   width: 100%;
@@ -25,17 +25,14 @@ const LayoutTemplate = styled.div`
 `;
 const StickyFooter = styled.div`
   position: sticky;
-  width: 100%;
+  width: 15%;
   bottom: 16px;
   margin: 16px;
   font-size: 16px;
   text-align: right;
-  display: flex;
   float: right;
-  justify-content: right;
   button {
     height: 100%;
-    width: 15%;
     padding: 18px;
     background: white;
     color: black;
@@ -46,6 +43,7 @@ const StickyFooter = styled.div`
     justify-content: center;
     column-gap: 4px;
     white-space: nowrap;
+    width: 100%;
   }
 `;
 
@@ -69,7 +67,39 @@ const DesktopLayout = ({ children }) => {
   const [fittingIsOpen, setFittingIsOpen] = useRecoilState(fittingIsOpenState);
   const [state, dispatch] = useReducer(reducer, initialState);
   const resetSelectedProduct = useResetRecoilState(selectedProductState);
+  const setSelectedProduct = useSetRecoilState(selectedProductState);
+  const setColorAndSize = useSetRecoilState(colorAndSizeState);
   useEffect(() => {}, [fittingIsOpen]);
+
+  const handleClick = () => {
+    const product = {
+      productId: 'a0518ed8-7873-43da-84a2-57a7baa008bb',
+      productName: 'underwear',
+      recommendSize: 'L',
+      brandName: 'Demo_Avatar',
+      brandId: '69f14452-0b86-41d9-bd83-d66c23e69374',
+      type: 'underwear',
+      colors: [
+        {
+          color: 'no_color',
+          src: '/images/product/Demo_Avatar-underwear-underwear-no_color.jpg',
+          sizes: ['no_size'],
+        },
+      ],
+      gender: 'men',
+      genders: ['women', 'men'],
+      color: 'no_color',
+      sizes: 'no_size',
+    };
+
+    setSelectedProduct({ ...product, color: product.color, sizes: product.sizes });
+    product.colors.map(item => {
+      if (item.color === product.color) {
+        setColorAndSize({ color: product.color, size: item.sizes[0] }); // Set colorAndSize state
+      }
+    });
+    setFittingIsOpen(true);
+  };
 
   return (
     <>
@@ -85,12 +115,8 @@ const DesktopLayout = ({ children }) => {
         </div>
       </LayoutTemplate>
       <StickyFooter>
-        <button
-          onClick={() => {
-            setFittingIsOpen(true);
-            resetSelectedProduct();
-          }}>
-          <Image src="/images/small_z-fit.png" width={15} height={15}/>
+        <button onClick={handleClick}>
+          <Image src="/images/small_z-fit.png" width={15} height={15} />
           Fitting Room↗
         </button>
       </StickyFooter>

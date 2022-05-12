@@ -9,7 +9,6 @@ import { useRecoilValue } from 'recoil';
 
 const FittingViewer = ({}) => {
   const fittingImages = useRecoilValue(fittingImagesState);
-
   return (
     <>
       <FittingSlider capture={fittingImages.images} fitmap={fittingImages.fitmap} />

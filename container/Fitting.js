@@ -7,7 +7,7 @@ import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 import FitmapController from './FitmapController';
 import ColorController from './ColorController';
 import SizeController from './SizeController';
-import { getFittingImages } from '../api/api';
+import { getFittingImages, getDefaultFittingImages } from '../api/api';
 
 import { fittingSelector, fittingImagesState } from '../recoil/state';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
@@ -38,8 +38,13 @@ const Fitting = ({ onClickClose, isOpen }) => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await getFittingImages(fitting);
-        setFittingImages({ ...response, fitmap: fitting.fitmap });
+        if (fitting.productId === 'a0518ed8-7873-43da-84a2-57a7baa008bb') {
+          const response = await getDefaultFittingImages(fitting);
+          setFittingImages({ ...response, fitmap: fitting.fitmap });
+        } else {
+          const response = await getFittingImages(fitting);
+          setFittingImages({ ...response, fitmap: fitting.fitmap });
+        }
         setIsLoading(false);
       } catch {
         resetFittingImages();
@@ -135,7 +140,7 @@ const FittingRoot = styled.div`
     left: unset;
     bottom: -100vh;
     height: 90%;
-   // min-width: 30%;
+    // min-width: 30%;
     width: ${props => (props.width ? props.width : '0')}px;
     margin: 0 auto;
     ${props => (props.isOpen ? 'transform: translate(0, calc(-100vh));' : '')}
