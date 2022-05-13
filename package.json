@@ -6,7 +6,9 @@
     "dev": "PORT=3001 next dev",
     "build": "next build",
     "start": "PORT=3002 next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:docker": "docker build -t next-zfit .",
+    "run:docker": "docker run -p 3000:3000 --name zfit-demo next-zfit"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.7",
