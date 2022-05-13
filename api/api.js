@@ -95,7 +95,9 @@ function findNearestInteger(data, target) {
 
 function processBodyInfoData(data, key, value) {
   let distinctArr = _.uniqBy(data, key);
-  distinctArr.sort((a, b) => {return( a[key] - b[key])});
+  distinctArr.sort((a, b) => {
+    return a[key] - b[key];
+  });
   const keyArr = distinctArr.map(el => {
     return el[key];
   });
@@ -169,7 +171,7 @@ const getDefaultFittingImages = async ({
   return fittingImage;
 };
 
-const getBrandProducts = async({brand}) => {
+const getBrandProducts = async ({ brand }) => {
   const resProduct = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json');
   const dataProduct = await resProduct.json();
   const objectProduct = Object.keys(dataProduct.products);
@@ -182,12 +184,19 @@ const getBrandProducts = async({brand}) => {
     }
   });
   return products;
-}
+};
 
-const getProductsAvatar = async() => {
+const getProductsAvatar = async () => {
   const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products_avatar.json');
   const data = await res.json();
-  const product = data.products[0]
+  const product = data.products[0];
   return product;
-}
-export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar };
+};
+
+const getProductType = async () => {
+  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/type.json');
+  const data = await res.json();
+  const product = data.type;
+  return product;
+};
+export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar, getProductType };

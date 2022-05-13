@@ -4,14 +4,22 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
-import IconZfit from '../assets/icon-nav-zfit.svg';
+import { getProductType } from '../api/api';
 /* eslint-disable */
 
 const DesktopNav = () => {
   const router = useRouter();
   const { gender, type } = router.query;
   const [active, setActive] = useState(0);
+  const [typeList, setTypeList] = useState({ type: {} });
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await getProductType();
+      setTypeList(result);
+    }
+    fetchData();
+  }, []);
 
   const updateNav = useCallback(index => {
     setActive(index);
@@ -20,25 +28,9 @@ const DesktopNav = () => {
   useEffect(() => {
     if (router.route === '/products') {
       if (gender === 'men') {
-        if (type === 'all') {
-          setActive(1);
-        } else if (type === 'top') {
-          setActive(2);
-        } else if (type === 'bottom') {
-          setActive(3);
-        } else if (type === 'outer') {
-          setActive(4);
-        }
+        setActive('men_' + type);
       } else if (gender === 'women') {
-        if (type === 'all') {
-          setActive(5);
-        } else if (type === 'top') {
-          setActive(6);
-        } else if (type === 'bottom') {
-          setActive(7);
-        } else if (type === 'outer') {
-          setActive(8);
-        }
+        setActive('women_' + type);
       }
     } else if (router.route === '/brand') {
       setActive(9);
@@ -62,36 +54,30 @@ const DesktopNav = () => {
               <ul className=" nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                 <li className="w-100">
                   <Link href="/products?gender=men&type=all" passHref>
-                    <a href="/" className={active === 1 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(1)}>
+                    <a
+                      href="/"
+                      className="nav-link"
+                      className={active === 'men_all' ? 'nav-link active' : 'nav-link'}
+                      onClick={() => updateNav('men_all')}>
                       <span>All</span>
                     </a>
                   </Link>
                 </li>
-                <li className="w-100">
-                  <Link href="/products?gender=men&type=top" passHref>
-                    <a
-                      href="/"
-                      className="nav-link"
-                      className={active === 2 ? 'nav-link active' : 'nav-link'}
-                      onClick={() => updateNav(2)}>
-                      <span>Top</span>
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products?gender=men&type=bottom" passHref>
-                    <a href="/" className={active === 3 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(3)}>
-                      <span>Bottom</span>
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products?gender=men&type=outer" passHref>
-                    <a href="/" className={active === 4 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(4)}>
-                      <span>Outer</span>
-                    </a>
-                  </Link>
-                </li>
+                {typeList.men?.map((type, index) => {
+                  const to = `/products?gender=men&type=${type.toLowerCase()}`;
+                  return (
+                    <li key={index} className="w-100">
+                      <Link href={to} passHref>
+                        <a
+                          href="/"
+                          className={active === 'men_' + type.toLowerCase() ? 'nav-link active' : 'nav-link'}
+                          onClick={() => updateNav('men_' + type.toLowerCase())}>
+                          <span>{type}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
             <li className="w-100">
@@ -99,32 +85,30 @@ const DesktopNav = () => {
               <ul className=" nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                 <li className="w-100">
                   <Link href="/products?gender=women&type=all" passHref>
-                    <a href="/" className={active === 5 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(5)}>
+                    <a
+                      href="/"
+                      className="nav-link"
+                      className={active === 'women_all' ? 'nav-link active' : 'nav-link'}
+                      onClick={() => updateNav('women_all')}>
                       <span>All</span>
                     </a>
                   </Link>
                 </li>
-                <li className="w-100">
-                  <Link href="/products?gender=women&type=top" passHref>
-                    <a href="/" className={active === 6 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(6)}>
-                      <span>Top</span>
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products?gender=women&type=bottom" passHref>
-                    <a href="/" className={active === 7 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(7)}>
-                      <span>Bottom</span>
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products?gender=women&type=outer" passHref>
-                    <a href="/" className={active === 8 ? 'nav-link active' : 'nav-link'} onClick={() => updateNav(8)}>
-                      <span>Outer</span>
-                    </a>
-                  </Link>
-                </li>
+                {typeList.women?.map((type, index) => {
+                  const to = `/products?gender=men&type=${type.toLowerCase()}`;
+                  return (
+                    <li key={index} className="w-100">
+                      <Link href={to} passHref>
+                        <a
+                          href="/"
+                          className={active === 'women_' + type.toLowerCase() ? 'nav-link active' : 'nav-link'}
+                          onClick={() => updateNav('women_' + type.toLowerCase())}>
+                          <span>{type}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
             <li className="w-100">

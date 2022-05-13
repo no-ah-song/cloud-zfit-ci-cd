@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProductsHorizontal from './ProductsHorizontal';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
 import Image from 'next/image';
 import { getBrandList } from '../api/api';
+import { getProductType } from '../api/api';
 
 /* eslint-disable */
 const MenuRoot = styled.div`
@@ -118,7 +117,15 @@ const BrandInfo = styled.div`
 
 const MobileNav = ({ isOpen, recommendedProducts }) => {
   const [brands, setBrands] = useState([]);
+  const [typeList, setTypeList] = useState({ type: {} });
 
+  useEffect(() => {
+    async function fetchData() {
+      const result = await getProductType();
+      setTypeList(result);
+    }
+    fetchData();
+  }, []);
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('scroll-hidden')
@@ -182,15 +189,14 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                 <li className="list-group-item">
                   <a href="/products?gender=men&type=all">ALL</a>
                 </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=men&type=top">Top</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=men&type=bottom">Bottom</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=men&type=outer">Outer</a>
-                </li>
+                {typeList.men?.map((type, index) => {
+                   const to = `/products?gender=men&type=${type.toLowerCase()}`;
+                   return (
+                    <li key = {index} className="list-group-item">
+                      <a href={to}>{type}</a>
+                    </li>
+                   )
+                })}
               </ul>
             </div>
             <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -198,15 +204,14 @@ const MobileNav = ({ isOpen, recommendedProducts }) => {
                 <li className="list-group-item">
                   <a href="/products?gender=women&type=all">ALL</a>
                 </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=women&type=top">Top</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=women&type=bottom">Bottom</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/products?gender=women&type=outer">Outer</a>
-                </li>
+                {typeList.women?.map((type, index) => {
+                   const to = `/products?gender=women&type=${type.toLowerCase()}`;
+                   return (
+                    <li key = {index} className="list-group-item">
+                      <a href={to}>{type}</a>
+                    </li>
+                   )
+                })}
               </ul>
             </div>
             <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
