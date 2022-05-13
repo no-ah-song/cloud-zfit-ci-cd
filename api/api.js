@@ -1,4 +1,6 @@
 import _, { forEach } from 'lodash';
+import { fittingDataCachingState } from '../recoil/state';
+import { useRecoilState } from 'recoil';
 
 const getBrandList = async () => {
   const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brands.json');
@@ -26,9 +28,8 @@ const getFittingImages = async ({
   waist,
   belt,
   acrossShoulder,
+  data,
 }) => {
-  const res = await fetch('./data/fitting.json');
-  const data = await res.json();
   function filter() {
     try {
       let fittings = data.fitting[brandId][productId][color][size][gender];
@@ -74,7 +75,6 @@ const getFittingImages = async ({
     }
   }
   const fittingImage = filter();
-  //console.log(fittingImage);
   return fittingImage;
 };
 
@@ -94,8 +94,8 @@ function findNearestInteger(data, target) {
 }
 
 function processBodyInfoData(data, key, value) {
-  data.sort((a, b) => a[key] - b[key]);
   let distinctArr = _.uniqBy(data, key);
+  distinctArr.sort((a, b) => {return( a[key] - b[key])});
   const keyArr = distinctArr.map(el => {
     return el[key];
   });
@@ -119,7 +119,7 @@ const getDefaultFittingImages = async ({
   belt,
   acrossShoulder,
 }) => {
-  const res = await fetch('./data/fitting_avatar.json');
+  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting_avatar.json');
   const data = await res.json();
   function filter() {
     try {
@@ -168,4 +168,26 @@ const getDefaultFittingImages = async ({
   const fittingImage = filter();
   return fittingImage;
 };
-export { getBrandList, getFittingImages, getDefaultFittingImages };
+
+const getBrandProducts = async({brand}) => {
+  const resProduct = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json');
+  const dataProduct = await resProduct.json();
+  const objectProduct = Object.keys(dataProduct.products);
+  let products = [];
+  objectProduct.map(productId => {
+    if (dataProduct.products[productId].brandId === brand) {
+      dataProduct.products[productId].colors.map(item => {
+        products.push({ ...dataProduct.products[productId], color: item.color, sizes: item.sizes, src: item.src });
+      });
+    }
+  });
+  return products;
+}
+
+const getProductsAvatar = async() => {
+  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products_avatar.json');
+  const data = await res.json();
+  const product = data.products[0]
+  return product;
+}
+export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar };

@@ -7,13 +7,15 @@ import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 import FitmapController from './FitmapController';
 import ColorController from './ColorController';
 import SizeController from './SizeController';
+import RecommendStyles from './RecommendStyles';
 import { getFittingImages, getDefaultFittingImages } from '../api/api';
 
-import { fittingSelector, fittingImagesState } from '../recoil/state';
+import { fittingSelector, fittingImagesState, fittingDataCachingSelector } from '../recoil/state';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 const Fitting = ({ onClickClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const countRef = useRef(0);
+  const [activeStyles, setActiveStyles] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,16 +35,19 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const fitting = useRecoilValue(fittingSelector); // fitting 이미지를 불러올 데이터
   const setFittingImages = useSetRecoilState(fittingImagesState);
   const resetFittingImages = useResetRecoilState(fittingImagesState);
+  const fittingDataCaching = useRecoilValue(fittingDataCachingSelector);
+  const [fittingData,setFittingData] = useState();
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        if (fitting.productId === 'a0518ed8-7873-43da-84a2-57a7baa008bb') {
+        if (fitting.color === 'no_color' && fitting.size === 'no_size') {
           const response = await getDefaultFittingImages(fitting);
           setFittingImages({ ...response, fitmap: fitting.fitmap });
         } else {
-          const response = await getFittingImages(fitting);
+          
+          const response = await getFittingImages({...fitting, data: fittingDataCaching});
           setFittingImages({ ...response, fitmap: fitting.fitmap });
         }
         setIsLoading(false);
@@ -54,7 +59,11 @@ const Fitting = ({ onClickClose, isOpen }) => {
     if (fitting.brandId && fitting.productId && fitting.color && fitting.size && fitting.gender && fitting.height) {
       fetchData();
     }
-  }, [fitting]);
+  }, [fitting, fittingData]);
+
+  const handleClickStyles = () => {
+    setActiveStyles(!activeStyles);
+  }
 
   return (
     <FittingRoot isOpen={isOpen} ref={ref} width={width}>
@@ -67,18 +76,17 @@ const Fitting = ({ onClickClose, isOpen }) => {
       )}
       <Container className="root__container">
         <Container className="header__container">
-          <div className="p-1 bg-black text-white">
-            <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
-              <div />
-              <div className="header-center-text">
-                <ZfitLogo />
-                <span>Fitting Room</span>
-              </div>
-              <div className="text-end px-3" onClick={onClickClose} role="button">
-                <Close />
-              </div>
+          {activeStyles||
+          <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
+            <div className="header-center-text p-4 bg-black text-white" onClick={handleClickStyles} role="button">
+              <ZfitLogo />
+              <span>Styles</span>
             </div>
-          </div>
+            <div className="text-end px-3" onClick={onClickClose} role="button">
+              <Close />
+            </div>
+          </div>}
+          {activeStyles&&<RecommendStyles onClose={handleClickStyles}/>}
         </Container>
         <Container className="model__container">
           <FittingViewer />
@@ -199,7 +207,7 @@ const Container = styled.div`
       display: flex;
       text-align: center;
       column-gap: 4px;
-      margin-left: 48px;
+      border-radius: 4px;
       span {
         line-height: 15px;
       }

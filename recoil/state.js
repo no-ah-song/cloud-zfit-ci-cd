@@ -140,6 +140,20 @@ const fittingSelector = selector({
   },
 });
 
+const fittingDataCachingState = atom({
+  key: 'fittingDataCachingState',
+  default: {},
+});
+
+const fittingDataCachingSelector = selector({
+  key: 'fittingDataCachingSelector',
+  get: async ({get}) => {
+    console.log('start')
+    const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting.json');
+    const data = await res.json();
+    return data;
+  }
+})
 export {
   navState,
   brandState,
@@ -152,4 +166,6 @@ export {
   colorAndSizeState,
   fittingImagesState,
   fitmapState,
+  fittingDataCachingState,
+  fittingDataCachingSelector,
 };

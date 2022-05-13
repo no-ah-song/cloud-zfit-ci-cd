@@ -7,8 +7,9 @@ import MobileNav from './MobileNav';
 import Footer from './Footer';
 import Main from './Main';
 import Fitting from '../container/Fitting';
-import { fittingIsOpenState, menuIsOpenState, selectedProductState } from '../recoil/state';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { fittingIsOpenState, colorAndSizeState, selectedProductState } from '../recoil/state';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {getProductsAvatar} from '../api/api'
 
 const LayoutTemplate = styled.div`
   width: 100%;
@@ -64,10 +65,22 @@ const reducer = (state, action) => {
 const MobileLayout = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [fittingIsOpen, setFittingIsOpen] = useRecoilState(fittingIsOpenState);
-  const resetSelectedProduct = useResetRecoilState(selectedProductState);
-  const [menuIsOpen, setMenuIsOPen] = useRecoilState(menuIsOpenState);
-  useEffect(() => {}, [dispatch]);
-
+  const setSelectedProduct = useSetRecoilState(selectedProductState);
+  const setColorAndSize = useSetRecoilState(colorAndSizeState);
+  useEffect(() => {}, [fittingIsOpen]);
+  const handleClick = async () => {
+    async function fetchData () {
+      return await getProductsAvatar()
+    }
+    const product = await fetchData();
+    setSelectedProduct({ ...product, color: product.color, sizes: product.sizes });
+    product.colors.map(item => {
+      if (item.color === product.color) {
+        setColorAndSize({ color: product.color, size: item.sizes[0] }); // Set colorAndSize state
+      }
+    });
+    setFittingIsOpen(true);
+  };
   return (
     <>
       <LayoutTemplate>
@@ -84,11 +97,7 @@ const MobileLayout = ({ children }) => {
         <Footer> </Footer>
       </LayoutTemplate>
       <StickyFooter>
-        <button
-          onClick={() => {
-            setFittingIsOpen(true);
-            resetSelectedProduct();
-          }}>
+        <button onClick={handleClick}>
             <div>
           <Image src="/images/small_z-fit.png" width={15} height={15}/>
           Fitting Room↗

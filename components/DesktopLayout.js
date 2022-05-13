@@ -7,8 +7,8 @@ import Fitting from '../container/Fitting';
 import Main from './Main';
 import Image from 'next/image';
 import { fittingIsOpenState, selectedProductState, colorAndSizeState } from '../recoil/state';
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
-
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {getProductsAvatar} from '../api/api'
 const LayoutTemplate = styled.div`
   width: 100%;
   max-width: 100%;
@@ -65,33 +65,14 @@ const reducer = (state, action) => {
 
 const DesktopLayout = ({ children }) => {
   const [fittingIsOpen, setFittingIsOpen] = useRecoilState(fittingIsOpenState);
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const resetSelectedProduct = useResetRecoilState(selectedProductState);
   const setSelectedProduct = useSetRecoilState(selectedProductState);
   const setColorAndSize = useSetRecoilState(colorAndSizeState);
   useEffect(() => {}, [fittingIsOpen]);
-
-  const handleClick = () => {
-    const product = {
-      productId: 'a0518ed8-7873-43da-84a2-57a7baa008bb',
-      productName: 'underwear',
-      recommendSize: 'L',
-      brandName: 'Demo_Avatar',
-      brandId: '69f14452-0b86-41d9-bd83-d66c23e69374',
-      type: 'underwear',
-      colors: [
-        {
-          color: 'no_color',
-          src: '/images/product/Demo_Avatar-underwear-underwear-no_color.jpg',
-          sizes: ['no_size'],
-        },
-      ],
-      gender: 'men',
-      genders: ['women', 'men'],
-      color: 'no_color',
-      sizes: 'no_size',
-    };
-
+  const handleClick = async () => {
+    async function fetchData () {
+      return await getProductsAvatar()
+    }
+    const product = await fetchData();
     setSelectedProduct({ ...product, color: product.color, sizes: product.sizes });
     product.colors.map(item => {
       if (item.color === product.color) {
@@ -100,7 +81,6 @@ const DesktopLayout = ({ children }) => {
     });
     setFittingIsOpen(true);
   };
-
   return (
     <>
       <LayoutTemplate>
