@@ -42,15 +42,14 @@ const Fitting = ({ onClickClose, isOpen }) => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        if (fitting.color === 'no_color' && fitting.size === 'no_size') {
-          const response = await getDefaultFittingImages(fitting);
-          setFittingImages({ ...response, fitmap: fitting.fitmap });
-        } else {
-          
-          const response = await getFittingImages({...fitting, data: fittingDataCaching});
-          setFittingImages({ ...response, fitmap: fitting.fitmap });
-        }
-        setIsLoading(false);
+          if (fitting.color === 'no_color' && fitting.size === 'no_size') {
+            const response = await getDefaultFittingImages(fitting);
+            setFittingImages({ ...response, fitmap: fitting.fitmap });
+          } else {
+            const response = await getFittingImages({...fitting, data: fittingDataCaching});
+            setFittingImages({ ...response, fitmap: fitting.fitmap });
+          }
+        setTimeout(()=>setIsLoading(false), 1000);
       } catch {
         resetFittingImages();
       }
@@ -218,9 +217,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 90%;
   margin: auto;
+  position: relative;
   & > div {
     z-index: 999;
-    position: relative;
+    position: absolute;
     bottom: 0;
     & > div {
       padding-top: 12px;
