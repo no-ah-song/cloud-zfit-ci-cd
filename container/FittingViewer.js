@@ -1,17 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Image from 'next/image';
 
-import { fittingImagesState } from '../recoil/state';
+import { fittingImagesState, selectedProductState } from '../recoil/state';
 import { useRecoilValue } from 'recoil';
+
+const image_size = 16;
 
 const FittingViewer = ({}) => {
   const fittingImages = useRecoilValue(fittingImagesState);
+  const selectedProduct = useRecoilValue(selectedProductState);
+  const brand_name = selectedProduct.brandPath;
+  const prod_name = selectedProduct.productName;
+  // HACK for avatar
+  const prod_type =
+    selectedProduct.type === 'underwear' ? (fittingImages.gender === 'men' ? 'man' : 'woman') : selectedProduct.type;
+  const prefixImage = `https://d18kvmn6ewgco5.cloudfront.net/pre-render/${brand_name}/${
+    fittingImages.gender === 'men' ? 'm' : 'f'
+  }/${prod_type}/${prod_name}/${fittingImages.size}/${fittingImages.color}/${fittingImages.height}_${
+    fittingImages.armLength * 10
+  }_${fittingImages.belt * 10}_${fittingImages.chest * 10}_${fittingImages.inseam * 10}_${fittingImages.hip * 10}_${
+    fittingImages.neck * 10
+  }_${fittingImages.acrossShoulder * 10}_${fittingImages.waist * 10}`;
+  const images = [];
+
+  for (let index = 0; index < image_size; index++) {
+    images.push(`${prefixImage}/${index.toString().padStart(3, '0')}.jpg`);
+  }
+
   return (
     <>
-      <FittingSlider capture={fittingImages.images} fitmap={fittingImages.fitmap} />
+      <FittingSlider capture={images} fitmap={fittingImages.fitmap} />
     </>
   );
 };

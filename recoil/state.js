@@ -32,6 +32,7 @@ const selectedProductState = atom({
     productName: '',
     recommendSize: '',
     brandName: '',
+    brandPath: '',
     brandId: '',
     type: '',
     colors: [
@@ -102,7 +103,6 @@ const fittingImagesState = atom({
     gender: '',
     height: 0,
     hip: 0,
-    images: [],
     inseam: 0,
     neck: 0,
     productId: '',
@@ -147,13 +147,13 @@ const fittingDataCachingState = atom({
 
 const fittingDataCachingSelector = selector({
   key: 'fittingDataCachingSelector',
-  get: async ({get}) => {
-    console.log('start')
+  get: async ({ get }) => {
+    console.log('start');
     const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting.json');
     const data = await res.json();
     return data;
-  }
-})
+  },
+});
 export {
   navState,
   brandState,
