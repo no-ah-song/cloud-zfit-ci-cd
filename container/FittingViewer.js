@@ -22,20 +22,24 @@ const FittingViewer = ({}) => {
   }_${fittingImages.belt * 10}_${fittingImages.chest * 10}_${fittingImages.inseam * 10}_${fittingImages.hip * 10}_${
     fittingImages.neck * 10
   }_${fittingImages.acrossShoulder * 10}_${fittingImages.waist * 10}`;
-  const images = [];
+  const imagesDefault = [];
+  const imagesBrand = [];
 
   for (let index = 0; index < image_size; index++) {
-    images.push(`${prefixImage}/${index.toString().padStart(3, '0')}.jpg`);
+    imagesDefault.push(`${prefixImage}/${index.toString().padStart(3, '0')}.jpg`);
+    imagesBrand.push(`${prefixImage}/brand/${index.toString().padStart(3, '0')}.jpg`);
   }
 
   return (
     <>
-      <FittingSlider capture={images} fitmap={fittingImages.fitmap} />
+      <FittingSlider captures={[imagesDefault, imagesBrand]} fitmap={fittingImages.fitmap} />
     </>
   );
 };
 
-const FittingSlider = ({ capture, fitmap }) => {
+const FittingSlider = ({ captures, fitmap, bg_index = 0 }) => {
+  // TODO select bg_index, check captures length
+  const capture = captures.at(bg_index);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [delta, setDelta] = useState(0);
   const validCapture = capture && Array.isArray(capture) && capture.length > 0;
@@ -92,7 +96,11 @@ const FittingSlider = ({ capture, fitmap }) => {
       {capture?.map((src, index) => {
         return (
           <SlideImage key={index} className={currentIndex === index ? 'd-block' : 'd-none'}>
-            <img src={src}></img>
+            <img
+              src={src}
+              onError={e => {
+                e.target.src = '/images/z-fit.png'; // TODO relace default image(url must always valid)
+              }}></img>
           </SlideImage>
         );
       })}
