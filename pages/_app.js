@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
         <Head>
           <meta
             name="viewport"
-            content="width=device-width"
+            content="initial-scale=1.0,user-scable=no,maximum-scale=1,width=device-width"
           />
         </Head>
         <Component {...pageProps} />

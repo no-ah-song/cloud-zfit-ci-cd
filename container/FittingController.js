@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import ProductsHorizontal from '../components/ProductsHorizontal';
+import IconToggle from '../assets/icon-toggle.svg';
 
 import { avatarState, useSsrComplectedState, selectedProductState } from '../recoil/state';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { values } from 'lodash';
 
 const StyleController = ({ isOpen }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -90,7 +92,11 @@ const BodyInfoBox = () => {
     neck: 0,
     chest: 0,
     belt: 0,
-    acrossShoulder: avatar.acrossShoulder,
+    acrossShoulder: 0,
+    heightUnit:"cm",
+    hipUnit:"cm",
+    armLengthUnit:"cm",
+    inseamUnit: "cm",
   };
   const [values, setValues] = useState(initialValues);
 
@@ -98,7 +104,7 @@ const BodyInfoBox = () => {
     const { name, value } = event.target;
     if (name === 'height') {
       // 신장 입력 시점만 advance 자동 계산
-      const advancedBody = calcBodyDimention(selectedShape);
+      const advancedBody = calcBodyDimention({selectedShape:selectedShape, values:values});
       setValues({
         ...values,
         hip: advancedBody.hip,
@@ -120,7 +126,7 @@ const BodyInfoBox = () => {
   }; // shape
 
   const changeGender = (targetName, targetValue) => {
-    const advancedBody = calcBodyDimention(selectedShape, targetValue);
+    const advancedBody = calcBodyDimention({selectedShape:selectedShape, genders:targetValue, values:values});
     setValues({
       ...values,
       hip: advancedBody.hip,
@@ -150,7 +156,11 @@ const BodyInfoBox = () => {
   const handleSubmit = useCallback(
     e => {
       e?.preventDefault();
-      setAvatar(values);
+      setAvatar({
+        ...values,
+        height:values.heightUnit === "in"? Math.round(values.height*2.54):values.height,
+        hip:values.hipUnit === "in"? Math.round(values.hip*2.54):values.hip,
+      });
     },
     [values]
   );
@@ -160,7 +170,7 @@ const BodyInfoBox = () => {
   }, [selectedShape]); //shape 데이터 변경
 
   const updateBodyDimention = useCallback(() => {
-    const advancedBody = calcBodyDimention(selectedShape);
+    const advancedBody = calcBodyDimention({selectedShape:selectedShape, values:values});
     setValues({
       ...values,
       hip: advancedBody.hip,
@@ -185,207 +195,30 @@ const BodyInfoBox = () => {
     });
   }, [values, selectedShape]);
 
-  function calcBodyDimention(selectedShape, genders = []) {
-    const height = Number(document.getElementsByName('height')[0].value);
-    if (genders[0] === 'women') {
-      const baseSize = {
-        neck: height * 0.251,
-        chest: height * 0.541,
-        waist: height * 0.451,
-        belt: height * 0.463,
-        hip: height * 0.542,
-        shoulder: height * 1.25,
-        armLength: height * 0.338,
-        inseam: height * 0.434,
-      };
-      let customSize = {
-        neck: baseSize.neck,
-        chest: baseSize.chest,
-        waist: baseSize.waist,
-        belt: baseSize.belt,
-        hip: baseSize.hip,
-        shoulder: baseSize.shoulder,
-        armLength: baseSize.armLength,
-        inseam: baseSize.inseam,
-      };
-      switch (selectedShape) {
-        case 0: //hourglass
-          customSize = {
-            neck: baseSize.neck,
-            chest: baseSize.chest,
-            waist: baseSize.waist,
-            belt: baseSize.belt,
-            hip: baseSize.hip,
-            shoulder: baseSize.shoulder,
-            armLength: baseSize.armLength,
-            inseam: baseSize.inseam,
-          };
-          break;
-        case 1: //pear
-          customSize = {
-            neck: baseSize.neck - 6,
-            chest: baseSize.chest - 11.6,
-            waist: baseSize.waist + 5.5,
-            belt: baseSize.belt + 7.5,
-            hip: baseSize.hip + 8.9,
-            shoulder: baseSize.shoulder - 0.6,
-            armLength: baseSize.armLength - 1,
-            inseam: baseSize.inseam + 0.8,
-          };
-          break;
-        case 2: //rectanggle
-          customSize = {
-            neck: baseSize.neck - 3,
-            chest: baseSize.chest - 2.8,
-            waist: baseSize.waist - 8.3,
-            belt: baseSize.belt - 6.9,
-            hip: baseSize.hip - 7.7,
-            shoulder: baseSize.shoulder - 1,
-            armLength: baseSize.armLength - 0.5,
-            inseam: baseSize.inseam - 0.6,
-          };
-          break;
-        case 3: //inverted triangle
-          customSize = {
-            neck: baseSize.neck + 3,
-            chest: baseSize.chest + 3.1,
-            waist: baseSize.waist + 3.5,
-            belt: baseSize.belt - 4.9,
-            hip: baseSize.hip - 5.5,
-            shoulder: baseSize.shoulder + 2.5,
-            armLength: baseSize.armLength + 0.5,
-            inseam: baseSize.inseam + 0.2,
-          };
-          break;
-        case 4: //apple
-          customSize = {
-            neck: baseSize.neck + 6,
-            chest: baseSize.chest + 12.6,
-            waist: baseSize.waist + 22,
-            belt: baseSize.belt + 17.9,
-            hip: baseSize.hip + 13.8,
-            shoulder: baseSize.shoulder + 1.5,
-            armLength: baseSize.armLength + 1,
-            inseam: baseSize.inseam - 2.3,
-          };
-          break;
-      }
-      customSize = {
-        neck: Math.round(customSize.neck),
-        chest: Math.round(customSize.chest),
-        waist: Math.round(customSize.waist),
-        belt: Math.round(customSize.belt),
-        hip: Math.round(customSize.hip),
-        shoulder: Math.round(customSize.shoulder),
-        armLength: Math.round(customSize.armLength),
-        inseam: Math.round(customSize.inseam),
-      };
-      return customSize;
-    } else {
-      const baseSize = {
-        neck: height * 0.251,
-        chest: height * 0.541,
-        waist: height * 0.451,
-        belt: height * 0.463,
-        hip: height * 0.542,
-        shoulder: height * 1.25,
-        armLength: height * 0.338,
-        inseam: height * 0.434,
-      };
-      let customSize = {
-        neck: baseSize.neck,
-        chest: baseSize.chest,
-        waist: baseSize.waist,
-        belt: baseSize.belt,
-        hip: baseSize.hip,
-        shoulder: baseSize.shoulder,
-        armLength: baseSize.armLength,
-        inseam: baseSize.inseam,
-      };
-      switch (selectedShape) {
-        case 0: //trapezoid
-          customSize = {
-            neck: baseSize.neck,
-            chest: baseSize.chest,
-            waist: baseSize.waist,
-            belt: baseSize.belt,
-            hip: baseSize.hip,
-            shoulder: baseSize.shoulder,
-            armLength: baseSize.armLength,
-            inseam: baseSize.inseam,
-          };
-          break;
-        case 1: //triangle
-          customSize = {
-            neck: baseSize.neck - 6,
-            chest: baseSize.chest - 13,
-            waist: baseSize.waist + 26.4,
-            belt: baseSize.belt + 18.7,
-            hip: baseSize.hip + 7.8,
-            shoulder: baseSize.shoulder - 1.1,
-            armLength: baseSize.armLength - 1,
-            inseam: baseSize.inseam + 0.8,
-          };
-          break;
-        case 2: //rectangle
-          customSize = {
-            neck: baseSize.neck - 3,
-            chest: baseSize.chest - 7,
-            waist: baseSize.waist + 4.4,
-            belt: baseSize.belt + 4,
-            hip: baseSize.hip + 3.5,
-            shoulder: baseSize.shoulder - 1,
-            armLength: baseSize.armLength - 0.5,
-            inseam: baseSize.inseam - 0.6,
-          };
-          break;
-        case 3: //inverted triangle
-          customSize = {
-            neck: baseSize.neck + 3,
-            chest: baseSize.chest + 6,
-            waist: baseSize.waist - 8.7,
-            belt: baseSize.belt - 8,
-            hip: baseSize.hip - 8.5,
-            shoulder: baseSize.shoulder + 3,
-            armLength: baseSize.armLength + 0.5,
-            inseam: baseSize.inseam + 0.2,
-          };
-          break;
-        case 4: //oval
-          customSize = {
-            neck: baseSize.neck + 6,
-            chest: baseSize.chest + 12,
-            waist: baseSize.waist + 31.5,
-            belt: baseSize.belt + 24,
-            hip: baseSize.hip + 17.7,
-            shoulder: baseSize.shoulder + 1.5,
-            armLength: baseSize.armLength + 1,
-            inseam: baseSize.inseam - 2.3,
-          };
-          break;
-      }
-      customSize = {
-        neck: Math.round(customSize.neck),
-        chest: Math.round(customSize.chest),
-        waist: Math.round(customSize.waist),
-        belt: Math.round(customSize.belt),
-        hip: Math.round(customSize.hip),
-        shoulder: Math.round(customSize.shoulder),
-        armLength: Math.round(customSize.armLength),
-        inseam: Math.round(customSize.inseam),
-      };
-      return customSize;
+  const handleChangeLengthToggle = useCallback(event => {
+    const { name, value, checked } = event.target;
+    const unitName = `${name}Unit`;
+    let convert = 0;
+    let unit = "";
+    if(checked){ // cm to in 
+      convert = Math.round(value/2.54*10)/10;
+      unit="in"
+    }else{ // in to cm
+      convert = Math.round(value*2.54);
+      unit="cm"
     }
-  }
+    setValues({
+      ...values,
+      [name]: convert,
+      [unitName]: unit
+    });
+  }, []);
 
-  const handleChangeToggle = useCallback(event => {
-    const toggles = document.getElementsByClassName(event.target.dataset.toggleGroup);
-    for (let i = 0; i < toggles.length; i++) {
-      toggles[i].classList.remove('toggle-active');
-      toggles[i].classList.add('toggle');
+  const handleChangeWeightToggle = useCallback(event => {
+    const { checked } = event.target;
+    if(checked){
+      
     }
-    event.target.classList.remove('toggle');
-    event.target.classList.add('toggle-active');
   }, []);
 
   return (
@@ -437,19 +270,14 @@ const BodyInfoBox = () => {
           <BodyDimensionsInput
             value={values.height}
             name="height"
-            min={values.genders[0] === 'men' ? 150 : 140}
-            max={values.genders[0] === 'men' ? 230 : 205}
+            min={values.heightUnit === "cm" ? (values.genders[0] === 'men' ? 150 : 140) : 0}
+            max={values.heightUnit === "cm" ? (values.genders[0] === 'men' ? 230 : 205) : 200}
             onChange={handleChange}
             onSubmit={handleSubmit}
           />
         </div>
         <div className="col-3 d-flex p-0">
-          <div
-            className="col col-12 toggle-active height-unit"
-            data-toggle-group="height-unit"
-            onClick={handleChangeToggle}>
-            cm
-          </div>
+          <ToggleButton on="cm" off="in" value={values.height} name="height" onChange={handleChangeLengthToggle}/>
         </div>
       </div>
       <div className="row w-100">
@@ -465,12 +293,7 @@ const BodyInfoBox = () => {
           />
         </div>
         <div className="col-3 d-flex p-0">
-          <div
-            className="col col-12 toggle-active weight-unit"
-            data-toggle-group="weight-unit"
-            onClick={handleChangeToggle}>
-            kg
-          </div>
+
         </div>
       </div>
       <div className="row">
@@ -524,7 +347,7 @@ const BodyInfoBox = () => {
           <BodyDimensionsInput value={values.hip} name="hip" onChange={handleChange} onSubmit={handleSubmit} />
         </div>
         <div className="col-3 d-flex p-0">
-          <div className="col col-12 toggle-active hip-unit" data-toggle-group="hip-unit" onClick={handleChangeToggle}>
+          <div className="col col-12 toggle-active hip-unit" data-toggle-group="hip-unit" onClick={handleChangeLengthToggle}>
             cm
           </div>
         </div>
@@ -540,12 +363,7 @@ const BodyInfoBox = () => {
           />
         </div>
         <div className="col-3 d-flex p-0">
-          <div
-            className="col col-12 toggle-active armlength-unit"
-            data-toggle-group="armlength-unit"
-            onClick={handleChangeToggle}>
-            cm
-          </div>
+
         </div>
       </div>
       <div className="row w-100">
@@ -554,12 +372,7 @@ const BodyInfoBox = () => {
           <BodyDimensionsInput value={values.inseam} name="inseam" onChange={handleChange} onSubmit={handleSubmit} />
         </div>
         <div className="col-3 d-flex p-0">
-          <div
-            className="col col-12 toggle-active inseam-unit"
-            data-toggle-group="inseam-unit"
-            onClick={handleChangeToggle}>
-            cm
-          </div>
+
         </div>
       </div>
     </div>
@@ -639,7 +452,201 @@ function BodyDimensionsInput({
     </>
   );
 }
-
+function calcBodyDimention({selectedShape, genders = [], values}) {
+  let height = Number(document.getElementsByName('height')[0].value);
+  if(values.heightUnit === "in"){ // convert height unit in to cm
+    height = Math.round(height*2.54);
+  }
+  if (genders[0] === 'women') {
+    const baseSize = {
+      neck: height * 0.251,
+      chest: height * 0.541,
+      waist: height * 0.451,
+      belt: height * 0.463,
+      hip: height * 0.542,
+      shoulder: height * 1.25,
+      armLength: height * 0.338,
+      inseam: height * 0.434,
+    };
+    let customSize = {
+      neck: baseSize.neck,
+      chest: baseSize.chest,
+      waist: baseSize.waist,
+      belt: baseSize.belt,
+      hip: baseSize.hip,
+      shoulder: baseSize.shoulder,
+      armLength: baseSize.armLength,
+      inseam: baseSize.inseam,
+    };
+    switch (selectedShape) {
+      case 0: //hourglass
+        customSize = {
+          neck: baseSize.neck,
+          chest: baseSize.chest,
+          waist: baseSize.waist,
+          belt: baseSize.belt,
+          hip: baseSize.hip,
+          shoulder: baseSize.shoulder,
+          armLength: baseSize.armLength,
+          inseam: baseSize.inseam,
+        };
+        break;
+      case 1: //pear
+        customSize = {
+          neck: baseSize.neck - 6,
+          chest: baseSize.chest - 11.6,
+          waist: baseSize.waist + 5.5,
+          belt: baseSize.belt + 7.5,
+          hip: baseSize.hip + 8.9,
+          shoulder: baseSize.shoulder - 0.6,
+          armLength: baseSize.armLength - 1,
+          inseam: baseSize.inseam + 0.8,
+        };
+        break;
+      case 2: //rectanggle
+        customSize = {
+          neck: baseSize.neck - 3,
+          chest: baseSize.chest - 2.8,
+          waist: baseSize.waist - 8.3,
+          belt: baseSize.belt - 6.9,
+          hip: baseSize.hip - 7.7,
+          shoulder: baseSize.shoulder - 1,
+          armLength: baseSize.armLength - 0.5,
+          inseam: baseSize.inseam - 0.6,
+        };
+        break;
+      case 3: //inverted triangle
+        customSize = {
+          neck: baseSize.neck + 3,
+          chest: baseSize.chest + 3.1,
+          waist: baseSize.waist + 3.5,
+          belt: baseSize.belt - 4.9,
+          hip: baseSize.hip - 5.5,
+          shoulder: baseSize.shoulder + 2.5,
+          armLength: baseSize.armLength + 0.5,
+          inseam: baseSize.inseam + 0.2,
+        };
+        break;
+      case 4: //apple
+        customSize = {
+          neck: baseSize.neck + 6,
+          chest: baseSize.chest + 12.6,
+          waist: baseSize.waist + 22,
+          belt: baseSize.belt + 17.9,
+          hip: baseSize.hip + 13.8,
+          shoulder: baseSize.shoulder + 1.5,
+          armLength: baseSize.armLength + 1,
+          inseam: baseSize.inseam - 2.3,
+        };
+        break;
+    }
+    customSize = {
+      neck: Math.round(customSize.neck),
+      chest: Math.round(customSize.chest),
+      waist: Math.round(customSize.waist),
+      belt: Math.round(customSize.belt),
+      hip: values.hipUnit === "in"? Math.round(customSize.hip/2.54*10)/10:Math.round(customSize.hip),
+      shoulder: Math.round(customSize.shoulder),
+      armLength: values.armLengthUnit === "in" ? Math.round(customSize.armLength/2.54*10)/10:Math.round(customSize.armLength),
+      inseam: values.inseamUnit === "in"? Math.round(customSize.inseam/2.54*10)/10:Math.round(customSize.inseam)
+    };
+    return customSize;
+  } else {
+    const baseSize = {
+      neck: height * 0.251,
+      chest: height * 0.541,
+      waist: height * 0.451,
+      belt: height * 0.463,
+      hip: height * 0.542,
+      shoulder: height * 1.25,
+      armLength: height * 0.338,
+      inseam: height * 0.434,
+    };
+    let customSize = {
+      neck: baseSize.neck,
+      chest: baseSize.chest,
+      waist: baseSize.waist,
+      belt: baseSize.belt,
+      hip: baseSize.hip,
+      shoulder: baseSize.shoulder,
+      armLength: baseSize.armLength,
+      inseam: baseSize.inseam,
+    };
+    switch (selectedShape) {
+      case 0: //trapezoid
+        customSize = {
+          neck: baseSize.neck,
+          chest: baseSize.chest,
+          waist: baseSize.waist,
+          belt: baseSize.belt,
+          hip: baseSize.hip,
+          shoulder: baseSize.shoulder,
+          armLength: baseSize.armLength,
+          inseam: baseSize.inseam,
+        };
+        break;
+      case 1: //triangle
+        customSize = {
+          neck: baseSize.neck - 6,
+          chest: baseSize.chest - 13,
+          waist: baseSize.waist + 26.4,
+          belt: baseSize.belt + 18.7,
+          hip: baseSize.hip + 7.8,
+          shoulder: baseSize.shoulder - 1.1,
+          armLength: baseSize.armLength - 1,
+          inseam: baseSize.inseam + 0.8,
+        };
+        break;
+      case 2: //rectangle
+        customSize = {
+          neck: baseSize.neck - 3,
+          chest: baseSize.chest - 7,
+          waist: baseSize.waist + 4.4,
+          belt: baseSize.belt + 4,
+          hip: baseSize.hip + 3.5,
+          shoulder: baseSize.shoulder - 1,
+          armLength: baseSize.armLength - 0.5,
+          inseam: baseSize.inseam - 0.6,
+        };
+        break;
+      case 3: //inverted triangle
+        customSize = {
+          neck: baseSize.neck + 3,
+          chest: baseSize.chest + 6,
+          waist: baseSize.waist - 8.7,
+          belt: baseSize.belt - 8,
+          hip: baseSize.hip - 8.5,
+          shoulder: baseSize.shoulder + 3,
+          armLength: baseSize.armLength + 0.5,
+          inseam: baseSize.inseam + 0.2,
+        };
+        break;
+      case 4: //oval
+        customSize = {
+          neck: baseSize.neck + 6,
+          chest: baseSize.chest + 12,
+          waist: baseSize.waist + 31.5,
+          belt: baseSize.belt + 24,
+          hip: baseSize.hip + 17.7,
+          shoulder: baseSize.shoulder + 1.5,
+          armLength: baseSize.armLength + 1,
+          inseam: baseSize.inseam - 2.3,
+        };
+        break;
+    }
+    customSize = {
+      neck: Math.round(customSize.neck),
+      chest: Math.round(customSize.chest),
+      waist: Math.round(customSize.waist),
+      belt: Math.round(customSize.belt),
+      hip: values.hipUnit === "in"?Math.round(customSize.hip/2.54*10)/10:Math.round(customSize.hip),
+      shoulder: Math.round(customSize.shoulder),
+      armLength: values.armLengthUnit === "in"?Math.round(customSize.armLength/2.54*10)/10:Math.round(customSize.armLength),
+      inseam: values.inseamUnit === "in"?Math.round(customSize.inseam/2.54*10)/10:Math.round(customSize.inseam)
+    };
+    return customSize;
+  }
+}
 const ControlHeader = styled.div`
   font-weight: 400;
   text-align: center;
@@ -692,18 +699,7 @@ const ControllBody = styled.div`
       -moz-text-align-last: center;
       background: white;
     }
-    .toggle-active::before {
-      content: ' ◆ ';
-    }
-    .toggle::before {
-      content: ' ◇ ';
-    }
-    .toggle-active {
-      color: black;
-    }
-    .toggle {
-      color: #ababab;
-    }
+
     .shape-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -732,4 +728,69 @@ const ControllBody = styled.div`
   }
 `;
 
+const ToggleButton = ({ on, off, name, value, onChange }) => {
+  return (
+    <SwitchLabel className="switch">
+      <input type="checkbox" name={name} value={value} onChange={onChange} />
+      <span className="slider">
+        <div>
+          <span className="toggle-on">{on}</span>
+          <span>
+            <IconToggle />
+          </span>
+          <span className="toggle-off">{off}</span>
+        </div>
+      </span>
+    </SwitchLabel>
+  );
+};
+const SwitchLabel = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+
+  & input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    .toggle-on {
+      color: black;
+    }
+    .toggle-off {
+      color: #ababab;
+    }
+    & > div {
+      margin: 9px 16px;
+    }
+  }
+
+  input:checked + .slider {
+    .toggle-on {
+      color: #ababab;
+    }
+    .toggle-off {
+      color: black;
+    }
+    transition: 0.3s ease color;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+  }
+`;
 export { StyleControlBox, BodyInfoBox, RecommendedStyleBox, StyleController };

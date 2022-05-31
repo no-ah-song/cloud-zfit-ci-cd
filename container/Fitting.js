@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import FittingViewer from './FittingViewer';
-import { StyleController } from '../container/FittingController';
+import { StyleController } from '../container/FittingControllerTemp';
 import Close from '../assets/icon-close-white.svg';
 import ZfitLogo from '../assets/icon-fitting-zfit.svg';
 import FitmapController from './FitmapController';
@@ -12,10 +12,12 @@ import { getFittingImages, getDefaultFittingImages } from '../api/api';
 
 import { fittingSelector, fittingImagesState, fittingDataCachingSelector } from '../recoil/state';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+// import SelectBackground from './SelectBackground';
 const Fitting = ({ onClickClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const countRef = useRef(0);
   const [activeStyles, setActiveStyles] = useState(false);
+  const [activeRoom, setActiveRoom] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -64,6 +66,10 @@ const Fitting = ({ onClickClose, isOpen }) => {
     setActiveStyles(!activeStyles);
   }
 
+  const handleClickRoom = () => {
+    setActiveRoom(!activeRoom);
+  }
+
   return (
     <FittingRoot isOpen={isOpen} ref={ref} width={width}>
       {isLoading && (
@@ -75,17 +81,18 @@ const Fitting = ({ onClickClose, isOpen }) => {
       )}
       <Container className="root__container">
         <Container className="header__container">
-          {activeStyles||
+          {activeRoom||
           <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
-            <div className="header-center-text p-4 bg-black text-white" onClick={handleClickStyles} role="button">
+            <div className="header-center-text p-4 bg-black text-white" onClick={handleClickRoom} role="button">
               <ZfitLogo />
-              <span>Styles</span>
+              <span>Room</span>
             </div>
             <div className="text-end px-3" onClick={onClickClose} role="button">
               <Close />
             </div>
           </div>}
           {activeStyles&&<RecommendStyles onClose={handleClickStyles}/>}
+          {/* {activeRoom&&<SelectBackground onClose={handleClickRoom}/>} */}
         </Container>
         <Container className="model__container">
           <FittingViewer />
@@ -178,7 +185,6 @@ const Container = styled.div`
   &.bottom__container {
     position: absolute;
     bottom: 0;
-    max-height: 30%;
     overflow: auto;
     width: 100%;
     z-index: 999;

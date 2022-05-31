@@ -52,17 +52,22 @@ const avatarState = atom({
   key: 'avatarState',
   default: Object.freeze({
     // avartar 정보
-    height: '',
-    weight: '',
+    height: 0,
+    weight: 0,
     genders: '',
-    hip: '',
-    armLength: '',
-    inseam: '',
-    neck: '',
-    chest: '',
-    waist: '',
-    belt: '',
-    acrossShoulder: '',
+    hip: 0,
+    armLength: 0,
+    inseam: 0,
+    neck: 0,
+    chest: 0,
+    waist: 0,
+    belt: 0,
+    acrossShoulder: 0,
+    heightUnit:"cm",
+    hipUnit:"cm",
+    armLengthUnit:"cm",
+    inseamUnit: "cm",
+    bodyShape:0,
   }),
   // effects_UNSTABLE: [persistAtomEffect]
 });
@@ -148,7 +153,6 @@ const fittingDataCachingState = atom({
 const fittingDataCachingSelector = selector({
   key: 'fittingDataCachingSelector',
   get: async ({ get }) => {
-    console.log('start');
     const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting.json');
     const data = await res.json();
     return data;

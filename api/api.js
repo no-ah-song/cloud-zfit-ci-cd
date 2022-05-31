@@ -199,4 +199,12 @@ const getProductType = async () => {
   const product = data.type;
   return product;
 };
-export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar, getProductType };
+
+const getBrandBackground = async ({ brandId }) => {
+  const res = await fetch('./brandBackground.json');
+  const data = await res.json();
+  const backgrounArr = data.brandBackground[brandId];
+  return backgrounArr;
+};
+
+export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar, getProductType, getBrandBackground };
