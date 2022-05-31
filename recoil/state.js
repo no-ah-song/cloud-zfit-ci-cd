@@ -63,11 +63,11 @@ const avatarState = atom({
     waist: 0,
     belt: 0,
     acrossShoulder: 0,
-    heightUnit:"cm",
-    hipUnit:"cm",
-    armLengthUnit:"cm",
-    inseamUnit: "cm",
-    bodyShape:0,
+    heightUnit: 'cm',
+    hipUnit: 'cm',
+    armLengthUnit: 'cm',
+    inseamUnit: 'cm',
+    bodyShape: 0,
   }),
   // effects_UNSTABLE: [persistAtomEffect]
 });
@@ -114,6 +114,14 @@ const fittingImagesState = atom({
     size: '',
     waist: 0,
     fitmap: false,
+    bgIndex: 0, // default bg is brand (index is 1)
+  },
+});
+
+const backgroundState = atom({
+  key: 'backgroundState',
+  default: {
+    selectedBackground: 0,
   },
 });
 
@@ -124,6 +132,7 @@ const fittingSelector = selector({
     const colorAndSize = get(colorAndSizeState);
     const avatar = get(avatarState);
     const fitmap = get(fitmapState);
+    const background = get(backgroundState);
     const fitting = {
       height: avatar.height,
       hip: avatar.hip,
@@ -140,6 +149,7 @@ const fittingSelector = selector({
       color: colorAndSize.color,
       size: colorAndSize.size,
       fitmap: fitmap.fitmap,
+      bgIndex: background.selectedBackground,
     };
     return fitting;
   },
@@ -172,4 +182,5 @@ export {
   fitmapState,
   fittingDataCachingState,
   fittingDataCachingSelector,
+  backgroundState,
 };

@@ -201,10 +201,18 @@ const getProductType = async () => {
 };
 
 const getBrandBackground = async ({ brandId }) => {
-  const res = await fetch('./brandBackground.json');
+  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brand_background.json');
   const data = await res.json();
-  const backgrounArr = data.brandBackground[brandId];
+  const backgrounArr = data.brandBackground[brandId] || [];
   return backgrounArr;
 };
 
-export { getBrandList, getFittingImages, getDefaultFittingImages, getBrandProducts, getProductsAvatar, getProductType, getBrandBackground };
+export {
+  getBrandList,
+  getFittingImages,
+  getDefaultFittingImages,
+  getBrandProducts,
+  getProductsAvatar,
+  getProductType,
+  getBrandBackground,
+};

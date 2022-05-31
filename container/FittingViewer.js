@@ -32,7 +32,11 @@ const FittingViewer = ({}) => {
 
   return (
     <>
-      <FittingSlider captures={[imagesDefault, imagesBrand]} fitmap={fittingImages.fitmap} />
+      <FittingSlider
+        captures={[imagesDefault, imagesBrand]}
+        fitmap={fittingImages.fitmap}
+        bg_index={fittingImages.bgIndex}
+      />
     </>
   );
 };

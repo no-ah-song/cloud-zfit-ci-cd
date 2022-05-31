@@ -10,9 +10,17 @@ import SizeController from './SizeController';
 import RecommendStyles from './RecommendStyles';
 import { getFittingImages, getDefaultFittingImages } from '../api/api';
 
-import { fittingSelector, fittingImagesState, fittingDataCachingSelector } from '../recoil/state';
+import {
+  fittingSelector,
+  fittingImagesState,
+  fittingDataCachingSelector,
+  backgroundState,
+  selectedProductState,
+} from '../recoil/state';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-// import SelectBackground from './SelectBackground';
+import SelectBackground from './SelectBackground';
+import { getBrandBackground } from '../api/api';
+
 const Fitting = ({ onClickClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const countRef = useRef(0);
@@ -38,20 +46,22 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const setFittingImages = useSetRecoilState(fittingImagesState);
   const resetFittingImages = useResetRecoilState(fittingImagesState);
   const fittingDataCaching = useRecoilValue(fittingDataCachingSelector);
-  const [fittingData,setFittingData] = useState();
+  const setBackground = useSetRecoilState(backgroundState);
+  const selectedProduct = useRecoilValue(selectedProductState);
+  const [fittingData, setFittingData] = useState();
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
-          if (fitting.color === 'no_color' && fitting.size === 'no_size') {
-            const response = await getDefaultFittingImages(fitting);
-            setFittingImages({ ...response, fitmap: fitting.fitmap });
-          } else {
-            const response = await getFittingImages({...fitting, data: fittingDataCaching});
-            setFittingImages({ ...response, fitmap: fitting.fitmap });
-          }
-        setTimeout(()=>setIsLoading(false), 1000);
+        if (fitting.color === 'no_color' && fitting.size === 'no_size') {
+          const response = await getDefaultFittingImages(fitting);
+          setFittingImages({ ...response, fitmap: fitting.fitmap, bgIndex: fitting.bgIndex });
+        } else {
+          const response = await getFittingImages({ ...fitting, data: fittingDataCaching });
+          setFittingImages({ ...response, fitmap: fitting.fitmap, bgIndex: fitting.bgIndex });
+        }
+        setTimeout(() => setIsLoading(false), 1000);
       } catch {
         resetFittingImages();
       }
@@ -62,13 +72,26 @@ const Fitting = ({ onClickClose, isOpen }) => {
     }
   }, [fitting, fittingData]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const result = await getBrandBackground({ brandId: selectedProduct.brandId });
+      if (result.length <= 0) {
+        // brand background가 있는지 없는지
+        setBackground({ selectedBackground: 0 });
+      } else {
+        setBackground({ selectedBackground: 1 });
+      }
+    }
+    fetchData();
+  }, [selectedProduct]);
+
   const handleClickStyles = () => {
     setActiveStyles(!activeStyles);
-  }
+  };
 
   const handleClickRoom = () => {
     setActiveRoom(!activeRoom);
-  }
+  };
 
   return (
     <FittingRoot isOpen={isOpen} ref={ref} width={width}>
@@ -81,18 +104,19 @@ const Fitting = ({ onClickClose, isOpen }) => {
       )}
       <Container className="root__container">
         <Container className="header__container">
-          {activeRoom||
-          <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
-            <div className="header-center-text p-4 bg-black text-white" onClick={handleClickRoom} role="button">
-              <ZfitLogo />
-              <span>Room</span>
+          {activeRoom || (
+            <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
+              <div className="header-center-text p-4 bg-black text-white" onClick={handleClickRoom} role="button">
+                <ZfitLogo />
+                <span>Room</span>
+              </div>
+              <div className="text-end px-3" onClick={onClickClose} role="button">
+                <Close />
+              </div>
             </div>
-            <div className="text-end px-3" onClick={onClickClose} role="button">
-              <Close />
-            </div>
-          </div>}
-          {activeStyles&&<RecommendStyles onClose={handleClickStyles}/>}
-          {/* {activeRoom&&<SelectBackground onClose={handleClickRoom}/>} */}
+          )}
+          {activeStyles && <RecommendStyles onClose={handleClickStyles} />}
+          {activeRoom && <SelectBackground onClose={handleClickRoom} />}
         </Container>
         <Container className="model__container">
           <FittingViewer />
