@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import FittingViewer from './FittingViewer';
-import { StyleController } from '../container/FittingControllerTemp';
+import { StyleController } from '../container/FittingController';
 import Close from '../assets/icon-close-white.svg';
 import IconRoom from '../assets/icon-room.svg';
 import FitmapController from './FitmapController';

@@ -5,11 +5,11 @@ import '../styles/style.css';
 import { RecoilRoot } from 'recoil';
 import React from 'react';
 import Head from 'next/head';
-
+import styled from 'styled-components';
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
-      <React.Suspense fallback={<video autoPlay muted playsInline><source src="./videos/loading looping.mp4" type="video/mp4"/></video>}>
+      <React.Suspense fallback={<Loading><video autoPlay muted playsInline><source src="./videos/loading looping.mp4" type="video/mp4"/></video></Loading>}>
         <Head>
           <meta
             name="viewport"
@@ -21,5 +21,18 @@ function MyApp({ Component, pageProps }) {
     </RecoilRoot>
   );
 }
+const Loading = styled.div`
+width:100vw;
+height:100vh;
+display:flex;
 
+video{
+// transform: scale(3);
+// object-fit: contain;
+// width: 100%;
+object-fit: cover;
+height: 100%;
+width: 100%;
+}
+`
 export default MyApp;
