@@ -121,90 +121,111 @@ const getDefaultFittingImages = async ({
   belt,
   acrossShoulder,
 }) => {
-  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting_avatar.json');
-  const data = await res.json();
-  function filter() {
-    try {
-      let fittings = data.fitting[brandId][productId][color][size][gender];
-      let nearestHeight = processBodyInfoData(fittings, 'height', height);
-      fittings = fittings.filter(fitting => {
-        return fitting.height == nearestHeight;
-      });
-      let nearestHip = processBodyInfoData(fittings, 'hip', hip);
-      fittings = fittings.filter(fitting => {
-        return fitting.hip == nearestHip;
-      });
-      let nearestArmLength = processBodyInfoData(fittings, 'armLength', armLength);
-      fittings = fittings.filter(fitting => {
-        return fitting.armLength == nearestArmLength;
-      });
-      let nearestInseam = processBodyInfoData(fittings, 'inseam', inseam);
-      fittings = fittings.filter(fitting => {
-        return fitting.inseam == nearestInseam;
-      });
-      let nearestChest = processBodyInfoData(fittings, 'chest', chest);
-      fittings = fittings.filter(fitting => {
-        return fitting.chest == nearestChest;
-      });
-      let nearestNeck = processBodyInfoData(fittings, 'neck', neck);
-      fittings = fittings.filter(fitting => {
-        return fitting.neck == nearestNeck;
-      });
-      let nearestBelt = processBodyInfoData(fittings, 'belt', belt);
-      fittings = fittings.filter(fitting => {
-        return fitting.belt == nearestBelt;
-      });
-      let nearestWaist = processBodyInfoData(fittings, 'waist', waist);
-      fittings = fittings.filter(fitting => {
-        return fitting.waist == nearestWaist;
-      });
-      let nearestShoulder = processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
-      fittings = fittings.filter(fitting => {
-        return fitting.acrossShoulder == nearestShoulder;
-      });
-      return fittings[0];
-    } catch (error) {
-      throw 'Fiter Data is Invalid';
+  try {
+    const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/fitting_avatar.json');
+    const data = await res.json();
+    function filter() {
+      try {
+        let fittings = data.fitting[brandId][productId][color][size][gender];
+        let nearestHeight = processBodyInfoData(fittings, 'height', height);
+        fittings = fittings.filter(fitting => {
+          return fitting.height == nearestHeight;
+        });
+        let nearestHip = processBodyInfoData(fittings, 'hip', hip);
+        fittings = fittings.filter(fitting => {
+          return fitting.hip == nearestHip;
+        });
+        let nearestArmLength = processBodyInfoData(fittings, 'armLength', armLength);
+        fittings = fittings.filter(fitting => {
+          return fitting.armLength == nearestArmLength;
+        });
+        let nearestInseam = processBodyInfoData(fittings, 'inseam', inseam);
+        fittings = fittings.filter(fitting => {
+          return fitting.inseam == nearestInseam;
+        });
+        let nearestChest = processBodyInfoData(fittings, 'chest', chest);
+        fittings = fittings.filter(fitting => {
+          return fitting.chest == nearestChest;
+        });
+        let nearestNeck = processBodyInfoData(fittings, 'neck', neck);
+        fittings = fittings.filter(fitting => {
+          return fitting.neck == nearestNeck;
+        });
+        let nearestBelt = processBodyInfoData(fittings, 'belt', belt);
+        fittings = fittings.filter(fitting => {
+          return fitting.belt == nearestBelt;
+        });
+        let nearestWaist = processBodyInfoData(fittings, 'waist', waist);
+        fittings = fittings.filter(fitting => {
+          return fitting.waist == nearestWaist;
+        });
+        let nearestShoulder = processBodyInfoData(fittings, 'acrossShoulder', acrossShoulder);
+        fittings = fittings.filter(fitting => {
+          return fitting.acrossShoulder == nearestShoulder;
+        });
+        return fittings[0];
+      } catch (error) {
+        throw 'Fiter Data is Invalid';
+      }
     }
+    const fittingImage = filter();
+    return fittingImage;
+  } catch (error) {
+    console.log(error);
+    throw 'Fiter Data is Invalid';
   }
-  const fittingImage = filter();
-  return fittingImage;
 };
 
 const getBrandProducts = async ({ brand }) => {
-  const resProduct = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json');
-  const dataProduct = await resProduct.json();
-  const objectProduct = Object.keys(dataProduct.products);
-  let products = [];
-  objectProduct.map(productId => {
-    if (dataProduct.products[productId].brandId === brand) {
-      dataProduct.products[productId].colors.map(item => {
-        products.push({ ...dataProduct.products[productId], color: item.color, sizes: item.sizes, src: item.src });
-      });
-    }
-  });
-  return products;
+  try {
+    const resProduct = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products.json');
+    const dataProduct = await resProduct.json();
+    const objectProduct = Object.keys(dataProduct.products);
+    let products = [];
+    objectProduct.map(productId => {
+      if (dataProduct.products[productId].brandId === brand) {
+        dataProduct.products[productId].colors.map(item => {
+          products.push({ ...dataProduct.products[productId], color: item.color, sizes: item.sizes, src: item.src });
+        });
+      }
+    });
+    return products;
+  } catch (error) {
+    throw 'Something wrong during fetching data';
+  }
 };
 
 const getProductsAvatar = async () => {
-  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products_avatar.json');
-  const data = await res.json();
-  const product = data.products[0];
-  return product;
+  try {
+    const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/products_avatar.json');
+    const data = await res.json();
+    const product = data.products[0];
+    return product;
+  } catch (error) {
+    throw 'Something wrong during fetching data';
+  }
 };
 
 const getProductType = async () => {
-  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/type.json');
-  const data = await res.json();
-  const product = data.type;
-  return product;
+  try {
+    const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/type.json');
+    const data = await res.json();
+    const product = data.type;
+    return product;
+  } catch (error) {
+    throw 'Something wrong during fetching data';
+  }
 };
 
 const getBrandBackground = async ({ brandId }) => {
-  const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brand_background.json');
-  const data = await res.json();
-  const backgrounArr = data.brandBackground[brandId] || [];
-  return backgrounArr;
+  try {
+    const res = await fetch('https://zfit-data.s3.ap-northeast-2.amazonaws.com/data/brand_background.json');
+    const data = await res.json();
+    const backgrounArr = data.brandBackground[brandId] || [];
+    return backgrounArr;
+  } catch (error) {
+    throw 'Something wrong during fetching data';
+  }
 };
 
 export {

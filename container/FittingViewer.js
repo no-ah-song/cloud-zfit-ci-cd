@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { fittingImagesState, selectedProductState } from '../recoil/state';
 import { useRecoilValue } from 'recoil';
-
+import IconUnknownImage from '../assets/icon-unknown-image.svg';
 const image_size = 16;
 
-const FittingViewer = ({}) => {
+const FittingViewer = ({ error }) => {
   const fittingImages = useRecoilValue(fittingImagesState);
   const selectedProduct = useRecoilValue(selectedProductState);
   const brand_name = selectedProduct.brandPath;
@@ -36,18 +36,20 @@ const FittingViewer = ({}) => {
         captures={[imagesDefault, imagesBrand]}
         fitmap={fittingImages.fitmap}
         bg_index={fittingImages.bgIndex}
+        error={error}
       />
     </>
   );
 };
 
-const FittingSlider = ({ captures, fitmap, bg_index = 0 }) => {
+const FittingSlider = ({ captures, fitmap, bg_index = 0, error }) => {
   // TODO select bg_index, check captures length
   const capture = captures.at(bg_index);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [delta, setDelta] = useState(0);
   const validCapture = capture && Array.isArray(capture) && capture.length > 0;
   const deltaDiff = 5;
+  const [imageError, setImageError] = useState(error || 'none');
   const configswipeable = {
     delta: 10, // min distance(px) before a swipe starts
     preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
@@ -102,12 +104,15 @@ const FittingSlider = ({ captures, fitmap, bg_index = 0 }) => {
           <SlideImage key={index} className={currentIndex === index ? 'd-block' : 'd-none'}>
             <img
               src={src}
-              onError={e => {
-                e.target.src = '/images/z-fit.png'; // TODO relace default image(url must always valid)
+              onError={() => {
+                setImageError('img load error'); // TODO relace default image(url must always valid)
               }}></img>
           </SlideImage>
         );
       })}
+      <ErrorImage id="fittingErrorImage" imageError={imageError}>
+        <IconUnknownImage />
+      </ErrorImage>
     </>
   );
 };
@@ -134,6 +139,14 @@ const SlideImage = styled.div`
     height: 100%;
     object-fit: cover;
   }
+`;
+const ErrorImage = styled.div`
+  background: rgb(0 0 0 / 40%);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: ${props => (props.imageError === 'none' ? 'none' : 'flex')};
 `;
 FittingViewer.propTypes = {};
 

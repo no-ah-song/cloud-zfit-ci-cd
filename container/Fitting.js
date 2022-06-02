@@ -49,10 +49,12 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const setBackground = useSetRecoilState(backgroundState);
   const selectedProduct = useRecoilValue(selectedProductState);
   const [fittingData, setFittingData] = useState();
+  const [fittingError, setFittingError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setFittingError(false);
         setIsLoading(true);
         if (fitting.color === 'no_color' && fitting.size === 'no_size') {
           const response = await getDefaultFittingImages(fitting);
@@ -64,10 +66,12 @@ const Fitting = ({ onClickClose, isOpen }) => {
         setTimeout(() => setIsLoading(false), 1000);
       } catch {
         resetFittingImages();
+        setFittingError(true);
       }
     }
     countRef = countRef.current + 1;
     if (fitting.brandId && fitting.productId && fitting.color && fitting.size && fitting.gender && fitting.height) {
+      console.log('start');
       fetchData();
     }
   }, [fitting, fittingData]);
@@ -115,7 +119,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
           {activeRoom && <SelectBackground onClose={handleClickRoom} />}
         </Container>
         <Container className="model__container">
-          <FittingViewer />
+          <FittingViewer error={fittingError} />
         </Container>
         <Container className="float__container">
           <Wrapper>
