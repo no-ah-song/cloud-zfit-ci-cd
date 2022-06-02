@@ -9,7 +9,7 @@ import Head from 'next/head';
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<video autoPlay muted playsInline><source src="./videos/loading looping.mp4" type="video/mp4"/></video>}>
         <Head>
           <meta
             name="viewport"
