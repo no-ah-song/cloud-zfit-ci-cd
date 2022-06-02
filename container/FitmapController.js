@@ -12,6 +12,8 @@ const FitmapController = () => {
   useEffect(() => {
     return function cleanup() {
       // fitmap state cleanup
+      setActive(false);
+      setFitmap(false);
       resetFitmap;
     };
   }, []);

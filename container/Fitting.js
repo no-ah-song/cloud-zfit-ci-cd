@@ -121,6 +121,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
         </Container>
         <Container className="float__container">
           <Wrapper>
+            {isOpen&&
             <div>
               <div>
                 <RecommendStyles />
@@ -135,6 +136,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
                 <SizeController />
               </div>
             </div>
+            }
           </Wrapper>
         </Container>
         <Container className="bottom__container">
