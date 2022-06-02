@@ -24,9 +24,13 @@ const FittingAdvancedTab = props => {
   useEffect(()=>{
     setValues({
       ...values,
-      hip: avatar.hip,
-      armLength: avatar.armLength,
-      inseam:avatar.inseam
+      hip: values.hipUnit === 'in' ? Math.round((avatar.hip / 2.54 /12) * 10) / 10 : Math.round(avatar.hip),
+      armLength:
+        values.armLengthUnit === 'in'
+          ? Math.round((avatar.armLength / 2.54/12) * 10) / 10
+          : Math.round(avatar.armLength),
+      inseam:
+        values.inseamUnit === 'in' ? Math.round((avatar.inseam / 2.54/12) * 10) / 10 : Math.round(avatar.inseam),
     })
   },[avatar.hip, avatar.armLength, avatar.inseam]);
 

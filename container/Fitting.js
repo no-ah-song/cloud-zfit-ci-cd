@@ -85,10 +85,6 @@ const Fitting = ({ onClickClose, isOpen }) => {
     fetchData();
   }, [selectedProduct]);
 
-  const handleClickStyles = () => {
-    setActiveStyles(!activeStyles);
-  };
-
   const handleClickRoom = () => {
     setActiveRoom(!activeRoom);
   };
@@ -115,7 +111,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
               </div>
             </div>
           )}
-          {activeStyles && <RecommendStyles onClose={handleClickStyles} />}
+          {/* {activeStyles && <RecommendStyles onClose={handleClickStyles} />} */}
           {activeRoom && <SelectBackground onClose={handleClickRoom} />}
         </Container>
         <Container className="model__container">
@@ -124,6 +120,9 @@ const Fitting = ({ onClickClose, isOpen }) => {
         <Container className="float__container">
           <Wrapper>
             <div>
+              <div>
+                <RecommendStyles />
+              </div>
               <div>
                 <FitmapController />
               </div>

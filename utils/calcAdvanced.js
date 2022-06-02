@@ -1,9 +1,9 @@
 
 function calcBodyDimensions({ basedHeight, selectedShape, genders = [], values }) {
   let height = basedHeight;
-  if (values.heightUnit === 'in') {
-    height = Math.round(height * 2.54 *12);
-  }
+  // if (values.heightUnit === 'in') {
+  //   height = Math.round(height * 2.54 *12);
+  // }
   if (genders[0] === 'women') {
     const baseSize = {
       neck: height * 0.251,
@@ -92,14 +92,10 @@ function calcBodyDimensions({ basedHeight, selectedShape, genders = [], values }
       chest: Math.round(customSize.chest),
       waist: Math.round(customSize.waist),
       belt: Math.round(customSize.belt),
-      hip: values.hipUnit === 'in' ? Math.round((customSize.hip / 2.54 /12) * 10) / 10 : Math.round(customSize.hip),
+      hip: Math.round(customSize.hip),
       shoulder: Math.round(customSize.shoulder),
-      armLength:
-        values.armLengthUnit === 'in'
-          ? Math.round((customSize.armLength / 2.54/12) * 10) / 10
-          : Math.round(customSize.armLength),
-      inseam:
-        values.inseamUnit === 'in' ? Math.round((customSize.inseam / 2.54/12) * 10) / 10 : Math.round(customSize.inseam),
+      armLength:Math.round(customSize.armLength),
+      inseam:Math.round(customSize.inseam),
     };
     return customSize;
   } else {
@@ -190,14 +186,10 @@ function calcBodyDimensions({ basedHeight, selectedShape, genders = [], values }
       chest: Math.round(customSize.chest),
       waist: Math.round(customSize.waist),
       belt: Math.round(customSize.belt),
-      hip: values.hipUnit === 'in' ? Math.round((customSize.hip / 2.54/12) * 10) / 10 : Math.round(customSize.hip),
+      hip:  Math.round(customSize.hip),
       shoulder: Math.round(customSize.shoulder),
-      armLength:
-        values.armLengthUnit === 'in'
-          ? Math.round((customSize.armLength / 2.54/12) * 10) / 10
-          : Math.round(customSize.armLength),
-      inseam:
-        values.inseamUnit === 'in' ? Math.round((customSize.inseam / 2.54/12) * 10) / 10 : Math.round(customSize.inseam),
+      armLength:Math.round(customSize.armLength),
+      inseam:Math.round(customSize.inseam),
     };
     return customSize;
   }

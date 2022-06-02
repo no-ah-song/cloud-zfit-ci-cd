@@ -13,7 +13,7 @@ const FittingShapeTab = props => {
   const handleClickShape = useCallback((event)=>{
     setSelectedShape(Number(event.target.dataset.targetIndex));
     setAvatar({...avatar, bodyShape:Number(event.target.dataset.targetIndex)})
-  },[selectedShape]);
+  },[selectedShape,avatar]);
 
   useEffect(()=>{
     let avatarHeight = avatar.height;

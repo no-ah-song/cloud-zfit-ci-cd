@@ -10,6 +10,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 const FittingBasicTab = () => {
   const selectedProduct = useRecoilValue(selectedProductState);
+  const [isUpdateAdvanced, setIsUpdateAdvanced] = useState(false);
   const [avatar, setAvatar] = useRecoilState(avatarState);
 
   const initialValues = {
@@ -22,9 +23,13 @@ const FittingBasicTab = () => {
   
   const [values, setValues] = useState(initialValues);
   useEffect(()=>{
-    setValueOfInput();
     setAvatar({...avatar, ...values, genders: selectedProduct.genders});
+    setIsUpdateAdvanced(true);
   },[selectedProduct]);
+
+  useEffect(()=>{
+    isUpdateAdvanced&&setValueOfInput();
+  },[isUpdateAdvanced]);
 
   const setValueOfGenders = useCallback(
     event => {
@@ -159,8 +164,8 @@ const FittingBasicTab = () => {
             <BodyDimensionsInput
               value={values.height}
               name="height"
-              min={values.heightUnit === 'cm' ? (values.genders[0] === 'men' ? 150 : 140) : (values.genders[0] === 'men' ? 59 : 55) }
-              max={values.heightUnit === 'cm' ? (values.genders[0] === 'men' ? 230 : 205) : (values.genders[0] === 'men' ? 90 : 80)}
+              min={values.heightUnit === 'cm' ? (values.genders[0] === 'men' ? 150 : 140) : (values.genders[0] === 'men' ? 4.9 : 4.5) }
+              max={values.heightUnit === 'cm' ? (values.genders[0] === 'men' ? 230 : 205) : (values.genders[0] === 'men' ? 7.5 : 6.7)}
               onChange={handleChangeInput}
               onSubmit={handleSubmit}
             />
