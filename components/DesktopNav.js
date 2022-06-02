@@ -95,7 +95,7 @@ const DesktopNav = () => {
                   </Link>
                 </li>
                 {typeList.women?.map((type, index) => {
-                  const to = `/products?gender=men&type=${type.toLowerCase()}`;
+                  const to = `/products?gender=women&type=${type.toLowerCase()}`;
                   return (
                     <li key={index} className="w-100">
                       <Link href={to} passHref>
