@@ -6,6 +6,7 @@ import { selectedProductState } from '../recoil/state';
 import { useRecoilValue } from 'recoil';
 import { getBrandProducts } from '../api/api';
 import IconHanger from '../assets/icon-hanger.svg';
+import IconHangerBlack from '../assets/icon-hanger-black.svg';
 
 const RecommendStyles = () => {
   const [active, setActive] = useState(false);
@@ -38,6 +39,9 @@ const RecommendStyles = () => {
     <RecommendStylesRoot>
       <div>
         <button onClick={handleClick}>
+          <div>
+            <IconHangerBlack />
+          </div>
           <div>STYLES</div>
         </button>
       </div>
@@ -47,7 +51,8 @@ const RecommendStyles = () => {
             <div className="d-flex flex-wrap align-items-center justify-content-between p-4">
               <div />
               <div className="header-center-text">
-              <IconHanger/><span>Recommended Styles</span>
+                <IconHanger />
+                <span>Recommended Styles</span>
               </div>
               <div className="text-end" role="button" onClick={handleClickClose}>
                 Close
@@ -88,17 +93,16 @@ const RecommendStylesRoot = styled.div`
     background: white;
     color: black;
   }
-
 `;
 
 const DarkenBackground = styled.div`
-display: ${props => (props.active ? 'block' : 'none')};
-position: fixed;
-top: 0;
-width: 100%;
-height: 100%;
-left: 0;
-background:rgb(0 0 0 / 70%);
+  display: ${props => (props.active ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background: rgb(0 0 0 / 70%);
 `;
 
 const SelectArea = styled.div`
@@ -106,7 +110,7 @@ const SelectArea = styled.div`
   margin: 16px;
   top: 50%;
   position: relative;
-  transform: translate(0,-50%);
+  transform: translate(0, -50%);
   .recommend-header {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;

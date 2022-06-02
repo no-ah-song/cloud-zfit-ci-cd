@@ -72,7 +72,7 @@ const SelectBackground = ({ onClose }) => {
                     White
                   </div>
                   <div className="item-image">
-                    <Image src="/no-image.png" layout={'fill'} data-target-index={0} />
+                    <Image src="/images/brandBackground/white_background.png" layout={'fill'} data-target-index={0} />
                   </div>
                 </BackgroundContainer>
               </div>

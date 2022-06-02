@@ -49,7 +49,8 @@ const FitmapControllerRoot = styled.div`
 `;
 
 const FitmapIndicator = styled.div`
-  padding-bottom: 123px;
+  position: fixed;
+  top: 50%;
 `;
 FitmapController.propTypes = {};
 

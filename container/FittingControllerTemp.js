@@ -33,14 +33,25 @@ const StyleControlBox = ({ title, children, ...rest }) => {
       <StyledControlContainer {...rest}>
         <ControlHeader onClick={() => setIsOpen(!isOpen)} role="button">
           {isOpen ? (
-            <div>Body Info ↓</div>
+            <div className="row">
+              <div className="col col-12 d-flex">
+                <span className="text-start w-100 px-4 text-nowrap">
+                  <b>Body Info</b>
+                </span>
+                <span className="text-end px-4 text-nowrap">
+                  <b>↓</b>
+                </span>
+              </div>
+            </div>
           ) : (
             <div className="row">
               <div className="col col-12 d-flex">
                 <span className="text-start w-100 px-4 text-nowrap">
-                  <b>View Style & Body</b>
+                  <b>Body Info</b>
                 </span>
-                <span className="text-end px-4 text-nowrap">EXPAND ↑</span>
+                <span className="text-end px-4 text-nowrap">
+                  <b>↑</b>
+                </span>
               </div>
             </div>
           )}
@@ -51,8 +62,7 @@ const StyleControlBox = ({ title, children, ...rest }) => {
   );
 };
 
-
-const ControlBox = () => {  
+const ControlBox = () => {
   return (
     <ControlTab>
       <nav>
@@ -94,13 +104,13 @@ const ControlBox = () => {
       </nav>
       <div className="tab-content">
         <div className="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
-          <FittingBasicTab/>
+          <FittingBasicTab />
         </div>
         <div className="tab-pane fade" id="nav-shape" role="tabpanel" aria-labelledby="nav-shape-tab">
-          <FittingShapeTab/>
+          <FittingShapeTab />
         </div>
         <div className="tab-pane fade" id="nav-advanced" role="tabpanel" aria-labelledby="nav-advanced-tab">
-          <FittingAdvancedTab/>
+          <FittingAdvancedTab />
         </div>
       </div>
     </ControlTab>
@@ -121,7 +131,7 @@ const StyledControlContainer = styled.div`
 `;
 
 const ControlTab = styled.div`
-  .nav-tabs{
+  .nav-tabs {
     padding: 0 24px;
   }
   button.nav-link {
@@ -137,14 +147,14 @@ const ControlTab = styled.div`
     color: black;
     border-bottom: 2px solid black;
   }
-  .col-header{
+  .col-header {
     font-weight: 600;
     font-size: 12px;
     line-height: 14px;
     align-items: center;
     display: flex;
   }
-  .tab-content{
+  .tab-content {
     padding: 0 0 12px 0;
   }
 `;
@@ -167,6 +177,5 @@ const ControllBody = styled.div`
     margin: 0;
     padding: 0;
   }
-  
 `;
 export { StyleControlBox, StyleController };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import FittingViewer from './FittingViewer';
 import { StyleController } from '../container/FittingControllerTemp';
 import Close from '../assets/icon-close-white.svg';
-import ZfitLogo from '../assets/icon-fitting-zfit.svg';
+import IconRoom from '../assets/icon-room.svg';
 import FitmapController from './FitmapController';
 import ColorController from './ColorController';
 import SizeController from './SizeController';
@@ -24,7 +24,6 @@ import { getBrandBackground } from '../api/api';
 const Fitting = ({ onClickClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const countRef = useRef(0);
-  const [activeStyles, setActiveStyles] = useState(false);
   const [activeRoom, setActiveRoom] = useState(false);
 
   useEffect(() => {
@@ -71,7 +70,6 @@ const Fitting = ({ onClickClose, isOpen }) => {
     }
     countRef = countRef.current + 1;
     if (fitting.brandId && fitting.productId && fitting.color && fitting.size && fitting.gender && fitting.height) {
-      console.log('start');
       fetchData();
     }
   }, [fitting, fittingData]);
@@ -107,7 +105,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
           {activeRoom || (
             <div className="d-flex flex-wrap align-items-center h-100 justify-content-between">
               <div className="header-center-text p-4 bg-black text-white" onClick={handleClickRoom} role="button">
-                <ZfitLogo />
+                <IconRoom />
                 <span>Room</span>
               </div>
               <div className="text-end px-3" onClick={onClickClose} role="button">
