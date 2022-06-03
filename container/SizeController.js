@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { selectedProductState, colorAndSizeState } from '../recoil/state';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, useResetRecoilState } from 'recoil';
 
 const SizeController = () => {
   const [active, setActive] = useState(false);
   const selectedProduct = useRecoilValue(selectedProductState); // selected product info state
   const [colorAndSize, setColorAndSize] = useRecoilState(colorAndSizeState);
-  useEffect(()=>{
+  const resetColorAndSize = useResetRecoilState(colorAndSizeState);
+
+  useEffect(() => {
+    return function cleanup() {
+      // fitmap state cleanup
+      setActive(false);
+      resetColorAndSize();
+    };
+  }, []);
+
+  useEffect(() => {
     selectedProduct.colors.map(item => {
       // selected product's color
       if (item.color === colorAndSize.color) {
-        setColorAndSize({ ...colorAndSize, size: item.sizes[0] }); 
+        setColorAndSize({ ...colorAndSize, size: item.sizes[0] });
       }
     });
-  },[colorAndSize.color]);
+  }, [colorAndSize.color]);
+
   const handleClick = () => {
     setActive(!active);
   };

@@ -25,6 +25,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const countRef = useRef(0);
   const [activeRoom, setActiveRoom] = useState(false);
+  const setBackground = useSetRecoilState(backgroundState);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,6 +33,7 @@ const Fitting = ({ onClickClose, isOpen }) => {
     } else {
       document.body.classList.remove('scroll-hidden');
     }
+    setBackground({ selectedBackground: 0 });
   }, [isOpen]);
 
   const ref = useRef();
@@ -45,7 +47,6 @@ const Fitting = ({ onClickClose, isOpen }) => {
   const setFittingImages = useSetRecoilState(fittingImagesState);
   const resetFittingImages = useResetRecoilState(fittingImagesState);
   const fittingDataCaching = useRecoilValue(fittingDataCachingSelector);
-  const setBackground = useSetRecoilState(backgroundState);
   const selectedProduct = useRecoilValue(selectedProductState);
   const [fittingData, setFittingData] = useState();
   const [fittingError, setFittingError] = useState(false);
@@ -121,22 +122,22 @@ const Fitting = ({ onClickClose, isOpen }) => {
         </Container>
         <Container className="float__container">
           <Wrapper>
-            {isOpen&&
-            <div>
+            {isOpen && (
               <div>
-                <RecommendStyles />
+                <div>
+                  <RecommendStyles />
+                </div>
+                <div>
+                  <FitmapController />
+                </div>
+                <div>
+                  <ColorController />
+                </div>
+                <div>
+                  <SizeController />
+                </div>
               </div>
-              <div>
-                <FitmapController />
-              </div>
-              <div>
-                <ColorController />
-              </div>
-              <div>
-                <SizeController />
-              </div>
-            </div>
-            }
+            )}
           </Wrapper>
         </Container>
         <Container className="bottom__container">

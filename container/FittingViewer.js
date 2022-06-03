@@ -24,7 +24,6 @@ const FittingViewer = ({ error }) => {
   }_${fittingImages.acrossShoulder * 10}_${fittingImages.waist * 10}`;
   const imagesDefault = [];
   const imagesBrand = [];
-
   for (let index = 0; index < image_size; index++) {
     imagesDefault.push(`${prefixImage}/${index.toString().padStart(3, '0')}.jpg`);
     imagesBrand.push(`${prefixImage}/brand/${index.toString().padStart(3, '0')}.jpg`);

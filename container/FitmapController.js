@@ -14,7 +14,7 @@ const FitmapController = () => {
       // fitmap state cleanup
       setActive(false);
       setFitmap(false);
-      resetFitmap;
+      resetFitmap();
     };
   }, []);
 

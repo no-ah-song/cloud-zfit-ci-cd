@@ -171,7 +171,6 @@ const getDefaultFittingImages = async ({
     const fittingImage = filter();
     return fittingImage;
   } catch (error) {
-    console.log(error);
     throw 'Fiter Data is Invalid';
   }
 };
