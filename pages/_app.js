@@ -9,7 +9,7 @@ import styled from 'styled-components';
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
-      <React.Suspense fallback={<Loading><video autoPlay muted playsInline><source src="./videos/loading looping.mp4" type="video/mp4"/></video></Loading>}>
+      <React.Suspense fallback={<Loading><video autoPlay muted playsInline loop><source src="./videos/loading looping.mp4" type="video/mp4"/></video></Loading>}>
         <Head>
           <meta
             name="viewport"

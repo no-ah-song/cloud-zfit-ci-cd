@@ -83,15 +83,15 @@ const SlideBanner = styled.div`
 const Home = ({ products, bannerList }) => {
   return (
     <>
-      <Layout>
-        <SlideBanner>
-          <BrandCarousel bannerList={bannerList} />
-        </SlideBanner>
-        <Container className="bottom__container">
-          <div className="border-bottom border-dark title"> NEW IN </div>
-          <Products productList={products} />
-        </Container>
-      </Layout>
+        <Layout>
+          <SlideBanner>
+            <BrandCarousel bannerList={bannerList} />
+          </SlideBanner>
+          <Container className="bottom__container">
+            <div className="border-bottom border-dark title"> NEW IN </div>
+            <Products productList={products} />
+          </Container>
+        </Layout>
     </>
   );
 };

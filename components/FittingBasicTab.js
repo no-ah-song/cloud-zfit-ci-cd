@@ -151,7 +151,7 @@ const FittingBasicTab = () => {
           <div className="col col-4 col-header">Gender</div>
           <div className="col col-8">
             <GenderToggle className={values.genders.length>1?"multiple-gender":"disabled-other-gender"}>
-              <input type="checkbox" name="gender_type" id="gender_type" onChange={handleChangeGenderToggle} disabled={selectedProduct.genders.length>1?false:true} defaultChecked={avatar.genders[0]==="men"?false:true}/>
+              <input type="checkbox" name="gender_type" id="gender_type" onChange={handleChangeGenderToggle} disabled={selectedProduct.genders.length>1?false:true} checked={avatar.genders[0]==="men"?false:true}/>
               <label for="gender_type" data-on="women" data-off="men" className="btn-gender-type"></label>
             </GenderToggle>
           </div>
